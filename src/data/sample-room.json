@@ -1,0 +1,554 @@
+{
+	"rooms":
+	[
+		[
+			{
+				"id": "1",
+				"class": "kitchen",
+				"path": 
+				[
+					[200,200],
+					[200,7800],
+					[3800,7800],
+					[3800,200],
+					[200,200]
+				],
+				"parameters":
+				[
+					{
+						"height": 2900,
+						"wall-texture": "GUID-iurn9rewqer0g",
+						"floor-texture": "GUID-iufsdhfdhfqer0g",
+						"ceiling-texture": "GUID-iurn9rgsdfhxvcng"
+					}
+				]
+			},
+			{
+				"id": "2",
+				"class": "bedroom",
+				"path": 
+				[
+					[4000,200],
+					[4000,7800],
+					[7800,7800],
+					[7800,200],
+					[4000,200]
+				],
+				"parameters":
+				[
+					{
+						"height": 2900,
+						"wall-texture": "GUID-iurn9rewqer0g",
+						"floor-texture": "GUID-iufsdhfdhfqer0g",
+						"ceiling-texture": "GUID-iurn9rgsdfhxvcng"
+					}
+				]
+			}
+		]
+	],
+	"outer-perimeter":
+	[
+		[
+			{
+				"id": "41",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[0,0],
+					[0,8000]
+				]
+			},
+			{
+				"id": "421",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[0,8000],
+					[1200,8000]
+				]
+			},
+			{
+				"id": "422",
+				"class": "outer-wall",
+				"type": "cut",
+				"path":
+				[
+					[1200,8000],
+					[2800,8000]
+				]
+			},
+			{
+				"id": "423",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[2800,8000],
+					[5200,8000]
+				]
+			},
+			{
+				"id": "424",
+				"class": "outer-wall",
+				"type": "cut",
+				"path":
+				[
+					[5200,8000],
+					[6400,8000]
+				]
+			},
+			{
+				"id": "425",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[6400,8000],
+					[8000,8000]
+				]
+			},
+			{
+				"id": "431",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[8000,8000],
+					[8000,5200]
+				]
+			},
+			{
+				"id": "432",
+				"class": "outer-wall",
+				"type": "cut",
+				"path":
+				[
+					[8000,5200],
+					[8000,2800]
+				]
+			},
+			{
+				"id": "433",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[8000,2800],
+					[8000,0]
+				]
+			},
+			{
+				"id": "441",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[8000,0],
+					[6400,0]
+				]
+			},
+			{
+				"id": "442",
+				"class": "outer-wall",
+				"type": "cut",
+				"path":
+				[
+					[6400,0],
+					[5600,0]
+				]
+			},
+			{
+				"id": "443",
+				"class": "outer-wall",
+				"type": "solid",
+				"path":
+				[
+					[5600,0],
+					[0,0]
+				]
+			}
+		]
+	],
+	"inner-perimeters":[
+		[
+			{
+				"id": "11",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[200,200],
+					[200,7800]
+				]
+			},
+			{
+				"id": "121",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[200,7800],
+					[1200,7800]
+				]
+			},
+			{
+				"id": "122",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[1200,7800],
+					[2800,7800]
+				]
+			},
+			{
+				"id": "123",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[2800,7800],
+					[3800,7800]
+				]
+			},
+			{
+				"id": "131",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[3800,7800],
+					[3800,4400]
+				]
+			},
+			{
+				"id": "132",
+				"class": "inner-wall",
+				"type": "cut",
+				"ref-room": "1",
+				"path":
+				[
+					[3800,4400],
+					[3800,3600]
+				]
+			},
+			{
+				"id": "133",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[3800,3600],
+					[3800,200]
+				]
+			},
+			{
+				"id": "14",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "1",
+				"path":
+				[
+					[3800,200],
+					[200,200]
+				]
+			},
+			{
+				"id": "211",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[4000,200],
+					[4000,3600]
+				]
+			},
+			{
+				"id": "212",
+				"class": "inner-wall",
+				"type": "cut",
+				"ref-room": "2",
+				"path":
+				[
+					[4000,3600],
+					[4000,4400]
+				]
+			},
+			{
+				"id": "213",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[4000,4400],
+					[4000,7800]
+				]
+			},
+			{
+				"id": "221",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[4000,7800],
+					[5200,7800]
+				]
+			},
+			{
+				"id": "222",
+				"class": "inner-wall",
+				"type": "cut",
+				"ref-room": "2",
+				"path":
+				[
+					[5200,7800],
+					[6400,7800]
+				]
+			},
+			{
+				"id": "223",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[6400,7800],
+					[7800,7800]
+				]
+			},
+			{
+				"id": "231",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[7800,7800],
+					[7800,5200]
+				]
+			},
+			{
+				"id": "232",
+				"class": "inner-wall",
+				"type": "cut",
+				"ref-room": "2",
+				"path":
+				[
+					[7800,5200],
+					[7800,2800]
+				]
+			},
+			{
+				"id": "233",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[7800,2800],
+					[7800,200]
+				]
+			},
+			{
+				"id": "241",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[7800,200],
+					[6400,200]
+				]
+			},
+			{
+				"id": "242",
+				"class": "inner-wall",
+				"type": "cut",
+				"ref-room": "2",
+				"path":
+				[
+					[6400,200],
+					[5600,200]
+				]
+			},
+			{
+				"id": "243",
+				"class": "inner-wall",
+				"type": "solid",
+				"ref-room": "2",
+				"path":
+				[
+					[5600,200],
+					[4000,200]
+				]
+			}
+		]
+	],
+	"objects": [
+		[
+			{
+				"id": "345",
+				"class": "window",
+				"parameters":
+				[
+					{
+						"height-bottom": 960,
+						"height-top": 2660
+					}
+				],
+				"location":
+				[
+					{
+						"ref-wall": "122",
+						"path":
+						[
+							[1200,7800],
+							[2800,7800]
+						]
+					},
+					{
+						"ref-wall": "422",
+						"path":
+						[
+							[1200,8000],
+							[2800,8000]
+						]
+					}
+				]
+			},
+			{
+				"id": "346",
+				"class": "window",
+				"parameters":
+				[
+					{
+						"height-bottom": 960,
+						"height-top": 2660
+					}
+				],
+				"location":
+				[
+					{
+						"ref-wall": "222",
+						"path":
+						[
+							[5200,7800],
+							[6400,7800]
+						]
+					},
+					{
+						"ref-wall": "424",
+						"path":
+						[
+							[5200,8000],
+							[6400,8000]
+						]
+					}
+				]
+			},
+			{
+				"id": "347",
+				"class": "window",
+				"parameters":
+				[
+					{
+						"height-bottom": 960,
+						"height-top": 2660
+					}
+				],
+				"location":
+				[
+					{
+						"ref-wall": "232",
+						"path":
+						[
+							[7800,2800],
+							[7800,5200]
+						]
+					},
+					{
+						"ref-wall": "432",
+						"path":
+						[
+							[8000,2800],
+							[8000,5200]
+						]
+					}
+				]
+			},
+			{
+				"id": "348",
+				"class": "door",
+				"parameters":
+				[
+					{
+						"type": "front-door",
+						"height-bottom": 0,
+						"height-top": 2000
+					}
+				],
+				"location":
+				[
+					{
+						"ref-wall": "242",
+						"path":
+						[
+							[5600,200],
+							[6400,200]
+						]
+					},
+					{
+						"ref-wall": "442",
+						"path":
+						[
+							[5600,0],
+							[6400,0]
+						]
+					}
+				]
+			},
+			{
+				"id": "349",
+				"class": "door",
+				"parameters":
+				[
+					{
+						"type": "interior-door",
+						"height-bottom": 0,
+						"height-top": 2000
+					}
+				],
+				"location":
+				[
+					{
+						"ref-wall": "132",
+						"path":
+						[
+							[3800,3600],
+							[3800,4400]
+						]
+					},
+					{
+						"ref-wall": "212",
+						"path":
+						[
+							[4000,3600],
+							[4000,4400]
+						]
+					}
+				]
+			}
+		]
+	]
+}
