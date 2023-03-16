@@ -17,17 +17,11 @@ export const flatJSON = {
         "class": "bedroom",
         "path":
         [
-          // [4000,200],
-          // [4000,7800],
-          // [7800,7800],
-          // [7800,200],
-          // [4000,200]
-
-          [L,N],
-          [L,S],
-          [R,S],
-          [R,N],
-          [L,N]
+          [L, N],
+          [L, S],
+          [R, S],
+          [R, N],
+          [L, N]
         ],
         "parameters":
         [
@@ -57,8 +51,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [L,N + ((S - N) / 2)],
-          [L,N]
+          [L, N + ((S - N) / 2)],
+          [L, N]
         ]
       },
       {
@@ -68,8 +62,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [L,N + ((S - N) / 2)  +  W_DOOR],
-          [L,N + ((S - N) / 2)]
+          [L, N + ((S - N) / 2)  +  W_DOOR],
+          [L, N + ((S - N) / 2)]
           // [4000,4400],
           // [4000,3600]
         ]
@@ -82,7 +76,7 @@ export const flatJSON = {
         "path":
         [
           [L, S],
-          [L,N + ((S - N) / 2) +  W_DOOR]
+          [L, N + ((S - N) / 2) +  W_DOOR]
         ]
       },
 
@@ -97,8 +91,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [L + (R - L) / 2 - W_WINDOW_S / 2,S],
-          [L,S],
+          [L + (R - L) / 2 - W_WINDOW_S / 2, S],
+          [L, S],
 
           //[5200,7800],
           //[4000,7800],
@@ -111,8 +105,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [L + (R - L) / 2 + W_WINDOW_S  / 2,S],
-          [L + (R - L) / 2 - W_WINDOW_S / 2,S],
+          [L + (R - L) / 2 + W_WINDOW_S  / 2, S],
+          [L + (R - L) / 2 - W_WINDOW_S / 2, S],
         ]
       },
       {
@@ -123,7 +117,7 @@ export const flatJSON = {
         "path":
         [
           [R,S],
-          [L + (R - L) / 2 + W_WINDOW_S / 2,S],
+          [L + (R - L) / 2 + W_WINDOW_S / 2, S],
         ]
       },
 
@@ -136,8 +130,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [R,N + (S - N) / 2 + W_WINDOW_R / 2],
-          [R,S],
+          [R, N + (S - N) / 2 + W_WINDOW_R / 2],
+          [R, S],
 
         ]
       },
@@ -148,9 +142,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [R,N + (S - N) / 2 - W_WINDOW_R / 2],
-          [R,N + (S - N) / 2 + W_WINDOW_R / 2],
-
+          [R, N + (S - N) / 2 - W_WINDOW_R / 2],
+          [R, N + (S - N) / 2 + W_WINDOW_R / 2],
         ]
       },
       {
@@ -160,8 +153,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [R,N],
-          [R,N + (S - N) / 2 - W_WINDOW_R / 2],
+          [R, N],
+          [R, N + (S - N) / 2 - W_WINDOW_R / 2],
         ]
       },
 
@@ -175,8 +168,8 @@ export const flatJSON = {
         "path":
         [
           //[6400,N],
-          [L + (R - L) / 2 + W_DOOR,N],
-          [R,N],
+          [L + (R - L) / 2 + W_DOOR, N],
+          [R, N],
 
         ]
       },
@@ -187,8 +180,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [L + (R - L) / 2,N],
-          [L + (R - L) / 2 + W_DOOR,N],
+          [L + (R - L) / 2, N],
+          [L + (R - L) / 2 + W_DOOR, N],
 
         ]
       },
@@ -199,8 +192,8 @@ export const flatJSON = {
         "ref-room": "2",
         "path":
         [
-          [L,N],
-          [L + (R - L) / 2,N],
+          [L, N],
+          [L + (R - L) / 2, N],
         ]
       }
     ]
@@ -223,16 +216,16 @@ export const flatJSON = {
             "ref-wall": "222",
             "path":
             [
-              [L + (R - L) / 2 - W_WINDOW_S / 2,S],
-              [L + (R - L) / 2 + W_WINDOW_S / 2,S]
+              [L + (R - L) / 2 - W_WINDOW_S / 2, S],
+              [L + (R - L) / 2 + W_WINDOW_S / 2, S]
             ]
           },
           {
             "ref-wall": "424",
             "path":
             [
-              [L + (R - L) / 2 - W_WINDOW_S / 2,S + 200],
-              [L + (R - L) / 2 + W_WINDOW_S / 2,S + 200]
+              [L + (R - L) / 2 - W_WINDOW_S / 2, S + 200],
+              [L + (R - L) / 2 + W_WINDOW_S / 2, S + 200]
             ]
           }
         ]
@@ -253,51 +246,20 @@ export const flatJSON = {
             "ref-wall": "232",
             "path":
             [
-              [R,N + (S - N) / 2 - W_WINDOW_R / 2],
-              [R,N + (S - N) / 2 + W_WINDOW_R / 2]
+              [R, N + (S - N) / 2 - W_WINDOW_R / 2],
+              [R, N + (S - N) / 2 + W_WINDOW_R / 2]
             ]
           },
           {
             "ref-wall": "432",
             "path":
             [
-              [R + 200,N + (S - N) / 2 - W_WINDOW_R / 2],
-              [R + 200,N + (S - N) / 2 + W_WINDOW_R / 2]
+              [R + 200, N + (S - N) / 2 - W_WINDOW_R / 2],
+              [R + 200, N + (S - N) / 2 + W_WINDOW_R / 2]
             ]
           }
         ]
       },
-      // {
-      //   "id": "348",
-      //   "class": "door",
-      //   "parameters":
-      //   [
-      //     {
-      //       "type": "front-door",
-      //       "height-bottom": 0,
-      //       "height-top": 2000
-      //     }
-      //   ],
-      //   "location":
-      //   [
-      //     {
-      //       "ref-wall": "242",
-      //       "path":
-      //       [
-      //         [L + ((R - L) / 2),N],
-      //         [L + ((R - L) / 2) +  W_DOOR,N]
-      //       ]
-      //     },
-      //     {
-      //       "ref-wall": "442",
-      //       "path":
-      //       [
-      //         [L + ((R - L) / 2),N - 200],
-      //         [L + ((R - L) / 2) +  W_DOOR,N - 200]
-      //       ]
-      //     }
-      //   ]
-      // },
       {
         "id": "349",
         "class": "door",
@@ -315,16 +277,16 @@ export const flatJSON = {
             "ref-wall": "132",
             "path":
             [
-              [L - 200,N + ((S - N) / 2)],
-              [L - 200,N + ((S - N) / 2) +  W_DOOR]
+              [L - 200, N + ((S - N) / 2)],
+              [L - 200, N + ((S - N) / 2) +  W_DOOR],
             ]
           },
           {
             "ref-wall": "212",
             "path":
             [
-              [L,N + ((S - N) / 2)],
-              [L,N + ((S - N) / 2) +  W_DOOR]
+              [L, N + ((S - N) / 2) +  W_DOOR],
+              [L, N + ((S - N) / 2)],
             ]
           }
         ]
