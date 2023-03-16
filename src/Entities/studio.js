@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-const BACK_COLOR = 0x333333
+const BACK_COLOR = 0x090e24
 
 
 
@@ -24,11 +24,11 @@ export const createStudio = (cubeMap) => {
 
     container.appendChild( renderer.domElement );
 
-    const light = new THREE.PointLight(0xffffff, .5)
-    light.position.set(30, 0, 0)
+    const light = new THREE.PointLight(0xf6f9e5, 0.5)
+    light.position.set(30, 50, 0)
     camera.add(light)
 
-    const ambLight = new THREE.AmbientLight(0xffffff, .4)
+    const ambLight = new THREE.AmbientLight(0xc4b4f4, .7)
     scene.add(ambLight)
 
 

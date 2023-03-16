@@ -22,6 +22,7 @@ export const createSchemeFlat = (data) => {
 
     for (let i = 0; i < data['objects'][0].length; ++i) {
         const ob = data['objects'][0][i]
+        console.log('---', ob)
         if (ob.class === 'window' || ob.class === 'door') {
             let w
             let x
@@ -72,6 +73,7 @@ export const createSchemeFlat = (data) => {
             }
 
             const props = {
+                mh0: ob.mh0,
                 class: ob.class,
                 id: ob.id,
                 h0: ob.parameters[0]['height-bottom'],
@@ -115,6 +117,7 @@ export const createSchemeFlat = (data) => {
             height = ob.parameters[0].height
         }
         const props = {
+            mh0: ob.mh0,
             class: ob.class,
             id: ob.id,
             path: ob.path,
@@ -131,6 +134,7 @@ export const createSchemeFlat = (data) => {
             ...ob,
             h0: 0,
             h1: height,
+            mh0: ob.mh0,
         }
 
         let isInsert = true 
@@ -182,6 +186,7 @@ export const createSchemeFlat = (data) => {
             ...ob,
             h0: 0,
             h1: height,
+            mh0: data.mh0,
         }
 
         let isInsert = true 

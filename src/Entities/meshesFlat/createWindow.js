@@ -3,8 +3,6 @@ import { angleFromCoords } from "../../helpers/geomHelper";
 
 
 export const createWindow = (data, mat) => {
-    console.log('!!! window', data)
-
     const { window, windowGlass, lineG1 } = mat
 
 
