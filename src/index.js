@@ -34,7 +34,7 @@ const threeApp = () => {
                 studio.addToScene(assets[key].model)
             }
         }
-        assets['m04'].model.traverse(item => {
+        assets['m04'] && assets['m04'].model.traverse(item => {
             if (item.type === 'Mesh') {
                 item.material.wireframe = true
             }
@@ -42,12 +42,12 @@ const threeApp = () => {
                 item.intensity = 0
             }
         })
-        assets['m02'].model.traverse(item => {
+        assets['m02'] && assets['m02'].model.traverse(item => {
             if (item.type === 'Mesh') {
                 item.material.wireframe = true
             }
         })
-        assets['m01'].model.traverse(item => {
+        assets['m01'] && assets['m01'].model.traverse(item => {
             if (item.type === 'Mesh') {
                 item.material.wireframe = true
             }

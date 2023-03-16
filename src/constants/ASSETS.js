@@ -10,20 +10,20 @@ import pz from '../assets/env00/pz.jpg'
 
 
 // floor
-import floor00map from '../assets/floor01/tavern-wood-planks1_albedo.png'
-import floor00aoMap from '../assets/floor01/tavern-wood-planks1_ao.png'
-import floor00normalMap from '../assets/floor01/tavern-wood-planks1_normal-ogl.png'
-import floor00specularMap from '../assets/floor01/tavern-wood-planks1_roughness.png'
+import floor00map from '../assets/floor01/tavern-wood-planks1_albedo.jpg'
+import floor00aoMap from '../assets/floor01/tavern-wood-planks1_ao.jpg'
+import floor00normalMap from '../assets/floor01/tavern-wood-planks1_normal-ogl.jpg'
+import floor00specularMap from '../assets/floor01/tavern-wood-planks1_roughness.jpg'
 
 
 // ceiling
-import ceiling00ao from '../assets/ceiling00/ceiling00ao.jpg'
+//import ceiling00ao from '../assets/ceiling00/ceiling00ao.jpg'
 
 
 // wall
-import wall00Map from '../assets/wallinner00/fiber-textured-wall1_albedo.png'
-import wall00aoMap from '../assets/wallinner00/fiber-textured-wall1_ao.png'
-import wall00normalMap from '../assets/wallinner00/fiber-textured-wall1_normal-ogl.png'
+// import wall00Map from '../assets/wallinner00/fiber-textured-wall1_albedo.png'
+import wall00aoMap from '../assets/wallinner00/fiber-textured-wall1_ao.jpg'
+import wall00normalMap from '../assets/wallinner00/fiber-textured-wall1_normal-ogl.jpg'
 
 
 //import wall00Map from '../assets/wall00Map.jpg'
@@ -70,13 +70,13 @@ export const ASSETS = [
     { key: 'floor00normalMap', src: floor00normalMap, typeLoader: 'img', repeat: true },
     { key: 'floor00specularMap', src: floor00specularMap, typeLoader: 'img', repeat: true },
 
-    { key: 'wall00map', src: wall00Map, typeLoader: 'img',  repeat: true },
+    //{ key: 'wall00map', src: wall00Map, typeLoader: 'img',  repeat: true },
     { key: 'wall00aoMap', src: wall00aoMap, typeLoader: 'img',  repeat: true },
     { key: 'wall00normalMap', src: wall00normalMap, typeLoader: 'img',  repeat: true },
 
-    { key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
-    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-40, 0, -30], rot: Math.PI / 2}, // bad
-    { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-40, 0, 20], rot: Math.PI / 2 }, // sofa
-    { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [-20, 0, -45], rot: 0 }, // long
-    { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [-80, 0, 120], rot: 0 },
+    // { key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
+    // { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-40, 0, -30], rot: Math.PI / 2}, // bad
+    // { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-40, 0, 20], rot: Math.PI / 2 }, // sofa
+    // { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [-20, 0, -45], rot: 0 }, // long
+    // { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [-80, 0, 120], rot: 0 },
 ]

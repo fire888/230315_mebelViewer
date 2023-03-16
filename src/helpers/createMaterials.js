@@ -23,7 +23,6 @@ export const createMaterials = (assets) => {
             normalMap: assets['floor00normalMap'].model,
             normalScale: new THREE.Vector2(.7, .7),
             specularMap: assets['floor00specularMap'].model,
-
         }),
         ceiling: new THREE.MeshPhongMaterial({
                 envMap: assets['env00'].model,
@@ -58,7 +57,7 @@ export const createMaterials = (assets) => {
             reflectivity: .01,
             //roughness: 0,
             specular: 0x999999,
-            map: assets['wall00aoMap'].model,
+            //map: assets['wall00aoMap'].model,
             aoMap: assets['wall00aoMap'].model,
             aoMapIntensity: -0.5,
             normalMap: assets['wall00normalMap'].model,
