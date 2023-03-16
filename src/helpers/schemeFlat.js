@@ -85,8 +85,8 @@ export const createSchemeFlat = (data) => {
                 w,
                 h: ob.parameters[0]['height-top'] - ob.parameters[0]['height-bottom'],
                 t,
-                x, 
-                z,
+                x: ob.location[0].path[0],
+                z: ob.location[0].path[1],
                 angle,
             }
             

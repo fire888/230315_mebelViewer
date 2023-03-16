@@ -1,8 +1,9 @@
-import { createFace4 } from '../../helpers/geomHelper'
+import { createFace4, translateArr } from '../../helpers/geomHelper'
+import { angleFromCoords } from "../../helpers/geomHelper";
 
 
 export const createWindow = (data, mat) => {
-    //console.log('!!! window', data)
+    console.log('!!! window', data)
 
     const { window, windowGlass, lineG1 } = mat
 
@@ -299,6 +300,8 @@ export const createWindow = (data, mat) => {
         ...u6z,
     )
 
+    translateArr(v, 0, 0, 100)
+
 
 
     const v32 = new Float32Array(v)
@@ -311,19 +314,20 @@ export const createWindow = (data, mat) => {
     geometry.computeVertexNormals()
 
     const m = new THREE.Mesh(geometry, window)
-    m.position.set(data.x, data.h0, data.z)
-    m.rotation.y = data.angle
-    if (data.angle === 3.141592653589793) {
-        m.scale.set(1, 1, -1)
-    }
+    m.position.set(data.p1[0], data.h0, data.p1[1])
+
+    const dX = data.p2[0] - data.p1[0]
+    const dZ = data.p2[1] - data.p1[1]
+    const angle = angleFromCoords(dX, dZ)
+    m.rotation.y = -angle//data.angle
 
 
     const v32glass = new Float32Array([
         ...createFace4(
-            [wR, wR, 0],
-            [w - wR, wR, 0],
-            [w - wR, h - wR, 0],
-            [wR, h - wR, 0],
+            [wR, wR, 100],
+            [w - wR, wR, 100],
+            [w - wR, h - wR, 100],
+            [wR, h - wR, 100],
         )
     ])
     const geometryGl = new THREE.BufferGeometry()
@@ -352,6 +356,7 @@ export const createWindow = (data, mat) => {
         w, -40, -th,
         //w, 0, th,
     ]
+    translateArr(lv, 0, 0, 100)
     const v32L = new Float32Array(lv)
     const gl = new THREE.BufferGeometry()
     gl.setAttribute('position', new THREE.BufferAttribute(v32L, 3))

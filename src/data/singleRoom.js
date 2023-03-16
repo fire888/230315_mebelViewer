@@ -7,290 +7,311 @@ const W_DOOR = 800
 const W_WINDOW_S = 5000
 const W_WINDOW_R = 8000
 
+let id = 0
+let getID = () => {
+  id += 1
+  return id
+}
 
-export const flatJSON = {
-  "rooms":
-  [
-    [
-      {
-        "id": "2",
-        "class": "bedroom",
-        "path":
-        [
-          [L, N],
-          [L, S],
-          [R, S],
-          [R, N],
-          [L, N]
-        ],
-        "parameters":
-        [
-          {
-            "height": 2900,
-            "wall-texture": "GUID-iurn9rewqer0g",
-            "floor-texture": "GUID-iufsdhfdhfqer0g",
-            "ceiling-texture": "GUID-iurn9rgsdfhxvcng"
-          }
-        ]
-      }
-    ]
-  ],
-  "outer-perimeter":
-  [
-    [
-    ]
-  ],
-  "inner-perimeters":[
-    [
-        // LEFT WALL
-
-      {
-        "id": "211",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [L, N + ((S - N) / 2)],
-          [L, N]
-        ]
-      },
-      {
-        "id": "212",
-        "class": "inner-wall",
-        "type": "cut",
-        "ref-room": "2",
-        "path":
-        [
-          [L, N + ((S - N) / 2)  +  W_DOOR],
-          [L, N + ((S - N) / 2)]
-          // [4000,4400],
-          // [4000,3600]
-        ]
-      },
-      {
-        "id": "213",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [L, S],
-          [L, N + ((S - N) / 2) +  W_DOOR]
-        ]
-      },
+export const flatJSON = (() => {
+    const rooms = []
+    const innerPerimeters = []
+    const objects = []
 
 
+    let currentX = -20000
+    let currentZ = -4000
+    let newZ = 4000
 
-      // BOTTOM
-
-      {
-        "id": "221",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [L + (R - L) / 2 - W_WINDOW_S / 2, S],
-          [L, S],
-
-          //[5200,7800],
-          //[4000,7800],
-        ]
-      },
-      {
-        "id": "222",
-        "class": "inner-wall",
-        "type": "cut",
-        "ref-room": "2",
-        "path":
-        [
-          [L + (R - L) / 2 + W_WINDOW_S  / 2, S],
-          [L + (R - L) / 2 - W_WINDOW_S / 2, S],
-        ]
-      },
-      {
-        "id": "223",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [R,S],
-          [L + (R - L) / 2 + W_WINDOW_S / 2, S],
-        ]
-      },
-
-      /** RIGHT WALL *****/
-
-      {
-        "id": "231",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [R, N + (S - N) / 2 + W_WINDOW_R / 2],
-          [R, S],
-
-        ]
-      },
-      {
-        "id": "232",
-        "class": "inner-wall",
-        "type": "cut",
-        "ref-room": "2",
-        "path":
-        [
-          [R, N + (S - N) / 2 - W_WINDOW_R / 2],
-          [R, N + (S - N) / 2 + W_WINDOW_R / 2],
-        ]
-      },
-      {
-        "id": "233",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [R, N],
-          [R, N + (S - N) / 2 - W_WINDOW_R / 2],
-        ]
-      },
+    let startDoorZ = currentZ + 1000 + (Math.random() * (newZ - currentZ - 2000))
+    let endDoorZ = startDoorZ + 800
 
 
-      /** TOP WALL *****/
-      {
-        "id": "241",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          //[6400,N],
-          [L + (R - L) / 2 + W_DOOR, N],
-          [R, N],
+    for (let i = 0; i < 15; ++i) {
+        const w = Math.random() * 7000 + 3000
+        const newX = currentX + w
+        rooms.push({
+            "id": getID(),
+            "class": "bedroom",
+            'path': [
+                [currentX, currentZ],
+                [currentX, newZ],
+                [newX, newZ],
+                [newX, currentZ],
+                [currentX, currentZ],
+            ],
+            "parameters": [
+                {
+                  "height": 2900,
+                  "wall-texture": "GUID-iurn9rewqer0g",
+                  "floor-texture": "GUID-iufsdhfdhfqer0g",
+                  "ceiling-texture": "GUID-iurn9rgsdfhxvcng"
+                }
+            ],
+        })
 
-        ]
-      },
-      {
-        "id": "242",
-        "class": "inner-wall",
-        "type": "cut",
-        "ref-room": "2",
-        "path":
-        [
-          [L + (R - L) / 2, N],
-          [L + (R - L) / 2 + W_DOOR, N],
 
-        ]
-      },
-      {
-        "id": "243",
-        "class": "inner-wall",
-        "type": "solid",
-        "ref-room": "2",
-        "path":
-        [
-          [L, N],
-          [L + (R - L) / 2, N],
-        ]
-      }
-    ]
-  ],
-  "objects": [
-    [
-      {
-        "id": "346",
-        "class": "window",
-        "parameters":
-        [
-          {
-            "height-bottom": 960,
-            "height-top": 2660
-          }
-        ],
-        "location":
-        [
-          {
-            "ref-wall": "222",
-            "path":
-            [
-              [L + (R - L) / 2 - W_WINDOW_S / 2, S],
-              [L + (R - L) / 2 + W_WINDOW_S / 2, S]
-            ]
-          },
-          {
-            "ref-wall": "424",
-            "path":
-            [
-              [L + (R - L) / 2 - W_WINDOW_S / 2, S + 200],
-              [L + (R - L) / 2 + W_WINDOW_S / 2, S + 200]
-            ]
-          }
-        ]
-      },
-      {
-        "id": "347",
-        "class": "window",
-        "parameters":
-        [
-          {
-            "height-bottom": 960,
-            "height-top": 2660
-          }
-        ],
-        "location":
-        [
-          {
-            "ref-wall": "232",
-            "path":
-            [
-              [R, N + (S - N) / 2 - W_WINDOW_R / 2],
-              [R, N + (S - N) / 2 + W_WINDOW_R / 2]
-            ]
-          },
-          {
-            "ref-wall": "432",
-            "path":
-            [
-              [R + 200, N + (S - N) / 2 - W_WINDOW_R / 2],
-              [R + 200, N + (S - N) / 2 + W_WINDOW_R / 2]
-            ]
-          }
-        ]
-      },
-      {
-        "id": "349",
-        "class": "door",
-        "parameters":
-        [
-          {
+        let newStartDoorZ = currentZ + 1000 + (Math.random() * (newZ - currentZ - 2000))
+        let newEndDoorZ = newStartDoorZ + 800
+
+        const doorWallId = getID()
+        const doorWallId_02 = getID()
+        const windowWallId = getID()
+        const windowWallId02 = getID()
+
+        const windowX01 = currentX + Math.random() * (newX - currentX) * 0.3 + 500
+        const windowX02 = windowX01 + Math.random() * (newX - windowX01) * 0.8 + 1000
+
+        innerPerimeters.push(
+            /** TOP */
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [currentX, currentZ],
+                    [windowX01, currentZ],
+                  ]
+            },
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [windowX02, currentZ],
+                    [newX, currentZ],
+                  ]
+            },
+            {
+              "id": windowWallId,
+              "class": "inner-wall",
+              "type": "cut",
+              "ref-room": "2",
+              "path":
+                  [
+                    [windowX01, currentZ],
+                    [windowX02, currentZ],
+                  ]
+            },
+
+            /** BOTTOM */
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [newX, newZ],
+                    [windowX02, newZ],
+                  ]
+            },
+            {
+              "id": windowWallId02,
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [windowX02, newZ],
+                    [windowX01, newZ],
+                  ]
+            },
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "cut",
+              "ref-room": "2",
+              "path":
+                  [
+                    [windowX01, newZ],
+                    [currentX, newZ],
+                  ]
+            },
+
+
+            /** LEFT */
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [currentX, startDoorZ],
+                    [currentX, currentZ],
+                  ]
+            },
+            {
+              "id": doorWallId,
+              "class": "inner-wall",
+              "type": "cut",
+              "ref-room": "2",
+              "path":
+                  [
+                    [currentX, endDoorZ],
+                    [currentX, startDoorZ],
+                  ]
+            },
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [currentX, newZ],
+                    [currentX, endDoorZ],
+                  ]
+            },
+            /** RIGHT */
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [newX, currentZ],
+                    [newX, newStartDoorZ],
+                  ]
+            },
+            {
+              "id": doorWallId_02,
+              "class": "inner-wall",
+              "type": "cut",
+              "ref-room": "2",
+              "path":
+                  [
+                    [newX, newStartDoorZ],
+                    [newX, newEndDoorZ],
+                  ]
+            },
+            {
+              "id": getID(),
+              "class": "inner-wall",
+              "type": "solid",
+              "ref-room": "2",
+              "path":
+                  [
+                    [newX, newEndDoorZ],
+                    [newX, newZ],
+                  ]
+            },
+        )
+
+        objects.push(
+        {
+          "id": "349",
+          "class": "door",
+          "parameters": [{
             "type": "interior-door",
             "height-bottom": 0,
             "height-top": 2000
-          }
-        ],
-        "location":
-        [
-          {
-            "ref-wall": "132",
-            "path":
-            [
-              [L - 200, N + ((S - N) / 2)],
-              [L - 200, N + ((S - N) / 2) +  W_DOOR],
-            ]
-          },
-          {
-            "ref-wall": "212",
-            "path":
-            [
-              [L, N + ((S - N) / 2) +  W_DOOR],
-              [L, N + ((S - N) / 2)],
-            ]
-          }
-        ]
-      }
-    ]
-  ]
-}
+          }],
+          "location": [{
+              "ref-wall": doorWallId_02,
+              "path": [
+                  [currentX - 200, startDoorZ],
+                  [currentX - 200, endDoorZ],
+              ]
+            },
+            {
+              "ref-wall": doorWallId,
+              "path": [
+                [currentX, endDoorZ],
+                [currentX, startDoorZ],
+              ]
+            }
+          ]
+        },
+            {
+              "id": "347",
+              "class": "window",
+              "parameters":
+                  [
+                    {
+                      "height-bottom": 960,
+                      "height-top": 2660
+                    }
+                  ],
+              "location":
+                  [
+                    {
+                      "ref-wall": windowWallId,
+                      "path":
+                          [
+                            [windowX02, currentZ],
+                            [windowX01, currentZ]
+                          ]
+                    },
+                    {
+                      "ref-wall": "232",
+                      "path":
+                          [
+                            [windowX02, currentZ - 200],
+                            [windowX01, currentZ - 200]
+                          ]
+                    },
+
+                  ]
+            },
+            {
+              "id": getID(),
+              "class": "window",
+              "parameters":
+                  [
+                    {
+                      "height-bottom": 960,
+                      "height-top": 2660
+                    }
+                  ],
+              "location":
+                  [
+                    {
+                      "ref-wall": windowWallId02,
+                      "path":
+                          [
+                            [windowX01, newZ],
+                            [windowX02, newZ],
+
+                          ]
+                    },
+                    {
+                      "ref-wall": "232",
+                      "path":
+                          [
+                            [windowX01, newZ - 200],
+                            [windowX02, newZ - 200],
+
+                          ]
+                    },
+
+
+
+                  ]
+            },
+        )
+
+        startDoorZ = newStartDoorZ
+        endDoorZ = newEndDoorZ
+        currentX = newX + 200
+    }
+
+
+    const data = {
+      "rooms": [rooms],
+      "outer-perimeter":
+          [
+            []
+          ],
+      "inner-perimeters": [ innerPerimeters ],
+      "objects": [objects]
+    }
+
+    return data
+})()
