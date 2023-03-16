@@ -34,10 +34,25 @@ export const  createContainerFlat = (root) => {
         cont.add(mesh)
     }
     for (let i = 0; i < scheme.doors.length; ++i) {
+        console.log(scheme.doors[i])
         const mesh = createDoor(scheme.doors[i], materials.door)
         cont.add(mesh)
+
+        /** floor under door */
+        const path = [
+            scheme.doors[i].p1,
+            scheme.doors[i].p2,
+            scheme.doors[i].p3,
+            scheme.doors[i].p4,
+            scheme.doors[i].p1,
+        ]
+        const meshF = createFloor({
+            path,
+        }, materials.floor)
+        cont.add(meshF)
     }
     for (let i = 0; i < scheme.floors.length; ++i) {
+        console.log(scheme.floors[i])
         const mesh = createFloor(scheme.floors[i], materials.floor)
         cont.add(mesh)
     }
