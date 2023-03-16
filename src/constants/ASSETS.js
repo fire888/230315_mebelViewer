@@ -16,6 +16,10 @@ import floor00normalMap from '../assets/floor01/tavern-wood-planks1_normal-ogl.p
 import floor00specularMap from '../assets/floor01/tavern-wood-planks1_roughness.png'
 
 
+// ceiling
+import ceiling00ao from '../assets/ceiling00/ceiling00ao.jpg'
+
+
 // wall
 import wall00Map from '../assets/wallinner00/fiber-textured-wall1_albedo.png'
 import wall00aoMap from '../assets/wallinner00/fiber-textured-wall1_ao.png'
@@ -58,6 +62,8 @@ export const ASSETS = [
     { key: 'env00', src: [nx, px, ny, py, nz, pz], typeLoader: 'imgCube' },
 
     { key: 'aoMap', src: aoMap, typeLoader: 'img' },
+
+    //{ key: 'ceiling00ao', src: ceiling00ao, typeLoader: 'img', repeat: true },
 
     { key: 'floor00map', src: floor00map, typeLoader: 'img', repeat: true },
     { key: 'floor00aoMap', src: floor00aoMap, typeLoader: 'img', repeat: true },

@@ -2,7 +2,7 @@ const S_TEXTURE = 500
 
 
 export const createWall = (data, mat) => {
-    console.log('wall', data)
+    //console.log('wall', data)
 
     const v = []
     const c = []

@@ -3,7 +3,8 @@ import * as THREE from 'three'
 const S_TEXTURE = 1500
 
 export const createFloor = (data, mat) => {
-    console.log(data)
+    //console.log(data)
+
     const { path } = data
 
     const v = []

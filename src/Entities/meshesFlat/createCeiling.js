@@ -3,7 +3,8 @@ import * as THREE from 'three'
 const S_TEXTURE = 1500
 
 export const createCeiling = (data, materials) => {
-    console.log(data)
+    // console.log(data)
+
     const { path } = data
 
     const v = []
@@ -52,7 +53,7 @@ export const createCeiling = (data, materials) => {
     const u32 = new Float32Array(u)
     geometry.setAttribute('uv', new THREE.BufferAttribute(u32, 2))
 
-    const m = new THREE.Mesh(geometry, materials.plinth)
+    const m = new THREE.Mesh(geometry, materials.ceiling)
 
 
     //uv && geometry.setAttribute('uv', new THREE.BufferAttribute( uv, 2 ))

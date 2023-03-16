@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 export const createMaterials = (assets) => {
-    console.log(assets)
+    //console.log(assets)
     for (let key in assets) {
         if (assets[key].repeat) {
             assets[key].model.wrapS = THREE.RepeatWrapping
@@ -24,6 +24,20 @@ export const createMaterials = (assets) => {
             normalScale: new THREE.Vector2(.7, .7),
             specularMap: assets['floor00specularMap'].model,
 
+        }),
+        ceiling: new THREE.MeshPhongMaterial({
+                envMap: assets['env00'].model,
+                emissive: 0x000000,
+                reflectivity: .001,
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 100,
+                //map: assets['ceiling00ao'].model,
+                //aoMap: assets['ceiling00ao'].model,
+                //aoMapIntensity: 1,
+                //normalMap: assets['floor00normalMap'].model,
+                //normalScale: new THREE.Vector2(.7, .7),
+                //specularMap: assets['floor00specularMap'].model,
         }),
         room: new THREE.MeshPhongMaterial({
             color: 0xdddddd,
