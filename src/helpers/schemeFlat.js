@@ -244,8 +244,6 @@ export const createSchemeFlat = (data) => {
         }
     }
 
-    console.log(d)
-
     return {
         ...d,
         rooms,

@@ -20,7 +20,7 @@ export const createFloor = (data, mat) => {
     center[1] /= path.length - 1
 
 
-    for (let i = 0; i < path.length; ++i) {
+    for (let i = 0; i < path.length - 1; ++i) {
         const t1 = path[i]
         const t2 = path[i + 1] || path[0]
         v.push(
