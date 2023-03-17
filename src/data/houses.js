@@ -27,16 +27,17 @@ let newZ = 4000
 const createFloor = () => {
     let currentX = -20000
 
-
     let startDoorZ = currentZ + 1000 + (Math.random() * (newZ - currentZ - 2000))
     let endDoorZ = startDoorZ + 800
 
-    for (let i = 0; i < 8; ++i) {
+    for (let i = 0; i < 3; ++i) {
         const w = Math.random() * 7000 + 3000
         const newX = currentX + w
+
+        const roomId = getID()
         rooms.push({
             mh0,
-            "id": getID(),
+            "id": roomId,
             "class": "bedroom",
             'path': [
                 [currentX, currentZ],
@@ -74,7 +75,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [currentX, currentZ],
@@ -86,7 +87,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [windowX02, currentZ],
@@ -98,7 +99,7 @@ const createFloor = () => {
                 "id": windowWallId,
                 "class": "inner-wall",
                 "type": "cut",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [windowX01, currentZ],
@@ -112,7 +113,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [newX, newZ],
@@ -124,7 +125,7 @@ const createFloor = () => {
                 "id": windowWallId02,
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [windowX02, newZ],
@@ -136,7 +137,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "cut",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [windowX01, newZ],
@@ -151,7 +152,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [currentX, startDoorZ],
@@ -163,7 +164,7 @@ const createFloor = () => {
                 "id": doorWallId,
                 "class": "inner-wall",
                 "type": "cut",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [currentX, endDoorZ],
@@ -175,7 +176,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [currentX, newZ],
@@ -188,7 +189,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [newX, currentZ],
@@ -200,7 +201,7 @@ const createFloor = () => {
                 "id": doorWallId_02,
                 "class": "inner-wall",
                 "type": "cut",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [newX, newStartDoorZ],
@@ -212,7 +213,7 @@ const createFloor = () => {
                 "id": getID(),
                 "class": "inner-wall",
                 "type": "solid",
-                "ref-room": "2",
+                "ref-room": roomId,
                 "path":
                     [
                         [newX, newEndDoorZ],
@@ -323,14 +324,14 @@ const createFloor = () => {
     }
 }
 
-
-for (let j = 0; j < 5; ++j) {
+/** change Z **/
+for (let j = 0; j < 3; ++j) {
     mh0 = 0
     currentZ -= 20000
     newZ = currentZ + 10000
 
+    /** change H **/
     const H = Math.floor(Math.random() * 7) + 4
-
     for (let i = 0; i < H; ++i) {
         createFloor()
         mh0 += 3000

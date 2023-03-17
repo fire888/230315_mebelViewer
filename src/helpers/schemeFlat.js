@@ -10,6 +10,9 @@ const getAngle = (x, y) => {
 
 
 export const createSchemeFlat = (data) => {
+    const rooms = {}
+
+
     const d = {
         windows: [],
         doors: [],
@@ -22,7 +25,6 @@ export const createSchemeFlat = (data) => {
 
     for (let i = 0; i < data['objects'][0].length; ++i) {
         const ob = data['objects'][0][i]
-        console.log('---', ob)
         if (ob.class === 'window' || ob.class === 'door') {
             let w
             let x
@@ -113,6 +115,14 @@ export const createSchemeFlat = (data) => {
     /** floors */
     for (let i = 0; i < data.rooms[0].length; ++i) {
         const ob = data.rooms[0][i]
+
+        if (!rooms[ob.id]) {
+            rooms[ob.id] = {
+                floor: null,
+                walls: [],
+            }
+        }
+
         if (ob.parameters[0].height) {
             height = ob.parameters[0].height
         }
@@ -123,7 +133,7 @@ export const createSchemeFlat = (data) => {
             path: ob.path,
             h: height,
         }
-        d.floors.push(props)
+        rooms[ob.id].floor = props
     }
 
 
@@ -146,18 +156,20 @@ export const createSchemeFlat = (data) => {
                 props.h1 = d.windows[i].h0
                 props.tag = 'underWindow' 
 
-                d.walls.push(props)
+                rooms[ob['ref-room']].walls.push(props)
                 
                 const copy = {...props}
                 copy.h0 = d.windows[i].h1
                 copy.tag = 'overWindow'
                 copy.h1 = height
 
-                d.walls.push(copy)
+                rooms[ob['ref-room']].walls.push(copy)
 
                 isInsert = false
             } 
         }
+
+
 
         for (let i = 0; i < d.doors.length; ++i) {
             if (
@@ -168,16 +180,18 @@ export const createSchemeFlat = (data) => {
                 props.h1 = height
                 props.tag = 'overDoor' 
 
+                rooms[ob['ref-room']].walls.push(props)
 
-                d.walls.push(props)
                 isInsert = false
             } 
         }
 
         if (isInsert) {
-            d.walls.push(props) 
+            rooms[ob['ref-room']].walls.push(props)
         }
     }
+
+
 
     /** walls outer */
     for (let i = 0; i < data['outer-perimeter'][0].length; ++i) {
@@ -226,11 +240,14 @@ export const createSchemeFlat = (data) => {
         }
 
         if (isInsert) {
-            d.walls.push(props) 
+            d.walls.push(props)
         }
     }
 
     console.log(d)
 
-    return d
+    return {
+        ...d,
+        rooms,
+    }
 }
