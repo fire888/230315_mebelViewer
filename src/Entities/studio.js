@@ -13,8 +13,8 @@ export const createStudio = (cubeMap) => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set( 0, 100, 200);
-    camera.lookAt(100, 0, 0)
+    camera.position.set( -300, 500, 500);
+    camera.lookAt(100, 500, -1000)
     scene.add(camera)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -35,7 +35,7 @@ export const createStudio = (cubeMap) => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.minDistance = 2;
     controls.maxDistance = 40000;
-    controls.target.set(25, 0, 0 );
+    controls.target.set(25, 50, -500 );
     controls.update();
     //controls.maxPolarAngle = Math.PI / 2 - 0.1
 

@@ -18,19 +18,20 @@ const innerPerimeters = []
 const objects = []
 
 let mh0 = 0
-//let h1 = 2900
+
+let currentZ = -4000
+let newZ = 4000
 
 
 
 const createFloor = () => {
     let currentX = -20000
-    let currentZ = -4000
-    let newZ = 4000
+
 
     let startDoorZ = currentZ + 1000 + (Math.random() * (newZ - currentZ - 2000))
     let endDoorZ = startDoorZ + 800
 
-    for (let i = 0; i < 15; ++i) {
+    for (let i = 0; i < 8; ++i) {
         const w = Math.random() * 7000 + 3000
         const newX = currentX + w
         rooms.push({
@@ -323,10 +324,19 @@ const createFloor = () => {
 }
 
 
-for (let i = 0; i < 5; ++i) {
-    createFloor()
-    mh0 += 3000
+for (let j = 0; j < 5; ++j) {
+    mh0 = 0
+    currentZ -= 20000
+    newZ = currentZ + 10000
+
+    const H = Math.floor(Math.random() * 7) + 4
+
+    for (let i = 0; i < H; ++i) {
+        createFloor()
+        mh0 += 3000
+    }
 }
+
 
 export const flatJSON = (() => {
     const data = {
