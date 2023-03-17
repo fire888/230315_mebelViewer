@@ -18,7 +18,9 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
     "node-dijkstra": "^2.5.0",
-    "three": "^0.141.0"
+    "three": "^0.141.0",
+    "turf": "^3.0.14"
   }
 }

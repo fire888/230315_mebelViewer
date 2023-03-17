@@ -1,3 +1,15 @@
+import * as turf from '@turf/turf'
+
+
+
+
+// var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
+// var offsetLine = turf.lineOffset(line, 2, {units: 'miles'});
+// console.log(offsetLine)
+
+
+
+
 let id = 0
 let getID = () => {
     id += 1
@@ -12,13 +24,21 @@ const createRoomsPoints = (center) => {
     const roomId = getID()
     const sTartPoint = [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
 
+
     const path = [
-        sTartPoint,
+        [...sTartPoint],
         [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]],
         [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]],
         [-D_MIN - Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]],
-        sTartPoint,
+        [...sTartPoint],
     ]
+    const line = turf.lineString(path)
+    const offsetLine = turf.lineOffset(line, 300000, {units: 'miles'});
+
+    console.log(path)
+    console.log(offsetLine)
+
+
     const mh0 = 0
 
     const room = {
