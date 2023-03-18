@@ -12,10 +12,11 @@ import { getID } from '../../helpers/getID'
 
 
 export class Wall {
-    constructor(root, arrRooms) {
+    constructor(root, arrRooms, h) {
         this._root = root
         this.model = new THREE.Group()
         this.model.scale.set(.01, .01, .01)
+        this.model.position.y = h
         root.studio.addToScene(this.model)
         this.isHideByCamera = true
 

@@ -9,27 +9,28 @@ const D_MIN = 2000
 
 
 export class Room {
-    constructor(root, center = [0, 0], walls = {}) {
+    constructor(root, center = [0, 0], walls = {}, h = 0, pp = {}) {
         this.id = getID()
         this._root = root
 
         this.model = new THREE.Group()
         this.model.scale.set(.01, .01, .01)
+        this.model.position.y = h
         this._root.studio.addToScene(this.model)
 
-        this.sw = [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
+        this.sw = pp.sw || [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
 
-        this.nw = [-D_MIN - Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
+        this.nw = pp.nw || [-D_MIN - Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
         if (walls.nWall) {
             this.nw = walls.nWall.leftPoints[0]
         }
 
-        this.ne = [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
+        this.ne = pp.ne || [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
         if (walls.nWall) {
             this.ne = walls.nWall.leftPoints[1]
             walls.nWall.removeOuterFlag()
         }
-        this.se = [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
+        this.se = pp.se || [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
 
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
@@ -40,16 +41,16 @@ export class Room {
         if (walls.sWall) {
             this.sWall = walls.sWall
         } else {
-            this.sWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.se, this.sw] }])
+            this.sWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.se, this.sw] }], h)
         }
-        this.wWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.sw, this.nw] }])
+        this.wWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.sw, this.nw] }], h)
         if (walls.nWall) {
             this.nWall = walls.nWall
             this.nWall.isHideByCamera = false
         } else {
-            this.nWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.nw, this.ne] }])
+            this.nWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.nw, this.ne] }], h)
         }
-        this.eWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.ne, this.se] }])
+        this.eWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.ne, this.se] }], h)
     }
 
     getJsonRoom() {
