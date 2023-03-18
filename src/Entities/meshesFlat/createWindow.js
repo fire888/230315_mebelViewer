@@ -208,18 +208,18 @@ export const createWindow = (data, mat) => {
                 ...u6z,
             )
 
-            /** line */
-            const lv = [
-                i - htr, h / 2, -80,
-                i - htr, h / 2 - 140, -80,
-                i + htr, h / 2 - 140, -80,
-                i + htr, h / 2, -80,
-            ]
-            const v32L = new Float32Array(lv)
-            const gl = new THREE.BufferGeometry()
-            gl.setAttribute('position', new THREE.BufferAttribute(v32L, 3))
-            const line = new THREE.Line(gl, lineG1)
-            arrLines.push(line) 
+            // /** line */
+            // const lv = [
+            //     i - htr, h / 2, -80,
+            //     i - htr, h / 2 - 140, -80,
+            //     i + htr, h / 2 - 140, -80,
+            //     i + htr, h / 2, -80,
+            // ]
+            // const v32L = new Float32Array(lv)
+            // const gl = new THREE.BufferGeometry()
+            // gl.setAttribute('position', new THREE.BufferAttribute(v32L, 3))
+            // const line = new THREE.Line(gl, lineG1)
+            // arrLines.push(line)
         }
     }
 
@@ -354,35 +354,35 @@ export const createWindow = (data, mat) => {
     m.add(mGl)
 
 
-    /** line */
-    const lv = [
-        w, 0, th,
-        w, h, th,
-        0, h, th,
-        0, 0, th,
-        w, 0, th,
+    // /** line */
+    // const lv = [
+    //     w, 0, th,
+    //     w, h, th,
+    //     0, h, th,
+    //     0, 0, th,
+    //     w, 0, th,
+    //
+    //     w, 0, -th,
+    //     w, h, -th,
+    //     0, h, -th,
+    //     0, 0, -th,
+    //
+    //     0, -40, -th,
+    //     0, -40, -200,
+    //     w, -40, -200,
+    //     w, -40, -th,
+    //     //w, 0, th,
+    // ]
+    // translateArr(lv, 0, 0, 100)
+    // const v32L = new Float32Array(lv)
+    // const gl = new THREE.BufferGeometry()
+    // gl.setAttribute('position', new THREE.BufferAttribute(v32L, 3))
+    // const line = new THREE.Line(gl, lineG1)
+    // m.add(line)
 
-        w, 0, -th,
-        w, h, -th,
-        0, h, -th,
-        0, 0, -th,
-
-        0, -40, -th,
-        0, -40, -200,
-        w, -40, -200,
-        w, -40, -th,
-        //w, 0, th,
-    ]
-    translateArr(lv, 0, 0, 100)
-    const v32L = new Float32Array(lv)
-    const gl = new THREE.BufferGeometry()
-    gl.setAttribute('position', new THREE.BufferAttribute(v32L, 3))
-    const line = new THREE.Line(gl, lineG1)
-    m.add(line)
-
-    for (let i = 0; i < arrLines.length; ++i) {
-        m.add(arrLines[i])
-    }
+    // for (let i = 0; i < arrLines.length; ++i) {
+    //     m.add(arrLines[i])
+    // }
 
     return m
 }

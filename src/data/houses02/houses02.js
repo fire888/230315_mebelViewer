@@ -6,6 +6,7 @@ import { createWall } from '../../Entities/meshesFlat/createWall'
 import { createPlinth } from '../../Entities/meshesFlat/createPlinth'
 import { createMolding } from '../../Entities/meshesFlat/createMolding'
 import { createWindow } from '../../Entities/meshesFlat/createWindow'
+import { createDoor } from '../../Entities/meshesFlat/createDoor'
 import {
     parallelLine,
     createBufferMesh,
@@ -46,6 +47,13 @@ class WallElement {
                 h1: 2900,
             }, this._root.materials.wall)
             this.model.add(m)
+
+        } else if (type === 'door') {
+            this.model = createWall({
+                path: this.points,
+                h0: 2000,
+                h1: 2900,
+            }, this._root.materials.wall)
 
         } else {
             this.model = createWall({
@@ -90,6 +98,11 @@ class WallSideOuter {
             if (i === 1) {
                 if (type === 'window') {
                     const w = new WallElement(this._root, arrLines[i], 'window')
+                    this.arrMeshes.push(w)
+                    this.model.add(w.model)
+                }
+                if (type === 'door') {
+                    const w = new WallElement(this._root, arrLines[i], 'door')
                     this.arrMeshes.push(w)
                     this.model.add(w.model)
                 }
@@ -291,8 +304,19 @@ class Wall {
             this.model.add(this.window)
         }
 
+        if (this._type === 'door') {
+            this.door = createDoor({
+                h0: 0,
+                h1: 2000,
+                p1: pointsBreakRight[1][0],
+                p2: pointsBreakRight[1][1],
+                p4: pointsBreakLeft[1][1],
+                p3: pointsBreakLeft[1][0],
+            }, this._root.materials.door)
+            this.model.add(this.door)
+        }
+
         if (pointsBreakRight) {
-            console.log(pointsBreakRight)
             this.rightSide.generateMeshes(pointsBreakRight, this._type)
         } else {
             //this.rightSide.generateMeshes([this.rightPoints])
