@@ -106,6 +106,7 @@ class Wall {
         this.model = new THREE.Group()
         this.model.scale.set(.01, .01, .01)
         root.studio.addToScene(this.model)
+        this.isHideByCamera = true
 
         this.id = getID()
 
@@ -199,10 +200,15 @@ class Wall {
             this.rightPoints[1][1] - this.rightPoints[0][1],
         ).normalize().applyAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 2)
 
+
         this._root.studio.onCameraMove(cameraDir => {
+            if (!this.isHideByCamera) {
+                return;
+            }
             const dot = this.normal.dot(cameraDir)
             this.model.visible = dot < .8
         })
+
 
         this.rightSide.generateMeshes()
         this.model.add(this.rightSide.model)
@@ -214,7 +220,7 @@ class Wall {
 
 
 class Room {
-    constructor(root, center = [0, 0], walls = []) {
+    constructor(root, center = [0, 0], walls = {}) {
         this.id = getID()
         this._root = root
 
@@ -223,19 +229,43 @@ class Room {
         this._root.studio.addToScene(this.model)
 
         this.sw = [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
+        if (walls.sWall) {
+            this.sw = walls.sWall.rightPoints[0]
+        }
+
         this.nw = [-D_MIN - Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
+        if (walls.nWall) {
+            this.nw = walls.nWall.rightPoints[1]
+        }
+
         this.ne = [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
+        if (walls.nWall) {
+            this.ne = walls.nWall.rightPoints[0]
+        }
         this.se = [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
+        if (walls.sWall) {
+            this.se = walls.sWall.rightPoints[1]
+        }
+
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
         const points = turf.points([...this.floorPerimeter])
         const c = turf.center(points)
         this.center = c.geometry.coordinates
 
+        if (walls.sWall) {
+            this.sWall = walls.sWall
+        } else {
+            this.sWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.se, this.sw] }])
+        }
         this.wWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.sw, this.nw] }])
-        this.nWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.nw, this.ne] }])
+        if (walls.nWall) {
+            this.nWall = walls.nWall
+            this.nWall.isHideByCamera = false
+        } else {
+            this.nWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.nw, this.ne] }])
+        }
         this.eWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.ne, this.se] }])
-        this.sWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.se, this.sw] }])
     }
 
     getJsonRoom() {
@@ -265,7 +295,6 @@ class Room {
         this._ceilingModel = createCeiling({  path: this.floorPerimeter, h: 2900 }, this._root.materials)
         this.model.add(this._ceilingModel)
 
-
         this.wWall.generateMeshes()
         this.nWall.generateMeshes()
         this.eWall.generateMeshes()
@@ -274,19 +303,29 @@ class Room {
 }
 
 
-
+const step = 30000
 export const createPerimeters = (root) => {
     const arr = []
-    for (let i = 0; i < 15; ++i) {
-        const r = new Room(root,[i * 15555, 0])
+    for (let i = 0; i < 3; ++i) {
+        const r = new Room(root,[i * step, 0])
         arr.push(r)
+
+        // const r1 = new Room(root,[i * step, -1500], { sWall})
+        // arr.push(r1)
+
+
+        for (let j = 1; j < 5; ++j) {
+            const rTop = new Room(root, [i * step, j * 7000], { nWall: arr[arr.length - 1].sWall })
+            arr.push(rTop)
+        }
+
+        // const rTopTop = new Room(root, [i * step, 14000], { nWall: rTop.sWall })
+        // arr.push(rTopTop)
     }
 
     for (let i = 0; i < arr.length; ++i) {
         arr[i].generateMeshes()
     }
-
-
     return arr
 }
 
