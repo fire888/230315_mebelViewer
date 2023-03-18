@@ -1,4 +1,4 @@
-import { WallSideInner, WallSideOuter } from './WallSide'
+import { WallSide } from './WallSide'
 import { createWindow } from '../../Entities/meshesFlat/createWindow'
 import { createDoor } from '../../Entities/meshesFlat/createDoor'
 import {
@@ -42,33 +42,26 @@ export class Wall {
         this.rightSide = null
 
         if (this.rightRoom) {
-            this.rightSide = new WallSideInner(root, this.rightPoints)
+            this.rightSide = new WallSide(root, this.rightPoints)
+            this.rightSide.isOuter = false
         }
-
         if (this.leftRoom) {
-            this.leftSide = new WallSideInner(root, this.leftPoints)
+        //    this.leftSide = new WallSideInner(root, this.leftPoints)
         } else {
             const p = parallelLine([...this.rightPoints[0], ...this.rightPoints[1]], -200)
             this.leftPoints = [
                 [p[2], p[3]],
                 [p[0], p[1]],
             ]
-            this.leftSide = new WallSideOuter(root, this.leftPoints)
+            this.leftSide = new WallSide(root, this.leftPoints)
+            this.rightSide.isOuter = true
         }
     }
 
-    getJsonWallsInner() {
-        return [
-            {
-                mh0: 0,
-                "id": this.id,
-                "class": "inner-wall",
-                "type": "solid",
-                "ref-room": this.rightRoom.id,
-                "path": this.rightPoints,
-            }
-        ]
+    removeOuterFlag() {
+        this.leftSide.isOuter = false
     }
+
 
     generateMeshes() {
         if (this._isGenerated) {
@@ -207,4 +200,5 @@ export class Wall {
         }
         this.model.add(this.leftSide.model)
     }
+
 }

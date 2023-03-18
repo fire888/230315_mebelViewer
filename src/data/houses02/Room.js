@@ -18,23 +18,18 @@ export class Room {
         this._root.studio.addToScene(this.model)
 
         this.sw = [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
-        if (walls.sWall) {
-            this.sw = walls.sWall.rightPoints[0]
-        }
 
         this.nw = [-D_MIN - Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
         if (walls.nWall) {
-            this.nw = walls.nWall.rightPoints[1]
+            this.nw = walls.nWall.leftPoints[0]
         }
 
         this.ne = [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
         if (walls.nWall) {
-            this.ne = walls.nWall.rightPoints[0]
+            this.ne = walls.nWall.leftPoints[1]
+            walls.nWall.removeOuterFlag()
         }
         this.se = [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
-        if (walls.sWall) {
-            this.se = walls.sWall.rightPoints[1]
-        }
 
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
