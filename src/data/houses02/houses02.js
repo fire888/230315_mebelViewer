@@ -5,10 +5,13 @@ import { createCeiling } from '../../Entities/meshesFlat/createCeiling'
 import { createWall } from '../../Entities/meshesFlat/createWall'
 import { createPlinth } from '../../Entities/meshesFlat/createPlinth'
 import { createMolding } from '../../Entities/meshesFlat/createMolding'
+import { createWindow } from '../../Entities/meshesFlat/createWindow'
 import {
     parallelLine,
     createBufferMesh,
     angleOfLine,
+    breakLineToCut,
+    getLength,
 } from '../../helpers/geomHelper'
 
 
@@ -31,11 +34,13 @@ class WallElement {
     }
 
     generateMesh () {
-        this.model = createWall({
-            path: this.points,
-            h0: 0,
-            h1: 2900,
-        }, this._root.materials.wall)
+        this.model = new THREE.Group()
+
+        // this.model = createWall({
+        //     path: this.points,
+        //     h0: 0,
+        //     h1: 2900,
+        // }, this._root.materials.wall)
     }
 
     generatePlinth () {
@@ -53,10 +58,6 @@ class WallElement {
         this.model.add(this._molding)
     }
 }
-
-
-
-
 
 
 
@@ -209,10 +210,36 @@ class Wall {
             this.model.visible = dot < .8
         })
 
+        const isWindow = this.isHideByCamera
+        if (isWindow) {
+            const l = getLength(
+                this.rightPoints[0][0],
+                this.rightPoints[0][1],
+                this.rightPoints[1][0],
+                this.rightPoints[1][1],
+            ) * Math.random() * .5 + .3
+            const pointsBreak = breakLineToCut(this.rightPoints[0], this.rightPoints[1], l)
 
-        this.rightSide.generateMeshes()
+            //
+            this.window = createWindow({
+                w: l,
+                h: 1500,
+                p1: pointsBreak[1][1],
+                h0: 0,
+                p2:  pointsBreak[1][0],
+            }, this._root.materials)
+            this.model.add(this.window)
+            console.log(this.window)
+            // }, this._root.materials)
+            // //console.log(this.points)
+            //this._pointsBreaked = breakLineToCut(this.points[0], this.points[1])
+            //console.log(this._pointsPreaked)
+        }
+
+
+        this.rightSide.generateMeshes(isWindow)
         this.model.add(this.rightSide.model)
-        this.leftSide.generateMeshes()
+        this.leftSide.generateMeshes(isWindow)
         this.model.add(this.leftSide.model)
     }
 }
@@ -303,7 +330,7 @@ class Room {
 }
 
 
-const step = 30000
+const step = 15000
 export const createPerimeters = (root) => {
     const arr = []
     for (let i = 0; i < 3; ++i) {
