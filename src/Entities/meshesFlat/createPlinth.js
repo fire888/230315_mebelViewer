@@ -23,8 +23,8 @@ export const createPlinth = (data, materials) => {
     const c = []
     const u = []
 
-    const h1 = data.h0
-    const h2 = data.h1
+    // const h1 = data.h0
+    // const h2 = data.h1
 
     const c1 = data.path[0]
     const c2 = data.path[1]

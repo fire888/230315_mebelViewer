@@ -56,7 +56,7 @@ const threeApp = () => {
         root.assets = assets
 
         const m = createContainerFlat(root)
-        studio.addToScene(m.mesh)
+        //studio.addToScene(m.mesh)
     })
 
 

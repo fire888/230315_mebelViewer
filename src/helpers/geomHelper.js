@@ -1,4 +1,5 @@
 import { m4 } from './m4'
+import * as THREE from "three";
 
 export const createFace4 = (v1, v2, v3, v4) => [...v1, ...v2, ...v3, ...v1, ...v3, ...v4]
 
@@ -74,3 +75,41 @@ export const parallelLine = (arr, offset) => {
     translateArr(newLine, newX, 0, newZ)
     return [newLine[0], newLine[2], newLine[3], newLine[5]]
 }
+
+
+export const breakLineToCut = (p0, p1, w = 800, offset = 'random') => {
+    const len = getLength(...p0, ...p1)
+
+    const normalizedW = w / len
+
+    const phase01 = Math.random() * (1 - normalizedW)
+    const phase02 = phase01 + normalizedW
+
+    const l1 = [
+        [...p0],
+        [p0[0] + (p1[0] - p0[0]) * phase01, p0[1] + (p1[1] - p0[1]) * phase01,],
+    ]
+
+    const l2 = [
+        [p0[0] + (p1[0] - p0[0]) * phase01, p0[1] + (p1[1] - p0[1]) * phase01,],
+        [p0[0] + (p1[0] - p0[0]) * phase02, p0[1] + (p1[1] - p0[1]) * phase02],
+    ]
+
+    const l3 = [
+        [p0[0] + (p1[0] - p0[0]) * phase02, p0[1] + (p1[1] - p0[1]) * phase02],
+        [...p1],
+    ]
+
+    return [l1, l2, l3]
+}
+
+
+export const createBufferMesh = (v, mat) => {
+    const v32 = new Float32Array(v)
+    const geometry = new THREE.BufferGeometry()
+    geometry.setAttribute('position', new THREE.BufferAttribute(v32, 3))
+    geometry.computeVertexNormals()
+    const m = new THREE.Mesh(geometry, mat)
+    return m
+}
+

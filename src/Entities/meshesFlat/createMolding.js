@@ -19,7 +19,6 @@ const PROFILE = [
 ]
 
 export const createMolding = (data, materials) => {
-    // console.log('!!!', data)
     const v = []
     const c = []
     const u = []

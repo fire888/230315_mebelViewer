@@ -95,6 +95,14 @@ export const createMaterials = (assets) => {
             specular: 0x333333,
             ///vertexColors: true,
         }),
+        whiteStandard: new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            ///vertexColors: true,
+        }),
+        red: new THREE.MeshBasicMaterial({
+            color: 0xff0000,
+            ///vertexColors: true,
+        }),
     }
 
     return materials
