@@ -2,6 +2,25 @@ import { createFace4, translateArr } from '../../helpers/geomHelper'
 import { angleFromCoords } from "../../helpers/geomHelper";
 
 
+/**
+angle 3.141592653589793
+class "window"
+h 1700
+h0 960
+h1 2660
+id "346"
+p1 [-2500, 5000]
+p2 [2500, 5000]
+p3 [-2500, 5200]
+p4 [2500, 5200]
+refWall_p1_p2 "222"
+refWall_p3_p4 "424"
+t 200
+w 5000
+x 2500
+z 5100
+**/
+
 export const createWindow = (data, mat) => {
     const { window, windowGlass, lineG1 } = mat
 

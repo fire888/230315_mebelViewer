@@ -28,19 +28,32 @@ const D_MIN = 2000
 
 
 class WallElement {
-    constructor(root, points) {
+    constructor(root, points, type) {
+
         this.points = points
         this._root = root
-    }
 
-    generateMesh () {
-        this.model = new THREE.Group()
+        if (type === 'window') {
+            this.model = createWall({
+                path: this.points,
+                h0: 0,
+                h1: 960,
+            }, this._root.materials.wall)
 
-        // this.model = createWall({
-        //     path: this.points,
-        //     h0: 0,
-        //     h1: 2900,
-        // }, this._root.materials.wall)
+            const m = createWall({
+                path: this.points,
+                h0: 2660,
+                h1: 2900,
+            }, this._root.materials.wall)
+            this.model.add(m)
+
+        } else {
+            this.model = createWall({
+                path: this.points,
+                h0: 0,
+                h1: 2900,
+            }, this._root.materials.wall)
+        }
     }
 
     generatePlinth () {
@@ -69,15 +82,24 @@ class WallSideOuter {
 
         this.model = new THREE.Group()
         this.arrMeshes = []
-
-        const w = new WallElement(this._root, points)
-        this.arrMeshes.push(w)
     }
 
-    generateMeshes() {
-        for (let i = 0; i < this.arrMeshes.length; ++i) {
-            this.arrMeshes[i].generateMesh()
-            this.model.add(this.arrMeshes[i].model)
+    generateMeshes(arrLines, type) {
+
+        for (let i = 0; i < arrLines.length; ++i) {
+            if (i === 1) {
+                if (type === 'window') {
+                    const w = new WallElement(this._root, arrLines[i], 'window')
+                    this.arrMeshes.push(w)
+                    this.model.add(w.model)
+                }
+            } else {
+                const w = new WallElement(this._root, arrLines[i])
+                this.arrMeshes.push(w)
+                this.model.add(w.model)
+            }
+
+
         }
     }
 }
@@ -89,8 +111,8 @@ class WallSideInner extends WallSideOuter {
         super(root, points)
     }
 
-    generateMeshes() {
-        super.generateMeshes()
+    generateMeshes(arrLines) {
+        super.generateMeshes(arrLines)
 
         for (let i = 0; i < this.arrMeshes.length; ++i) {
             this.arrMeshes[i].generatePlinth()
@@ -161,6 +183,11 @@ class Wall {
     }
 
     generateMeshes() {
+        if (this._isGenerated) {
+            return;
+        }
+        this._isGenerated = true
+
         {
             const v = [
                 // top
@@ -211,35 +238,72 @@ class Wall {
         })
 
         const isWindow = this.isHideByCamera
-        if (isWindow) {
-            const l = getLength(
+        this._type = isWindow ? 'window': 'door'
+
+        let l = 800
+        if (this._type) {
+            l = getLength(
                 this.rightPoints[0][0],
                 this.rightPoints[0][1],
                 this.rightPoints[1][0],
                 this.rightPoints[1][1],
             ) * Math.random() * .5 + .3
-            const pointsBreak = breakLineToCut(this.rightPoints[0], this.rightPoints[1], l)
-
-            //
-            this.window = createWindow({
-                w: l,
-                h: 1500,
-                p1: pointsBreak[1][1],
-                h0: 0,
-                p2:  pointsBreak[1][0],
-            }, this._root.materials)
-            this.model.add(this.window)
-            console.log(this.window)
-            // }, this._root.materials)
-            // //console.log(this.points)
-            //this._pointsBreaked = breakLineToCut(this.points[0], this.points[1])
-            //console.log(this._pointsPreaked)
         }
 
+        const { lines, phases } = breakLineToCut(this.rightPoints[0], this.rightPoints[1], l)
+        const pointsBreakRight = lines
+        const leftDifX = this.leftPoints[1][0] - this.leftPoints[0][0]
+        const leftDifZ = this.leftPoints[1][1] - this.leftPoints[0][1]
+        const left1 = [
+            this.leftPoints[0],
+            [
+                this.leftPoints[0][0] + leftDifX * (1 - phases[1]),
+                this.leftPoints[0][1] + leftDifZ * (1 - phases[1]),
+            ]
+        ]
+        const left2 = [
+            left1[1],
+            [
+                this.leftPoints[0][0] + leftDifX * (1 - phases[0]),
+                this.leftPoints[0][1] + leftDifZ * (1 - phases[0]),
+            ]
+        ]
+        const left3 = [
+            left2[1],
+            this.leftPoints[1],
+        ]
 
-        this.rightSide.generateMeshes(isWindow)
+        const pointsBreakLeft = [left1, left2, left3]
+
+
+        if (isWindow) {
+            this.window = createWindow({
+                w: l,
+                h: 1700,
+                h0: 960,
+                h1: 2660,
+                p1: pointsBreakRight[1][1],
+                p2: pointsBreakRight[1][0],
+                p3: pointsBreakRight[1][1],
+                p4: pointsBreakRight[1][0],
+                t: 200,
+            }, this._root.materials)
+            this.model.add(this.window)
+        }
+
+        if (pointsBreakRight) {
+            this.rightSide.generateMeshes(pointsBreakRight, this._type)
+        } else {
+            //this.rightSide.generateMeshes([this.rightPoints])
+        }
         this.model.add(this.rightSide.model)
-        this.leftSide.generateMeshes(isWindow)
+
+
+        if (pointsBreakLeft) {
+            this.leftSide.generateMeshes(pointsBreakLeft, this._type)
+        } else {
+            //this.leftSide.generateMeshes([this.leftPoints])
+        }
         this.model.add(this.leftSide.model)
     }
 }

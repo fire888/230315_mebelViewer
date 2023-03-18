@@ -100,7 +100,10 @@ export const breakLineToCut = (p0, p1, w = 800, offset = 'random') => {
         [...p1],
     ]
 
-    return [l1, l2, l3]
+    return {
+        lines: [l1, l2, l3],
+        phases: [phase01, phase02]
+    }
 }
 
 
