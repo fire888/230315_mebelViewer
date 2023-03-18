@@ -33,28 +33,28 @@ import aoMap from '../assets/w_ao.jpg'
 
 // FURNITURE
 
-import m00 from '../assets/00_journal_table/Julia_Grup_Brick__corona.fbx'
-import '../assets/00_journal_table/Julia_Grup_Brick_105.png'
-import '../assets/00_journal_table/Julia_Grup_Brick_новое-дерево_170.jpg'
+// import m00 from '../assets/00_journal_table/Julia_Grup_Brick__corona.fbx'
+// import '../assets/00_journal_table/Julia_Grup_Brick_105.png'
+// import '../assets/00_journal_table/Julia_Grup_Brick_новое-дерево_170.jpg'
 
-import m01 from '../assets/01_vena/01_vena.FBX'
+// import m01 from '../assets/01_vena/01_vena.FBX'
 
-import m02 from '../assets/02_divan_scandi_3/Scandi_3_3D_FBX.FBX'
-import '../assets/02_divan_scandi_3/c3b2fdf4355b.jpg'
-import '../assets/02_divan_scandi_3/10eb4.jpg'
-import '../assets/02_divan_scandi_3/baxter_viktor5_bump1.jpg'
-import '../assets/02_divan_scandi_3/baxter_viktor5_reflect1.png'
-import '../assets/02_divan_scandi_3/Scandi_col01.jpg'
+// import m02 from '../assets/02_divan_scandi_3/Scandi_3_3D_FBX.FBX'
+// import '../assets/02_divan_scandi_3/c3b2fdf4355b.jpg'
+// import '../assets/02_divan_scandi_3/10eb4.jpg'
+// import '../assets/02_divan_scandi_3/baxter_viktor5_bump1.jpg'
+// import '../assets/02_divan_scandi_3/baxter_viktor5_reflect1.png'
+// import '../assets/02_divan_scandi_3/Scandi_col01.jpg'
 
-import m04 from '../assets/04_brighon/04_wall.FBX'
-import '../assets/04_brighon/14-10418-002_Дуб Делано.jpg'
-import '../assets/04_brighon/c3b2fdf4355b.jpg'
-import '../assets/04_brighon/d2e611dca1c6.jpg'
-import '../assets/04_brighon/f661d4030944.jpg'
-import '../assets/04_brighon/mut-1.jpg'
-import '../assets/04_brighon/UV_Checker.png'
+// import m04 from '../assets/04_brighon/04_wall.FBX'
+// import '../assets/04_brighon/14-10418-002_Дуб Делано.jpg'
+// import '../assets/04_brighon/c3b2fdf4355b.jpg'
+// import '../assets/04_brighon/d2e611dca1c6.jpg'
+// import '../assets/04_brighon/f661d4030944.jpg'
+// import '../assets/04_brighon/mut-1.jpg'
+// import '../assets/04_brighon/UV_Checker.png'
 
-import m05 from '../assets/00_journal_table_01/00_jt_01.FBX'
+// import m05 from '../assets/00_journal_table_01/00_jt_01.FBX'
 
 
 
