@@ -39,6 +39,9 @@ export const createStudio = (cubeMap) => {
     controls.update();
     //controls.maxPolarAngle = Math.PI / 2 - 0.1
 
+    const functionsOmCameraMove = []
+    const spherical = new THREE.Spherical(1., controls.getPolarAngle(), controls.getAzimuthalAngle())
+    const v3Look = new THREE.Vector3()
 
     return {
         scene,
@@ -52,6 +55,23 @@ export const createStudio = (cubeMap) => {
             if (!camera) {
                 return
             }
+
+            if (
+                spherical.phi !== controls.getPolarAngle() ||
+                spherical.theta !== controls.getAzimuthalAngle()
+            ) {
+                spherical.phi = controls.getPolarAngle()
+                spherical.theta = controls.getAzimuthalAngle()
+                for (let i = 0; i < functionsOmCameraMove.length; ++i) {
+                    v3Look.setFromSpherical(spherical)
+                    //const phi = controls.getPolarAngle()
+                    //const theta = controls.getAzimuthalAngle()
+                    //console.log(phi, theta)
+                    functionsOmCameraMove[i](v3Look)
+                }
+            }
+
+
             renderer.render(scene, camera)
         },
         setTargetCam: v => {
@@ -65,6 +85,9 @@ export const createStudio = (cubeMap) => {
             camera.aspect = window.innerWidth / window.innerHeight
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight)
+        },
+        onCameraMove: func => {
+            functionsOmCameraMove.push(func)
         },
     }
 }

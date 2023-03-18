@@ -8,6 +8,7 @@ import { createMolding } from '../../Entities/meshesFlat/createMolding'
 import {
     parallelLine,
     createBufferMesh,
+    angleOfLine,
 } from '../../helpers/geomHelper'
 
 
@@ -136,6 +137,18 @@ class Wall {
             this._cap = createBufferMesh(v, root.materials.plinth)
             this.model.add(this._cap)
         }
+
+        this.angle = angleOfLine(this.rightPoints[0][0], this.rightPoints[0][1], this.rightPoints[1][0], this.rightPoints[1][1])
+        this.normal = new THREE.Vector3(
+            this.rightPoints[1][0] - this.rightPoints[0][0],
+            0,
+            this.rightPoints[1][1] - this.rightPoints[0][1],
+        ).normalize().applyAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 2)
+
+        root.studio.onCameraMove(cameraDir => {
+            const dot = this.normal.dot(cameraDir)
+            this.model.visible = dot < .8
+        })
     }
 
     getJsonWallsInner () {
