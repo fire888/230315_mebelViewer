@@ -111,8 +111,8 @@ class WallSideInner extends WallSideOuter {
         super(root, points)
     }
 
-    generateMeshes(arrLines) {
-        super.generateMeshes(arrLines)
+    generateMeshes() {
+        super.generateMeshes(...arguments)
 
         for (let i = 0; i < this.arrMeshes.length; ++i) {
             this.arrMeshes[i].generatePlinth()
@@ -292,6 +292,7 @@ class Wall {
         }
 
         if (pointsBreakRight) {
+            console.log(pointsBreakRight)
             this.rightSide.generateMeshes(pointsBreakRight, this._type)
         } else {
             //this.rightSide.generateMeshes([this.rightPoints])
@@ -300,6 +301,7 @@ class Wall {
 
 
         if (pointsBreakLeft) {
+            //this.leftSide.generateMeshes(pointsBreakLeft, this._type)
             this.leftSide.generateMeshes(pointsBreakLeft, this._type)
         } else {
             //this.leftSide.generateMeshes([this.leftPoints])
