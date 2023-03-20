@@ -1,4 +1,5 @@
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 
 export const loadAssets = arr => {
@@ -6,7 +7,8 @@ export const loadAssets = arr => {
         const loaders = {
             'fbx': new FBXLoader(),
             'img': new THREE.TextureLoader(),
-            'imgCube': new THREE.CubeTextureLoader()
+            'imgCube': new THREE.CubeTextureLoader(),
+            'gltf': new GLTFLoader(),
         }
 
         const assets = {}

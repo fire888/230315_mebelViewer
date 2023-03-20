@@ -16,7 +16,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
     const createLine = (indexLine) => {
         const arrLine = []
 
-        for (let i = 0; i < 5; ++i) {
+        for (let i = 0; i < 2; ++i) {
 
             let pp = {}
             if (
@@ -51,7 +51,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
         return arrLine
     }
 
-    for (let i = 0; i < 5; ++i) {
+    for (let i = 0; i < 2; ++i) {
         const line = createLine(i)
         arrLines.push(line)
     }
@@ -67,7 +67,7 @@ const createDom = (root, houseIndex) => {
     const arr = []
 
     //const floorsNum = Math.floor(Math.random() * 10) + 5
-    const floorsNum = 3//Math.floor(Math.random() * 10) + 5
+    const floorsNum = 1//3//Math.floor(Math.random() * 10) + 5
 
 
     for (let floorIndex = 0; floorIndex < floorsNum; ++floorIndex) {
@@ -82,7 +82,7 @@ const createDom = (root, houseIndex) => {
 export const createPerimeters = (root) => {
     const arr = []
 
-    const houseFullCount = 3
+    const houseFullCount = 1//3
 
     for (let houseIndex = 0; houseIndex < houseFullCount; ++houseIndex) {
         const dom = createDom(root, houseIndex)

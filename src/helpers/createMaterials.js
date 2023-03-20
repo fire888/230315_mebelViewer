@@ -99,8 +99,9 @@ export const createMaterials = (assets) => {
             color: 0xffffff,
             ///vertexColors: true,
         }),
-        red: new THREE.MeshBasicMaterial({
+        red: new THREE.MeshPhongMaterial({
             color: 0xff0000,
+            emissive: 0x442222,
             ///vertexColors: true,
         }),
     }

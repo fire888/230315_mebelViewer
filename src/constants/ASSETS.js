@@ -29,6 +29,8 @@ import wall00normalMap from '../assets/wallinner00/fiber-textured-wall1_normal-o
 //import wall00Map from '../assets/wall00Map.jpg'
 import aoMap from '../assets/w_ao.jpg'
 
+import chair from '../assets/wooden_chair.glb'
+
 
 
 // FURNITURE
@@ -56,6 +58,16 @@ import aoMap from '../assets/w_ao.jpg'
 
 // import m05 from '../assets/00_journal_table_01/00_jt_01.FBX'
 
+import m01 from '../assets/1/1.fbx'
+import '../assets/1/1_d.jpg'
+import '../assets/1/1_n.jpg'
+import m02 from '../assets/1/2.fbx'
+import '../assets/1/2_d.jpg'
+import '../assets/1/2_n.jpg'
+import '../assets/1/3_d.jpg'
+import '../assets/1/4_s.jpg'
+import '../assets/1/m1_ao.jpg'
+
 
 
 export const ASSETS = [
@@ -74,9 +86,12 @@ export const ASSETS = [
     { key: 'wall00aoMap', src: wall00aoMap, typeLoader: 'img',  repeat: true },
     { key: 'wall00normalMap', src: wall00normalMap, typeLoader: 'img',  repeat: true },
 
-    // { key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
-    // { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-40, 0, -30], rot: Math.PI / 2}, // bad
-    // { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-40, 0, 20], rot: Math.PI / 2 }, // sofa
+
+    { key: 'chairModel', src: chair, typeLoader: 'gltf' },
+
+    //{ key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
+    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-5, 0, 30], rot: Math.PI / 2}, // bad
+    { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-5, 0, 40], rot: Math.PI / 2 }, // sofa
     // { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [-20, 0, -45], rot: 0 }, // long
     // { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [-80, 0, 120], rot: 0 },
 ]

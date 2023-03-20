@@ -45,6 +45,9 @@ void main() {
 // };
 
 
+const CAM_POS = [0, 150, 300]
+const CAM_TARGET_POS = [0, 0, 0]
+
 export const createStudio = (cubeMap) => {
     const container = document.querySelector('#scene');
     container.style.width = window.innerWidth + 'px'
@@ -53,7 +56,7 @@ export const createStudio = (cubeMap) => {
     const scene = new THREE.Scene();
     scene.fog = new THREE.Fog( BACK_COLOR, 100, 5000 );
     const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100000);
-    camera.position.set( 70, 200, 300);
+    camera.position.set(...CAM_POS);
     scene.add(camera)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -78,7 +81,7 @@ export const createStudio = (cubeMap) => {
     controls.minDistance = 2;
     controls.maxDistance = 40000;
     controls.maxPolarAngle = Math.PI / 2 - 0.01
-    controls.target.set(150, 0, 100 )
+    controls.target.set(...CAM_TARGET_POS)
     controls.update();
 
 
