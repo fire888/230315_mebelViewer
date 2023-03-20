@@ -4,14 +4,46 @@ import { Room } from './Room'
 
 
 
-const step = 20000
+const step = 30000
 const H = 30
 const W = 5000
 
 
 
 const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
-    const arr = []
+    const arrGenerate = []
+    const arrLines = []
+
+    const createLine = (z) => {
+        const arrLine = []
+
+        for (let i = 0; i < 5; ++i) {
+            //const nWall = null
+            const nWall = (arrLines[arrLines.length - 1] && arrLines[arrLines.length - 1][i]) ? arrLines[arrLines.length - 1][i].sWall : null
+            const eWall = arrLine[arrLine.length - 1] ? arrLine[arrLine.length - 1].wWall : null
+            const r = new Room(
+                 root,
+                 [houseIndex * step - (W * i), z],
+                {
+                    nWall,
+                    eWall,
+                },
+                 H * floorIndex,
+                {},
+                //pp
+            )
+            arrLine.push(r)
+            arrGenerate.push(r)
+        }
+
+        return arrLine
+    }
+
+    for (let i = 0; i < 5; ++i) {
+        const line = createLine(i * W)
+        arrLines.push(line)
+    }
+
 
     // const pp = bottomRooms
     //     ? {
@@ -123,7 +155,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
     //     )
     //     arr.push(rBottom)
     // }
-    return arr
+    return arrGenerate
 }
 
 
