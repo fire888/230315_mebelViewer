@@ -16,6 +16,8 @@ export class WallSide {
 
     generateMeshes(arrLines, type) {
 
+        console.log(this.isOuter)
+
         for (let i = 0; i < arrLines.length; ++i) {
             if (i === 1) {
                 if (type === 'window') {

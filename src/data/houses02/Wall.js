@@ -55,7 +55,7 @@ export class Wall {
                 [p[0], p[1]],
             ]
             this.leftSide = new WallSide(root, this.leftPoints)
-            this.rightSide.isOuter = true
+            this.leftSide.isOuter = true
         }
     }
 
