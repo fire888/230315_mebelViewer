@@ -13,90 +13,90 @@ const W = 5000
 const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
     const arr = []
 
-    const pp = bottomRooms 
-        ? { 
-            sw: bottomRooms[0].sw,
-            nw: bottomRooms[0].nw,
-            ne: bottomRooms[0].ne,
-            se: bottomRooms[0].se,
-        } : {}
-
-    const r = new Room(
-        root,
-        [houseIndex * step, 0],
-        {},
-        H * floorIndex,
-        pp
-    )
-    arr.push(r)
-
-    const rW = new Room(
-         root,
-         [houseIndex * step - W, 0],
-        {
-            eWall: r.wWall,
-        },
-         H * floorIndex,
-         pp
-    )
-    arr.push(rW)
-
-    const rS = new Room(
-        root,
-        [houseIndex * step, W],
-        {
-            nWall: r.sWall,
-        },
-        H * floorIndex,
-        pp
-    )
-    arr.push(rS)
-
-    const rWS = new Room(
-        root,
-        [houseIndex * step - W, W],
-        {
-            nWall: rW.sWall,
-            eWall: rS.wWall,
-        },
-        H * floorIndex,
-        pp
-    )
-    arr.push(rWS)
-
-    const rWSS = new Room(
-        root,
-        [houseIndex * step - W, W * 2],
-        {
-            nWall: rWS.sWall,
-        },
-        H * floorIndex,
-        pp
-    )
-    arr.push(rWSS)
-
-    const rWSW = new Room(
-        root,
-        [houseIndex * step - W * 2, W],
-        {
-            eWall: rWS.wWall,
-        },
-        H * floorIndex,
-        pp
-    )
-    arr.push(rWSW)
-
-    const rWSWS = new Room(
-        root,
-        [houseIndex * step - W * 2, W * 2],
-        {
-            eWall: rWSS.wWall,
-            nWall: rWSW.sWall,
-        },
-        H * floorIndex,
-        pp
-    )
-    arr.push(rWSWS)
+    // const pp = bottomRooms
+    //     ? {
+    //         sw: bottomRooms[0].sw,
+    //         nw: bottomRooms[0].nw,
+    //         ne: bottomRooms[0].ne,
+    //         se: bottomRooms[0].se,
+    //     } : {}
+    //
+    // const r = new Room(
+    //     root,
+    //     [houseIndex * step, 0],
+    //     {},
+    //     H * floorIndex,
+    //     pp
+    // )
+    // arr.push(r)
+    //
+    // const rW = new Room(
+    //      root,
+    //      [houseIndex * step - W, 0],
+    //     {
+    //         eWall: r.wWall,
+    //     },
+    //      H * floorIndex,
+    //      pp
+    // )
+    // arr.push(rW)
+    //
+    // const rS = new Room(
+    //     root,
+    //     [houseIndex * step, W],
+    //     {
+    //         nWall: r.sWall,
+    //     },
+    //     H * floorIndex,
+    //     pp
+    // )
+    // arr.push(rS)
+    //
+    // const rWS = new Room(
+    //     root,
+    //     [houseIndex * step - W, W],
+    //     {
+    //         nWall: rW.sWall,
+    //         eWall: rS.wWall,
+    //     },
+    //     H * floorIndex,
+    //     pp
+    // )
+    // arr.push(rWS)
+    //
+    // const rWSS = new Room(
+    //     root,
+    //     [houseIndex * step - W, W * 2],
+    //     {
+    //         nWall: rWS.sWall,
+    //     },
+    //     H * floorIndex,
+    //     pp
+    // )
+    // arr.push(rWSS)
+    //
+    // const rWSW = new Room(
+    //     root,
+    //     [houseIndex * step - W * 2, W],
+    //     {
+    //         eWall: rWS.wWall,
+    //     },
+    //     H * floorIndex,
+    //     pp
+    // )
+    // arr.push(rWSW)
+    //
+    // const rWSWS = new Room(
+    //     root,
+    //     [houseIndex * step - W * 2, W * 2],
+    //     {
+    //         eWall: rWSS.wWall,
+    //         nWall: rWSW.sWall,
+    //     },
+    //     H * floorIndex,
+    //     pp
+    // )
+    // arr.push(rWSWS)
 
 
 
