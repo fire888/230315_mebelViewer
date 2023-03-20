@@ -2,7 +2,7 @@ import { Wall } from './Wall'
 import { createFloor } from '../../Entities/meshesFlat/createFloor'
 import { createCeiling } from '../../Entities/meshesFlat/createCeiling'
 import { getID } from '../../helpers/getID'
-import * as turf from '@turf/turf'
+
 
 const D_MAX = 5000
 const D_MIN = 2000
@@ -28,29 +28,36 @@ export class Room {
         this.ne = pp.ne || [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
         if (walls.nWall) {
             this.ne = walls.nWall.leftPoints[1]
-            walls.nWall.removeOuterFlag()
         }
+        if (walls.eWall) {
+            this.ne = walls.eWall.leftPoints[0]
+        }
+
+
         this.se = pp.se || [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
+        if (walls.eWall) {
+            this.se = walls.eWall.leftPoints[1]
+        }
 
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
-        const points = turf.points([...this.floorPerimeter])
-        const c = turf.center(points)
-        this.center = c.geometry.coordinates
 
-        if (walls.sWall) {
-            this.sWall = walls.sWall
-        } else {
-            this.sWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.se, this.sw] }], h)
-        }
-        this.wWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.sw, this.nw] }], h)
+        this.sWall = new Wall(root, [{ room: this, points: [this.se, this.sw] }], h)
+        this.wWall = new Wall(root, [{ room: this, points: [this.sw, this.nw] }], h)
         if (walls.nWall) {
             this.nWall = walls.nWall
-            this.nWall.isHideByCamera = false
+            walls.nWall.removeOuterFlag()
         } else {
-            this.nWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.nw, this.ne] }], h)
+            this.nWall = new Wall(root, [{ room: this, points: [this.nw, this.ne] }], h)
         }
-        this.eWall = new Wall(root, [{ key: 'rightRoom', room: this, points: [this.ne, this.se] }], h)
+
+        if (walls.eWall) {
+            this.eWall = walls.eWall
+            walls.eWall.removeOuterFlag()
+        } else {
+            this.eWall = new Wall(root, [{ room: this, points: [this.ne, this.se] }], h)
+        }
+
     }
 
     getJsonRoom() {

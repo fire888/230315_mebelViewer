@@ -21,46 +21,30 @@ export class Wall {
         this.isHideByCamera = true
 
         this.id = getID()
-
-        this.leftRoom = null
         this.leftPoints = null
-
-        this.rightRoom = null
         this.rightPoints = null
 
         for (let i = 0; i < arrRooms.length; ++i) {
-            if (arrRooms[i].key === 'leftRoom') {
-                this.leftRoom = arrRooms[i].room
-                this.leftPoints = arrRooms[i].points
-            }
-            if (arrRooms[i].key === 'rightRoom') {
-                this.rightRoom = arrRooms[i].room
-                this.rightPoints = arrRooms[i].points
-            }
+            this.rightPoints = arrRooms[i].points
         }
 
-        this.leftSide = null
-        this.rightSide = null
 
-        if (this.rightRoom) {
-            this.rightSide = new WallSide(root, this.rightPoints)
-            this.rightSide.isOuter = false
-        }
-        if (this.leftRoom) {
-        //    this.leftSide = new WallSideInner(root, this.leftPoints)
-        } else {
-            const p = parallelLine([...this.rightPoints[0], ...this.rightPoints[1]], -200)
-            this.leftPoints = [
-                [p[2], p[3]],
-                [p[0], p[1]],
-            ]
-            this.leftSide = new WallSide(root, this.leftPoints)
-            this.leftSide.isOuter = true
-        }
+        this.rightSide = new WallSide(root, this.rightPoints)
+        this.rightSide.isOuter = false
+
+        const p = parallelLine([...this.rightPoints[0], ...this.rightPoints[1]], -200)
+        this.leftPoints = [
+            [p[2], p[3]],
+            [p[0], p[1]],
+        ]
+        this.leftSide = new WallSide(root, this.leftPoints)
+        this.leftSide.isOuter = true
+
     }
 
     removeOuterFlag() {
         this.leftSide.isOuter = false
+        this.isHideByCamera = false
     }
 
 
