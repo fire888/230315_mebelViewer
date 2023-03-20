@@ -4,8 +4,9 @@ import { Room } from './Room'
 
 
 
-const step = 30000
+const step = 40000
 const H = 30
+
 
 
 const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
@@ -28,7 +29,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
     )
     arr.push(r)
 
-    const r1 = new Room(
+    const rW = new Room(
          root,
          [houseIndex * step - 12000, 0],
         {
@@ -37,7 +38,54 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
          H * floorIndex,
          pp
     )
-    arr.push(r1)
+    arr.push(rW)
+
+    const rS = new Room(
+        root,
+        [houseIndex * step, 12000],
+        {
+            nWall: r.sWall,
+        },
+        H * floorIndex,
+        pp
+    )
+    arr.push(rS)
+
+    const rWS = new Room(
+        root,
+        [houseIndex * step - 12000, 12000],
+        {
+            nWall: rW.sWall,
+            eWall: rS.wWall,
+        },
+        H * floorIndex,
+        pp
+    )
+    arr.push(rWS)
+
+    const rWSS = new Room(
+        root,
+        [houseIndex * step - 12000, 24000],
+        {
+            nWall: rWS.sWall,
+        },
+        H * floorIndex,
+        pp
+    )
+    arr.push(rWSS)
+
+    const rWSW = new Room(
+        root,
+        [houseIndex * step - 24000, 12000],
+        {
+            eWall: rWS.wWall,
+        },
+        H * floorIndex,
+        pp
+    )
+    arr.push(rWSW)
+
+
 
 
     // const fullNumSouthRoomsRandom = Math.floor(Math.random() * 3) + 1

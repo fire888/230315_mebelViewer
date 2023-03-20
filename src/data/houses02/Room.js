@@ -4,8 +4,8 @@ import { createCeiling } from '../../Entities/meshesFlat/createCeiling'
 import { getID } from '../../helpers/getID'
 
 
-const D_MAX = 5000
-const D_MIN = 2000
+const D_MAX = 2000
+const D_MIN = 1000
 
 
 export class Room {
