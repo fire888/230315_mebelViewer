@@ -4,8 +4,9 @@ import { Room } from './Room'
 
 
 
-const step = 40000
+const step = 20000
 const H = 30
+const W = 5000
 
 
 
@@ -31,7 +32,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 
     const rW = new Room(
          root,
-         [houseIndex * step - 12000, 0],
+         [houseIndex * step - W, 0],
         {
             eWall: r.wWall,
         },
@@ -42,7 +43,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 
     const rS = new Room(
         root,
-        [houseIndex * step, 12000],
+        [houseIndex * step, W],
         {
             nWall: r.sWall,
         },
@@ -53,7 +54,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 
     const rWS = new Room(
         root,
-        [houseIndex * step - 12000, 12000],
+        [houseIndex * step - W, W],
         {
             nWall: rW.sWall,
             eWall: rS.wWall,
@@ -65,7 +66,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 
     const rWSS = new Room(
         root,
-        [houseIndex * step - 12000, 24000],
+        [houseIndex * step - W, W * 2],
         {
             nWall: rWS.sWall,
         },
@@ -76,7 +77,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 
     const rWSW = new Room(
         root,
-        [houseIndex * step - 24000, 12000],
+        [houseIndex * step - W * 2, W],
         {
             eWall: rWS.wWall,
         },
@@ -84,6 +85,19 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
         pp
     )
     arr.push(rWSW)
+
+    const rWSWS = new Room(
+        root,
+        [houseIndex * step - W * 2, W * 2],
+        {
+            eWall: rWSS.wWall,
+            nWall: rWSW.sWall,
+        },
+        H * floorIndex,
+        pp
+    )
+    arr.push(rWSWS)
+
 
 
 
