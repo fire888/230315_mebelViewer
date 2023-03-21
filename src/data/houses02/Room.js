@@ -6,7 +6,7 @@ import * as THREE from 'three'
 
 
 const D_MAX = 0
-const D_MIN = 2000
+const D_MIN = 8000
 
 let mesh
 
@@ -20,26 +20,26 @@ export class Room {
         this.model.position.y = h
         this._root.studio.addToScene(this.model)
 
-        if (!mesh) {
-            root.assets.chairModel.model.scene.children[0].traverse(item => {
-                if (item instanceof THREE.Mesh) {
+        // if (!mesh) {
+        //     root.assets.chairModel.model.scene.children[0].traverse(item => {
+        //         if (item instanceof THREE.Mesh) {
+        //
+        //             mesh = item
+        //             //mesh.material.color = 0xffffff
+        //             mesh.material.needsUpdate = true
+        //             console.log(mesh.material)
+        //         }
+        //     })
+        // }
+        // this.chair = new THREE.Mesh(
+        //     mesh.geometry,
+        //     root.materials.red,
+        // )
 
-                    mesh = item
-                    //mesh.material.color = 0xffffff
-                    mesh.material.needsUpdate = true
-                    console.log(mesh.material)
-                }
-            })
-        }
-        this.chair = new THREE.Mesh(
-            mesh.geometry,
-            root.materials.red,
-        )
-
-        this.chair.position.set(center[0], h, center[1])
-        this.chair.scale.set(1000, 1000, 1000)
-        this.chair.rotation.y = Math.random() * Math.PI * 2
-        this.model.add(this.chair)
+        // this.chair.position.set(center[0], h, center[1])
+        // this.chair.scale.set(1000, 1000, 1000)
+        // this.chair.rotation.y = Math.random() * Math.PI * 2
+        // this.model.add(this.chair)
 
 
         this.sw = pp.sw || [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]

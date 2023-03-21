@@ -34,6 +34,17 @@ const threeApp = () => {
                 assets[key].model.position.set(...assets[key].pos)
                 assets[key].model.rotation.y = assets[key].rot
                 studio.addToScene(assets[key].model)
+
+                assets[key].model.traverse(item => {
+                    if (item.type === 'Mesh') {
+                        if (item.material) {
+                            console.log('!!!!', item.material)
+                            if (item.material.aoMap) {
+                                console.log('!!!! aoMap')
+                            }
+                        }
+                    }
+                })
             }
         }
 

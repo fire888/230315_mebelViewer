@@ -66,7 +66,19 @@ import '../assets/1/2_d.jpg'
 import '../assets/1/2_n.jpg'
 import '../assets/1/3_d.jpg'
 import '../assets/1/4_s.jpg'
+import '../assets/1/5_d.jpg'
+import '../assets/1/6_d.jpg'
+import '../assets/1/6_n.jpg'
+import m08 from '../assets/1/8.fbx'
+import m09 from '../assets/1/9.fbx'
+import m10 from '../assets/1/10.fbx'
+import m11 from '../assets/1/11.fbx'
+import m13 from '../assets/1/13.fbx'
+import m14 from '../assets/1/14.fbx'
 import '../assets/1/m1_ao.jpg'
+import '../assets/1/m8_ao.jpg'
+import '../assets/1/m13_ao.jpg'
+import '../assets/1/m14_ao.jpg'
 
 
 
@@ -87,11 +99,15 @@ export const ASSETS = [
     { key: 'wall00normalMap', src: wall00normalMap, typeLoader: 'img',  repeat: true },
 
 
-    { key: 'chairModel', src: chair, typeLoader: 'gltf' },
+    //{ key: 'chairModel', src: chair, typeLoader: 'gltf' },
 
     //{ key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
-    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-5, 0, 30], rot: Math.PI / 2}, // bad
-    { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-5, 0, 40], rot: Math.PI / 2 }, // sofa
-    // { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [-20, 0, -45], rot: 0 }, // long
-    // { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [-80, 0, 120], rot: 0 },
+    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2}, // bad
+    { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-5, 0, -10], rot: Math.PI / 2 }, // sofa
+    { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [0, 0, 0], rot: Math.PI / 2 }, // sofa
+    { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [5, 0, 10], rot: Math.PI / 2 }, // sofa
+    { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [10, 0, 20], rot: Math.PI / 2 }, // sofa
+    { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [15, 0, 30], rot: Math.PI / 2 }, // sofa
+    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [20, 0, 40], rot: Math.PI / 2 }, // sofa
+    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [25, 0, 50], rot: Math.PI / 2 }, // sofa
 ]

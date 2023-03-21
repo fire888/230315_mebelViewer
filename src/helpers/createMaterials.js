@@ -13,8 +13,8 @@ export const createMaterials = (assets) => {
     const materials =  {
         floor: new THREE.MeshPhongMaterial({
             envMap: assets['env00'].model,
-            emissive: 0x231720,
-            reflectivity: 1.5,
+            emissive: 0x777777,
+            reflectivity: .1,
             color: 0xffffff,
             specular: 0xffffff,
             map: assets['floor00map'].model,

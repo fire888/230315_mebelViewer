@@ -67,11 +67,11 @@ export const createStudio = (cubeMap) => {
 
     container.appendChild( renderer.domElement );
 
-    const light = new THREE.PointLight(0xc3c8e2, .7)
-    light.position.set(330, 100, 100)
+    const light = new THREE.PointLight(0xc3c8e2, .3)
+    light.position.set(0, 100, 100)
     camera.add(light)
 
-    const ambLight = new THREE.AmbientLight(0xe0e3f1, .4)
+    const ambLight = new THREE.AmbientLight(0xe0e3f1, .7)
     scene.add(ambLight)
 
 
