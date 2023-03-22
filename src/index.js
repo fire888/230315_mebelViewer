@@ -6,13 +6,7 @@ import { createContainerFlat } from './Entities/containerFlat'
 
 import { loadAssets } from "./helpers/loadManager"
 import { ASSETS } from "./constants/ASSETS"
-import m1_ao from "./assets/1/m1_ao.jpg";
-import m8_ao from "./assets/1/m8_ao.jpg";
-import m12$1_ao from "./assets/1/m12.1_ao.jpg";
-import m12$2_ao from "./assets/1/m12.2_ao.jpg";
-import m12$3_ao from "./assets/1/m12.3_ao.jpg";
-import m13_ao from "./assets/1/m13_ao.jpg";
-import m14_ao from "./assets/1/m14_ao.jpg";
+
 
 const MATERIALS_AO = {
     'm01': {
