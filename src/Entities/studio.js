@@ -62,7 +62,7 @@ export const createStudio = (cubeMap) => {
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
-    //renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.setClearColor(BACK_COLOR, 1)
 
     container.appendChild( renderer.domElement );

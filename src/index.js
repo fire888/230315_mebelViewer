@@ -6,6 +6,37 @@ import { createContainerFlat } from './Entities/containerFlat'
 
 import { loadAssets } from "./helpers/loadManager"
 import { ASSETS } from "./constants/ASSETS"
+import m1_ao from "./assets/1/m1_ao.jpg";
+import m8_ao from "./assets/1/m8_ao.jpg";
+import m12$1_ao from "./assets/1/m12.1_ao.jpg";
+import m12$2_ao from "./assets/1/m12.2_ao.jpg";
+import m12$3_ao from "./assets/1/m12.3_ao.jpg";
+import m13_ao from "./assets/1/m13_ao.jpg";
+import m14_ao from "./assets/1/m14_ao.jpg";
+
+const MATERIALS_AO = {
+    'm01': {
+        '0': 'm1_ao',
+    },
+    'm02': {
+        '0': 'm1_ao',
+    },
+    'm08': {
+        '0': 'm8_ao',
+    },
+    'm12': {
+        '0': 'm12.1_ao',
+        '1': 'm12.2_ao',
+        '2': 'm12.3_ao',
+    },
+    'm13': {
+        '0': 'm13_ao',
+    },
+    'm14': {
+        '0': 'm14_ao',
+    },
+}
+
 
 
 const threeApp = () => {
@@ -33,15 +64,42 @@ const threeApp = () => {
                 assets[key].model.scale.set(0.1, 0.1, 0.1)
                 assets[key].model.position.set(...assets[key].pos)
                 assets[key].model.rotation.y = assets[key].rot
-                studio.addToScene(assets[key].model)
 
+                studio.addToScene(assets[key].model)
                 assets[key].model.traverse(item => {
                     if (item.type === 'Mesh') {
-                        if (item.material) {
-                            console.log('!!!!', item.material)
-                            if (item.material.aoMap) {
-                                console.log('!!!! aoMap')
+                        const uv2 = item.geometry.attributes.uv2
+                        if (uv2) {
+                            for (let i = 0; i < uv2.array.length; ++i) {
+                                if (uv2.array[i] !== 0) {
+                                    console.log(uv2.array[i])
+                                }
                             }
+                        }
+                        console.log(key, assets[key].model)
+                        if (item.material) {
+                            console.log('mesh: ' + key, item.material)
+
+
+                            if (MATERIALS_AO[key]) {
+                                for (let keyIndMat in MATERIALS_AO[key]) {
+                                    if (!item.material.length) {
+                                        item.material.aoMap = assets[MATERIALS_AO[key][0]].model
+                                    }
+                                    else {
+                                        for (let i = 0; i < item.material.length; ++i) {
+                                            if (MATERIALS_AO[key][i]) {
+                                                item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            // if (item.material.aoMap) {
+                            //     console.log('!!!! aoMap')
+                            // }
                         }
                     }
                 })

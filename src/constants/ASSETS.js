@@ -73,12 +73,22 @@ import m08 from '../assets/1/8.fbx'
 import m09 from '../assets/1/9.fbx'
 import m10 from '../assets/1/10.fbx'
 import m11 from '../assets/1/11.fbx'
+import m12 from '../assets/1/12.fbx'
 import m13 from '../assets/1/13.fbx'
 import m14 from '../assets/1/14.fbx'
-import '../assets/1/m1_ao.jpg'
-import '../assets/1/m8_ao.jpg'
-import '../assets/1/m13_ao.jpg'
-import '../assets/1/m14_ao.jpg'
+import m15 from '../assets/1/15.fbx'
+
+
+import m1_ao from '../assets/1/m1_ao.jpg'
+import m8_ao from'../assets/1/m8_ao.jpg'
+import m12$1_ao from'../assets/1/m12.1_ao.jpg'
+import '../assets/1/m12.1_n.jpg'
+import m12$2_ao from '../assets/1/m12.2_ao.jpg'
+import '../assets/1/m12.2_n.jpg'
+import m12$3_ao from '../assets/1/m12.3_ao.jpg'
+import '../assets/1/m12.3_n.jpg'
+import m13_ao from '../assets/1/m13_ao.jpg'
+import m14_ao from '../assets/1/m14_ao.jpg'
 
 
 
@@ -102,12 +112,23 @@ export const ASSETS = [
     //{ key: 'chairModel', src: chair, typeLoader: 'gltf' },
 
     //{ key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
-    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2}, // bad
-    { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-5, 0, -10], rot: Math.PI / 2 }, // sofa
-    { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [0, 0, 0], rot: Math.PI / 2 }, // sofa
-    { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [5, 0, 10], rot: Math.PI / 2 }, // sofa
-    { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [10, 0, 20], rot: Math.PI / 2 }, // sofa
-    { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [15, 0, 30], rot: Math.PI / 2 }, // sofa
-    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [20, 0, 40], rot: Math.PI / 2 }, // sofa
-    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [25, 0, 50], rot: Math.PI / 2 }, // sofa
+    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
+    { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-5, 0, -10], rot: Math.PI / 2 },
+    { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [0, 0, 0], rot: Math.PI / 2 },
+    { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [5, 0, 10], rot: Math.PI / 2 },
+    { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [10, 0, 20], rot: Math.PI / 2 },
+    { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [15, 0, 30], rot: Math.PI / 2 },
+    { key: 'm12', src: m12, typeLoader: 'fbx',  pos: [20, 0, -40], rot: Math.PI / 2 },
+    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [25, 0, 50], rot: Math.PI / 2 },
+    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [30, 0, 60], rot: Math.PI / 2 },
+    { key: 'm15', src: m15, typeLoader: 'fbx',  pos: [20, 0, -40], rot: Math.PI / 2 },
+
+
+    { key: 'm1_ao', src: m1_ao, typeLoader: 'img' },
+    { key: 'm8_ao', src: m8_ao, typeLoader: 'img' },
+    { key: 'm12.1_ao', src: m12$1_ao, typeLoader: 'img' },
+    { key: 'm12.2_ao', src: m12$2_ao, typeLoader: 'img' },
+    { key: 'm12.3_ao', src: m12$3_ao, typeLoader: 'img' },
+    { key: 'm13_ao', src: m13_ao, typeLoader: 'img' },
+    { key: 'm14_ao', src: m14_ao, typeLoader: 'img' },
 ]
