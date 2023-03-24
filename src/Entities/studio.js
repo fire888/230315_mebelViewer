@@ -45,8 +45,8 @@ void main() {
 // };
 
 
-const CAM_POS = [0, 150, 300]
-const CAM_TARGET_POS = [0, 0, 0]
+const CAM_POS = [0, 73, 10]
+const CAM_TARGET_POS = [0, 15, 0]
 
 export const createStudio = (cubeMap) => {
     const container = document.querySelector('#scene');

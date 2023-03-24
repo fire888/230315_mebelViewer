@@ -36,10 +36,10 @@ const threeApp = () => {
             if (assets[key].typeLoader === 'fbx') {
 
                 assets[key].model.scale.set(0.1, 0.1, 0.1)
-                //assets[key].model.position.set(...assets[key].pos)
-                assets[key].model.position.set(indexModel * 10 - 60, 10, indexModel * 3 )
+                assets[key].model.position.set(...assets[key].pos)
+                //assets[key].model.position.set(indexModel * 10 - 60, 10, indexModel * 3 )
                 ++indexModel
-                //assets[key].model.rotation.y = assets[key].rot
+                assets[key].model.rotation.y = assets[key].rot
                 assets[key].model.traverse(item => {
                     if (item.type === 'Mesh') {
                         const uv2 = item.geometry.attributes.uv2

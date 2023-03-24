@@ -10,6 +10,11 @@ const D_MIN = 12000
 
 let mesh
 
+const X_MAX = 2900
+const X_MIN = -2950
+const Z_MAX = 2100
+const Z_MII = -2200
+
 export class RoomForFurniture {
     constructor(root, center = [0, 0], walls = {}, h = 0, pp = {}) {
         this.id = getID()
@@ -20,17 +25,17 @@ export class RoomForFurniture {
         this.model.position.y = h
         this._root.studio.addToScene(this.model)
 
-        this.sw = [-4000, 4000]
-        this.nw = [-4000, -4000]
-        this.ne = [4000, -4000]
-        this.se = [4000, 4000]
+        this.sw = [X_MIN, Z_MAX]
+        this.nw = [X_MIN, Z_MII]
+        this.ne = [X_MAX, Z_MII]
+        this.se = [X_MAX, Z_MAX]
 
 
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
 
-        this.sWall = new Wall(root, [{ room: this, points: [this.se, this.sw], }], h, true, false)
-        this.wWall = new Wall(root, [{ room: this, points: [this.sw, this.nw],}], h, false, false)
+        this.sWall = new Wall(root, [{ room: this, points: [this.se, this.sw], }], h, false, false)
+        this.wWall = new Wall(root, [{ room: this, points: [this.sw, this.nw],}], h, true, false)
         this.nWall = new Wall(root, [{ room: this, points: [this.nw, this.ne], }], h, false, false)
         this.eWall = new Wall(root, [{ room: this, points: [this.ne, this.se], }], h, false, true)
 

@@ -26,7 +26,7 @@ export const createMaterials = (assets) => {
         }),
         ceiling: new THREE.MeshPhongMaterial({
             envMap: assets['env00'].model,
-            emissive: 0x000000,
+            emissive: 0x222222,
             reflectivity: .001,
             color: 0xffffff,
             specular: 0xffffff,
@@ -45,7 +45,7 @@ export const createMaterials = (assets) => {
             //vertexColors: true,
         }),
         plinth: new THREE.MeshPhongMaterial({
-            color: 0xdddddd,
+            color: 0xffffff,
             specular: 0x333333,
         }),
         wall: new THREE.MeshPhongMaterial({
@@ -59,7 +59,7 @@ export const createMaterials = (assets) => {
             specular: 0x333333,
             //map: assets['wall00aoMap'].model,
             aoMap: assets['wall00aoMap'].model,
-            aoMapIntensity: -0.5,
+            aoMapIntensity: -0.1,
             normalMap: assets['wall00normalMap'].model,
             normalScale: new THREE.Vector2(4.5, 4.5),
             //specularMap: assets['wall00specularMap'].model,
@@ -90,7 +90,7 @@ export const createMaterials = (assets) => {
             ///vertexColors: true,
         }),
         door: new THREE.MeshPhongMaterial({
-            color: 0xcccccc,
+            color: 0xffffff,
             side: THREE.DoubleSide,
             specular: 0x333333,
             ///vertexColors: true,

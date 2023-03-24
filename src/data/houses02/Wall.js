@@ -102,7 +102,7 @@ export class Wall {
                 return;
             }
             const dot = this.normal.dot(cameraDir)
-            this.model.visible = dot < .8
+            this.model.visible = dot < .4
         })
 
         this._type = 'none'
@@ -110,13 +110,13 @@ export class Wall {
         let l = 0
         let offset = 0
         if (this.isWindow) {
-            l = 3000
-            offset = .3
+            l = 1700
+            offset = .45
             this._type = 'window'
         }
         if (this.isDoor) {
             l = 800
-            offset = .1
+            offset = .68
             this._type = 'door'
         }
 
