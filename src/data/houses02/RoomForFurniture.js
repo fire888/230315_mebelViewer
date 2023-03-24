@@ -10,7 +10,7 @@ const D_MIN = 12000
 
 let mesh
 
-export class Room {
+export class RoomForFurniture {
     constructor(root, center = [0, 0], walls = {}, h = 0, pp = {}) {
         this.id = getID()
         this._root = root
@@ -20,45 +20,19 @@ export class Room {
         this.model.position.y = h
         this._root.studio.addToScene(this.model)
 
-        this.sw = pp.sw || [-D_MIN - Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
+        this.sw = [-4000, 4000]
+        this.nw = [-4000, -4000]
+        this.ne = [4000, -4000]
+        this.se = [4000, 4000]
 
-        this.nw = pp.nw || [-D_MIN - Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
-        if (walls.nWall) {
-            this.nw = walls.nWall.leftPoints[0]
-        }
-
-        this.ne = pp.ne || [D_MIN + Math.random() * D_MAX + center[0], -D_MIN - Math.random() * D_MAX + center[1]]
-        if (walls.nWall) {
-            this.ne = walls.nWall.leftPoints[1]
-        }
-        if (walls.eWall) {
-            this.ne = walls.eWall.leftPoints[0]
-        }
-
-
-        this.se = pp.se || [D_MIN + Math.random() * D_MAX + center[0], D_MIN + Math.random() * D_MAX + center[1]]
-        if (walls.eWall) {
-            this.se = walls.eWall.leftPoints[1]
-        }
 
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
 
-        this.sWall = new Wall(root, [{ room: this, points: [this.se, this.sw] }], h)
-        this.wWall = new Wall(root, [{ room: this, points: [this.sw, this.nw] }], h)
-        if (walls.nWall) {
-            this.nWall = walls.nWall
-            walls.nWall.removeOuterFlag()
-        } else {
-            this.nWall = new Wall(root, [{ room: this, points: [this.nw, this.ne] }], h)
-        }
-
-        if (walls.eWall) {
-            this.eWall = walls.eWall
-            walls.eWall.removeOuterFlag()
-        } else {
-            this.eWall = new Wall(root, [{ room: this, points: [this.ne, this.se] }], h)
-        }
+        this.sWall = new Wall(root, [{ room: this, points: [this.se, this.sw], }], h, true, false)
+        this.wWall = new Wall(root, [{ room: this, points: [this.sw, this.nw],}], h, false, false)
+        this.nWall = new Wall(root, [{ room: this, points: [this.nw, this.ne], }], h, false, false)
+        this.eWall = new Wall(root, [{ room: this, points: [this.ne, this.se], }], h, false, true)
 
     }
 

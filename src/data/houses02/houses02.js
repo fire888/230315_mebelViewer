@@ -1,6 +1,7 @@
 import * as turf from '@turf/turf'
 import * as THREE from 'three'
-import { Room } from './Room' 
+//import { Room } from './Room'
+import { RoomForFurniture } from './RoomForFurniture'
 
 
 
@@ -16,7 +17,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
     const createLine = (indexLine) => {
         const arrLine = []
 
-        for (let i = 0; i < 2; ++i) {
+        for (let i = 0; i < 1; ++i) {
 
             let pp = {}
             if (
@@ -35,7 +36,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 
             const nWall = (arrLines[arrLines.length - 1] && arrLines[arrLines.length - 1][i]) ? arrLines[arrLines.length - 1][i].sWall : null
             const eWall = arrLine[arrLine.length - 1] ? arrLine[arrLine.length - 1].wWall : null
-            const r = new Room(
+            const r = new RoomForFurniture(
                  root,
                  [houseIndex * step - (W * i), indexLine * W],
                 {
@@ -51,12 +52,10 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
         return arrLine
     }
 
-    for (let i = 0; i < 2; ++i) {
+    for (let i = 0; i < 1; ++i) {
         const line = createLine(i)
         arrLines.push(line)
     }
-
-
 
     return arrLines
 }
@@ -66,9 +65,7 @@ const createFloor = (root, houseIndex, floorIndex, bottomRooms) => {
 const createDom = (root, houseIndex) => {
     const arr = []
 
-    //const floorsNum = Math.floor(Math.random() * 10) + 5
-    const floorsNum = 1//3//Math.floor(Math.random() * 10) + 5
-
+    const floorsNum = 1 //3//Math.floor(Math.random() * 10) + 5
 
     for (let floorIndex = 0; floorIndex < floorsNum; ++floorIndex) {
         const prevArr = floorIndex === 0 ? null : arr[floorIndex - 1]

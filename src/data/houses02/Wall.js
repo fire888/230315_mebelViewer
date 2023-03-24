@@ -12,13 +12,15 @@ import { getID } from '../../helpers/getID'
 
 
 export class Wall {
-    constructor(root, arrRooms, h) {
+    constructor(root, arrRooms, h, isDoor, isWindow) {
         this._root = root
         this.model = new THREE.Group()
         this.model.scale.set(.01, .01, .01)
         this.model.position.y = h
         root.studio.addToScene(this.model)
         this.isHideByCamera = true
+        this.isWindow = isWindow
+        this.isDoor = isDoor
 
         this.id = getID()
         this.leftPoints = null
@@ -103,87 +105,85 @@ export class Wall {
             this.model.visible = dot < .8
         })
 
-        const isWindow = this.isHideByCamera
-        this._type = isWindow ? 'window': 'door'
+        this._type = 'none'
 
-        let l = 800
-        if (this._type) {
-            l = getLength(
-                this.rightPoints[0][0],
-                this.rightPoints[0][1],
-                this.rightPoints[1][0],
-                this.rightPoints[1][1],
-            ) * Math.random() * .5 + .3
+        let l = 0
+        let offset = 0
+        if (this.isWindow) {
+            l = 3000
+            offset = .3
+            this._type = 'window'
+        }
+        if (this.isDoor) {
+            l = 800
+            offset = .1
+            this._type = 'door'
         }
 
-        const { lines, phases } = breakLineToCut(this.rightPoints[0], this.rightPoints[1], l)
-        const pointsBreakRight = lines
-        const leftDifX = this.leftPoints[1][0] - this.leftPoints[0][0]
-        const leftDifZ = this.leftPoints[1][1] - this.leftPoints[0][1]
-        const left1 = [
-            this.leftPoints[0],
-            [
-                this.leftPoints[0][0] + leftDifX * (1 - phases[1]),
-                this.leftPoints[0][1] + leftDifZ * (1 - phases[1]),
+        if (l) {
+            const { lines, phases } = breakLineToCut(this.rightPoints[0], this.rightPoints[1], l, offset)
+            const pointsBreakRight = lines
+            const leftDifX = this.leftPoints[1][0] - this.leftPoints[0][0]
+            const leftDifZ = this.leftPoints[1][1] - this.leftPoints[0][1]
+            const left1 = [
+                this.leftPoints[0],
+                [
+                    this.leftPoints[0][0] + leftDifX * (1 - phases[1]),
+                    this.leftPoints[0][1] + leftDifZ * (1 - phases[1]),
+                ]
             ]
-        ]
-        const left2 = [
-            left1[1],
-            [
-                this.leftPoints[0][0] + leftDifX * (1 - phases[0]),
-                this.leftPoints[0][1] + leftDifZ * (1 - phases[0]),
+            const left2 = [
+                left1[1],
+                [
+                    this.leftPoints[0][0] + leftDifX * (1 - phases[0]),
+                    this.leftPoints[0][1] + leftDifZ * (1 - phases[0]),
+                ]
             ]
-        ]
-        const left3 = [
-            left2[1],
-            this.leftPoints[1],
-        ]
+            const left3 = [
+                left2[1],
+                this.leftPoints[1],
+            ]
 
-        const pointsBreakLeft = [left1, left2, left3]
+            const pointsBreakLeft = [left1, left2, left3]
 
+            if (this.isWindow) {
+                this.window = createWindow({
+                    w: l,
+                    h: 1700,
+                    h0: 960,
+                    h1: 2660,
+                    p1: pointsBreakRight[1][1],
+                    p2: pointsBreakRight[1][0],
+                    p3: pointsBreakRight[1][1],
+                    p4: pointsBreakRight[1][0],
+                    t: 200,
+                }, this._root.materials)
+                this.model.add(this.window)
+            }
 
-        if (isWindow) {
-            this.window = createWindow({
-                w: l,
-                h: 1700,
-                h0: 960,
-                h1: 2660,
-                p1: pointsBreakRight[1][1],
-                p2: pointsBreakRight[1][0],
-                p3: pointsBreakRight[1][1],
-                p4: pointsBreakRight[1][0],
-                t: 200,
-            }, this._root.materials)
-            this.model.add(this.window)
-        }
+            if (this.isDoor) {
+                this.door = createDoor({
+                    h0: 0,
+                    h1: 2000,
+                    p1: pointsBreakRight[1][0],
+                    p2: pointsBreakRight[1][1],
+                    p4: pointsBreakLeft[1][1],
+                    p3: pointsBreakLeft[1][0],
+                }, this._root.materials.door)
+                this.model.add(this.door)
+            }
 
-        if (this._type === 'door') {
-            this.door = createDoor({
-                h0: 0,
-                h1: 2000,
-                p1: pointsBreakRight[1][0],
-                p2: pointsBreakRight[1][1],
-                p4: pointsBreakLeft[1][1],
-                p3: pointsBreakLeft[1][0],
-            }, this._root.materials.door)
-            this.model.add(this.door)
-        }
-
-        if (pointsBreakRight) {
             this.rightSide.generateMeshes(pointsBreakRight, this._type)
-        } else {
-            //this.rightSide.generateMeshes([this.rightPoints])
-        }
-        this.model.add(this.rightSide.model)
+            this.model.add(this.rightSide.model)
 
-
-        if (pointsBreakLeft) {
-            //this.leftSide.generateMeshes(pointsBreakLeft, this._type)
             this.leftSide.generateMeshes(pointsBreakLeft, this._type)
+            this.model.add(this.leftSide.model)
         } else {
-            //this.leftSide.generateMeshes([this.leftPoints])
+            this.rightSide.generateMeshes([this.rightPoints])
+            this.leftSide.generateMeshes([this.leftPoints])
+            this.model.add(this.rightSide.model)
+            this.model.add(this.leftSide.model)
         }
-        this.model.add(this.leftSide.model)
     }
 
 }

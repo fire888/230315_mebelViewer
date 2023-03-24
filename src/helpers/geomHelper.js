@@ -82,7 +82,11 @@ export const breakLineToCut = (p0, p1, w = 800, offset = 'random') => {
 
     const normalizedW = w / len
 
-    const phase01 = Math.random() * (1 - normalizedW)
+    let offsetVal = Math.random() * (1 - normalizedW)
+    if (typeof offset === 'number') {
+        offsetVal = offset
+    }
+    const phase01 = offsetVal
     const phase02 = phase01 + normalizedW
 
     const l1 = [
