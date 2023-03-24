@@ -64,11 +64,16 @@ import '../assets/1/1_n.jpg'
 import m02 from '../assets/1/2.fbx'
 import '../assets/1/2_d.jpg'
 import '../assets/1/2_n.jpg'
+import m03 from '../assets/1/3.fbx'
 import '../assets/1/3_d.jpg'
+import m04 from '../assets/1/4.fbx'
 import '../assets/1/4_s.jpg'
+import m05 from '../assets/1/4.fbx'
 import '../assets/1/5_d.jpg'
+import m06 from '../assets/1/6.fbx'
 import '../assets/1/6_d.jpg'
 import '../assets/1/6_n.jpg'
+import m07 from '../assets/1/7.fbx'
 import m08 from '../assets/1/8.fbx'
 import m09 from '../assets/1/9.fbx'
 import m10 from '../assets/1/10.fbx'
@@ -77,9 +82,12 @@ import m12 from '../assets/1/12.fbx'
 import m13 from '../assets/1/13.fbx'
 import m14 from '../assets/1/14.fbx'
 import m15 from '../assets/1/15.fbx'
-
+import m16 from '../assets/1/16.fbx'
 
 import m1_ao from '../assets/1/m1_ao.jpg'
+import m3_ao from '../assets/1/m3_ao.jpg'
+import m4_ao from '../assets/1/m4_ao.png'
+import m6_ao from '../assets/1/m6_ao.jpg'
 import m8_ao from'../assets/1/m8_ao.jpg'
 import m12$1_ao from'../assets/1/m12.1_ao.jpg'
 import '../assets/1/m12.1_n.jpg'
@@ -89,6 +97,8 @@ import m12$3_ao from '../assets/1/m12.3_ao.jpg'
 import '../assets/1/m12.3_n.jpg'
 import m13_ao from '../assets/1/m13_ao.jpg'
 import m14_ao from '../assets/1/m14_ao.jpg'
+import m16_ao from '../assets/1/m16_ao.jpg'
+import '../assets/1/m16_n.jpg'
 
 
 
@@ -111,9 +121,13 @@ export const ASSETS = [
 
     //{ key: 'chairModel', src: chair, typeLoader: 'gltf' },
 
-    //{ key: 'm00', src: m00, typeLoader: 'fbx', pos: [0, 0, 0], rot: 0 }, // stool
     { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
     { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [-5, 0, -10], rot: Math.PI / 2 },
+    { key: 'm03', src: m03, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
+    { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
+    { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
+    { key: 'm06', src: m06, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
+    { key: 'm07', src: m07, typeLoader: 'fbx',  pos: [-10, 0, -20], rot: Math.PI / 2},
     { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [0, 0, 0], rot: Math.PI / 2 },
     { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [5, 0, 10], rot: Math.PI / 2 },
     { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [10, 0, 20], rot: Math.PI / 2 },
@@ -122,13 +136,60 @@ export const ASSETS = [
     { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [25, 0, 50], rot: Math.PI / 2 },
     { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [30, 0, 60], rot: Math.PI / 2 },
     { key: 'm15', src: m15, typeLoader: 'fbx',  pos: [20, 0, -40], rot: Math.PI / 2 },
+    { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [20, 0, -40], rot: Math.PI / 2 },
 
 
     { key: 'm1_ao', src: m1_ao, typeLoader: 'img' },
+    { key: 'm3_ao', src: m3_ao, typeLoader: 'img' },
+    { key: 'm4_ao', src: m4_ao, typeLoader: 'img' },
+    { key: 'm6_ao', src: m6_ao, typeLoader: 'img' },
     { key: 'm8_ao', src: m8_ao, typeLoader: 'img' },
     { key: 'm12.1_ao', src: m12$1_ao, typeLoader: 'img' },
     { key: 'm12.2_ao', src: m12$2_ao, typeLoader: 'img' },
     { key: 'm12.3_ao', src: m12$3_ao, typeLoader: 'img' },
     { key: 'm13_ao', src: m13_ao, typeLoader: 'img' },
     { key: 'm14_ao', src: m14_ao, typeLoader: 'img' },
+    { key: 'm16_ao', src: m16_ao, typeLoader: 'img' },
 ]
+
+
+export const MATERIALS_AO = {
+    'm01': {
+        '0': 'm1_ao',
+    },
+    'm02': {
+        '0': 'm1_ao',
+    },
+    'm03': {
+        '0': 'm3_ao',
+    },
+    'm04': {
+        '0': 'm4_ao',
+    },
+    'm05': {
+        '0': 'm4_ao',
+    },
+    'm06': {
+        '0': 'm6_ao',
+    },
+    'm07': {
+        '0': 'm6_ao',
+    },
+    'm08': {
+        '0': 'm8_ao',
+    },
+    'm12': {
+        '0': 'm12.1_ao',
+        '1': 'm12.2_ao',
+        '2': 'm12.3_ao',
+    },
+    'm13': {
+        '0': 'm13_ao',
+    },
+    'm14': {
+        '0': 'm14_ao',
+    },
+    'm16': {
+        '0': 'm16_ao',
+    },
+}

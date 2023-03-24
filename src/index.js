@@ -5,31 +5,10 @@ import { createStudio } from './Entities/studio'
 import { createContainerFlat } from './Entities/containerFlat'
 
 import { loadAssets } from "./helpers/loadManager"
-import { ASSETS } from "./constants/ASSETS"
+import { ASSETS, MATERIALS_AO } from "./constants/ASSETS"
 
 
-const MATERIALS_AO = {
-    'm01': {
-        '0': 'm1_ao',
-    },
-    'm02': {
-        '0': 'm1_ao',
-    },
-    'm08': {
-        '0': 'm8_ao',
-    },
-    'm12': {
-        '0': 'm12.1_ao',
-        '1': 'm12.2_ao',
-        '2': 'm12.3_ao',
-    },
-    'm13': {
-        '0': 'm13_ao',
-    },
-    'm14': {
-        '0': 'm14_ao',
-    },
-}
+
 
 
 
@@ -51,24 +30,26 @@ const threeApp = () => {
 
 
     loadAssets(ASSETS).then(assets => {
+        let indexModel = 0
+
         for (let key in assets) {
             if (assets[key].typeLoader === 'fbx') {
 
-                //assets[key].model.scale.set(0.01, 0.01, 0.01)
                 assets[key].model.scale.set(0.1, 0.1, 0.1)
-                assets[key].model.position.set(...assets[key].pos)
-                assets[key].model.rotation.y = assets[key].rot
-
-                studio.addToScene(assets[key].model)
+                //assets[key].model.position.set(...assets[key].pos)
+                assets[key].model.position.set(indexModel * 10 - 60, 0, indexModel * 3 )
+                ++indexModel
+                //assets[key].model.rotation.y = assets[key].rot
                 assets[key].model.traverse(item => {
                     if (item.type === 'Mesh') {
                         const uv2 = item.geometry.attributes.uv2
                         if (uv2) {
-                            for (let i = 0; i < uv2.array.length; ++i) {
-                                if (uv2.array[i] !== 0) {
-                                    console.log(uv2.array[i])
-                                }
-                            }
+                            item.geometry.deleteAttribute('uv2')
+                            // for (let i = 0; i < uv2.array.length; ++i) {
+                            //     if (uv2.array[i] !== 0) {
+                            //         console.log(uv2.array[i])
+                            //     }
+                            // }
                         }
                         console.log(key, assets[key].model)
                         if (item.material) {
@@ -97,6 +78,8 @@ const threeApp = () => {
                         }
                     }
                 })
+
+                studio.addToScene(assets[key].model)
             }
         }
 

@@ -6,7 +6,7 @@ import * as THREE from 'three'
 
 
 const D_MAX = 0
-const D_MIN = 8000
+const D_MIN = 12000
 
 let mesh
 
