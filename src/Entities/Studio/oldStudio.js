@@ -44,7 +44,7 @@ export const createStudio = (cubeMap) => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.minDistance = 2;
     controls.maxDistance = 40000;
-    controls.maxPolarAngle = Math.PI / 2 - 0.01
+    //controls.maxPolarAngle = Math.PI / 2 - 0.01
     //controls.enablePan = false
     controls.target.set(...CAM_TARGET_POS)
     controls.update();

@@ -13,15 +13,15 @@ export const createMaterials = (assets) => {
     const materials =  {
         floor: new THREE.MeshPhongMaterial({
             envMap: assets['env00'].model,
-            emissive: 0x3a322a,
-            reflectivity: 1,
+            emissive: 0x191919,
+            reflectivity: .3,
             color: 0xffffff,
             specular: 0xffffff,
             map: assets['floor00map'].model,
-            aoMap: assets['floor00aoMap'].model,
-            aoMapIntensity: 1.5,
+            //aoMap: assets['floor00aoMap'].model,
+            //aoMapIntensity: 1,
             normalMap: assets['floor00normalMap'].model,
-            normalScale: new THREE.Vector2(.5, .5),
+            normalScale: new THREE.Vector2(1.5, 1.5),
             specularMap: assets['floor00specularMap'].model,
         }),
         ceiling: new THREE.MeshPhongMaterial({
@@ -52,13 +52,14 @@ export const createMaterials = (assets) => {
         }),
         wall: new THREE.MeshPhongMaterial({
             //side: THREE.DoubleSide,
-            color: 0xfcf8ff,
+            color: 0xffffff,
             // specular: 0x333333,
             // //vertexColors: true,
             envMap: assets['env00'].model,
             reflectivity: .01,
             //roughness: 0,
             specular: 0x333333,
+            emissive: 0x111111,
             //map: assets['wall00aoMap'].model,
             aoMap: assets['wall00aoMap'].model,
             aoMapIntensity: -0.1,
@@ -93,11 +94,27 @@ export const createMaterials = (assets) => {
             ///vertexColors: true,
         }),
         door: new THREE.MeshPhongMaterial({
+            //envMap: assets['env00'].model,
+            //reflectivity: .2,
             color: 0xffffff,
             side: THREE.DoubleSide,
             specular: 0x333333,
+            //aoMap: assets['aoMap'].model,
+            aoMapIntensity: 1,
             emissive: 0x1a1c1c,
             ///vertexColors: true,
+
+
+
+
+
+
+
+
+            // color: 0xffffff,
+            // side: THREE.DoubleSide,
+            // specular: 0x333333,
+            // emissive: 0x1a1c1c,
         }),
         whiteStandard: new THREE.MeshStandardMaterial({
             color: 0xffffff,

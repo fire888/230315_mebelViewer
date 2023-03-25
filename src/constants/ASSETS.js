@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 // FLAT
 
 // env
@@ -104,7 +105,7 @@ const X = -25.6
 const Z = -20
 
 export const ASSETS = [
-    { key: 'env00', src: [nx, px, ny, py, nz, pz], typeLoader: 'imgCube' },
+    { key: 'env00', src: [px, nx, py, ny, pz, nz], typeLoader: 'imgCube' },
 
     { key: 'aoMap', src: aoMap, typeLoader: 'img' },
 
@@ -122,7 +123,8 @@ export const ASSETS = [
 
     //{ key: 'chairModel', src: chair, typeLoader: 'gltf' },
 
-    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [X, 0, Z], rot: 0, hideWall: 'n'},
+   // { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [X, 0, Z], rot: 0, hideWall: 'n', mat0: { emissive: new THREE.Color(.33, .33, .3) }, },
+    { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [X, 0, Z], rot: 0, hideWall: 'n' },
     { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [X + 8.3, 0, Z], rot: 0, hideWall: 'n'},
     { key: 'm03', src: m03, typeLoader: 'fbx',  pos: [X + 20, 0, Z], rot: 0, hideWall: 'n'},
     { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [X + 31, 0, Z], rot: 0, hideWall: 'n'},

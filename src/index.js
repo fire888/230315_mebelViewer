@@ -1,6 +1,7 @@
 
 import WebGL from 'three/examples/jsm/capabilities/WebGL';
 import { GLTFExporter } from './helpers/GLTFExporter'
+import * as THREE from 'three'
 
 import { createStudio } from './Entities/Studio/oldStudio'
 //import { createStudio } from './Entities/Studio/9/main'
@@ -72,9 +73,21 @@ const threeApp = () => {
                         if (uv2) {
                             item.geometry.deleteAttribute('uv2')
                         }
-                        console.log(key, assets[key].model)
+                        console.log(key, item)
                         if (item.material) {
                             console.log('mesh: ' + key, item.material)
+
+                            if (item.material.length) {
+                                for (let i = 0; i < item.material[i]; ++i) {
+                                    //item.material[i].color = new THREE.Color(1, 1, 1)
+                                    //item.material[i].emissive = new THREE.Color(.6, .6, .6)
+                                    //item.material[i].needsUpdate = true
+                                }
+                            } else {
+                                //item.material.color = new THREE.Color(1, 1, 1)
+                                //item.material.emissive = new THREE.Color(.6, .6, .6)
+                                //item.material.needsUpdate = true
+                            }
 
 
                             if (MATERIALS_AO[key]) {
@@ -84,8 +97,14 @@ const threeApp = () => {
                                     }
                                     else {
                                         for (let i = 0; i < item.material.length; ++i) {
+                                            if (assets[key]['mat' + i]) {
+                                                // for (let k in assets[key]['mat' + i]) {
+                                                //     item.material[i][k] = assets[key]['mat' + i][k]
+                                                // }
+                                                //item.material[i] = {...item.material[i], ...assets[key]['mat' + i]}
+                                            }
                                             if (MATERIALS_AO[key][i]) {
-                                                item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
+                                               item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
                                             }
                                         }
                                     }
