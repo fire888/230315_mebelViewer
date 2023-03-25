@@ -1,7 +1,15 @@
 
 import WebGL from 'three/examples/jsm/capabilities/WebGL';
 import { GLTFExporter } from './helpers/GLTFExporter'
-import { createStudio } from './Entities/studio'
+
+import { createStudio } from './Entities/Studio/oldStudio'
+//import { createStudio } from './Entities/Studio/9/main'
+//import { createStudio } from './Entities/Studio/12/main'
+//import { createStudio } from './Entities/Studio/17/main'
+//import { createStudio } from './Entities/Studio/20/main'
+//import { createStudio } from './Entities/Studio/23/main'
+//import { createStudio } from './Entities/Studio/30/main'
+
 import { createContainerFlat } from './Entities/containerFlat'
 
 import { loadAssets } from "./helpers/loadManager"

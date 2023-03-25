@@ -29,7 +29,7 @@ export const createMaterials = (assets) => {
             emissive: 0x222222,
             reflectivity: .001,
             color: 0xffffff,
-            specular: 0xffffff,
+            specular: 0x111111,
             shininess: 100,
             //map: assets['ceiling00ao'].model,
             //aoMap: assets['ceiling00ao'].model,
@@ -38,10 +38,11 @@ export const createMaterials = (assets) => {
             //normalScale: new THREE.Vector2(.7, .7),
             //specularMap: assets['floor00specularMap'].model,
         }),
-        room: new THREE.MeshBasicMaterial({
-            color: 0xffffff,
+        room: new THREE.MeshPhongMaterial({
+            color: 0xeee2d7,
             side: THREE.DoubleSide,
-            specular: 0x333333,
+            specular: 0xffffff,
+            emissive: 0x766660,
             //vertexColors: true,
         }),
         plinth: new THREE.MeshPhongMaterial({

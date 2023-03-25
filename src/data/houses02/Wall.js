@@ -103,7 +103,7 @@ export class Wall {
                 return;
             }
             const dot = this.normal.dot(cameraDir)
-            this.model.visible = dot < .4
+            this.model.visible = dot < 25
         })
 
         this._type = 'none'
