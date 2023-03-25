@@ -45,7 +45,7 @@ export const createStudio = (cubeMap) => {
     controls.minDistance = 2;
     controls.maxDistance = 40000;
     controls.maxPolarAngle = Math.PI / 2 - 0.01
-    controls.enablePan = false
+    //controls.enablePan = false
     controls.target.set(...CAM_TARGET_POS)
     controls.update();
 

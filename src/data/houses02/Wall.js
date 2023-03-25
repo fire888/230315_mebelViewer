@@ -12,8 +12,9 @@ import { getID } from '../../helpers/getID'
 
 
 export class Wall {
-    constructor(root, arrRooms, h, isDoor, isWindow) {
+    constructor(root, arrRooms, h, isDoor, isWindow, type) {
         this._root = root
+        this.type = type
         this.model = new THREE.Group()
         this.model.scale.set(.01, .01, .01)
         this.model.position.y = h
@@ -103,7 +104,11 @@ export class Wall {
                 return;
             }
             const dot = this.normal.dot(cameraDir)
+            let saveVisible = this.model.visible
             this.model.visible = dot < 25
+            if (this.model.visible !== saveVisible) {
+                this._root.onChangeWallVisible(this.type, this.model.visible)
+            }
         })
 
         this._type = 'none'

@@ -35,6 +35,16 @@ const threeApp = () => {
         exporter,
     }
 
+    const arrMeshesCheckHide = []
+    root.onChangeWallVisible = (idWall, isShow) => {
+        for (let i = 0; i < arrMeshesCheckHide.length; ++i) {
+            if (arrMeshesCheckHide[i].idWall === idWall) {
+                arrMeshesCheckHide[i].model.visible = isShow
+            }
+        }
+
+    }
+
 
 
     loadAssets(ASSETS).then(assets => {
@@ -48,16 +58,19 @@ const threeApp = () => {
                 //assets[key].model.position.set(indexModel * 10 - 60, 10, indexModel * 3 )
                 ++indexModel
                 assets[key].model.rotation.y = assets[key].rot
+
+                if (assets[key].hideWall) {
+                    arrMeshesCheckHide.push({
+                        model: assets[key].model,
+                        idWall: assets[key].hideWall
+                    })
+                }
+
                 assets[key].model.traverse(item => {
                     if (item.type === 'Mesh') {
                         const uv2 = item.geometry.attributes.uv2
                         if (uv2) {
                             item.geometry.deleteAttribute('uv2')
-                            // for (let i = 0; i < uv2.array.length; ++i) {
-                            //     if (uv2.array[i] !== 0) {
-                            //         console.log(uv2.array[i])
-                            //     }
-                            // }
                         }
                         console.log(key, assets[key].model)
                         if (item.material) {
@@ -78,11 +91,6 @@ const threeApp = () => {
                                     }
                                 }
                             }
-
-
-                            // if (item.material.aoMap) {
-                            //     console.log('!!!! aoMap')
-                            // }
                         }
                     }
                 })

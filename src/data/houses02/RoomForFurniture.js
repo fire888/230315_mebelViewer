@@ -34,10 +34,10 @@ export class RoomForFurniture {
         this.floorPerimeter = [this.nw, this.sw, this.se, this.ne, this.nw]
 
 
-        this.sWall = new Wall(root, [{ room: this, points: [this.se, this.sw], }], h, false, false)
-        this.wWall = new Wall(root, [{ room: this, points: [this.sw, this.nw],}], h, true, false)
-        this.nWall = new Wall(root, [{ room: this, points: [this.nw, this.ne], }], h, false, false)
-        this.eWall = new Wall(root, [{ room: this, points: [this.ne, this.se], }], h, false, true)
+        this.sWall = new Wall(root, [{ room: this,  points: [this.se, this.sw], }], h, false, false, 's',)
+        this.wWall = new Wall(root, [{ room: this,  points: [this.sw, this.nw],}], h, true, false, 'w',)
+        this.nWall = new Wall(root, [{ room: this, points: [this.nw, this.ne], }], h, false, false, 'n')
+        this.eWall = new Wall(root, [{ room: this, points: [this.ne, this.se], }], h, false, true, 'e')
 
     }
 
