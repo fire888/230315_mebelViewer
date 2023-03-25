@@ -45,6 +45,7 @@ export const createStudio = (cubeMap) => {
     controls.minDistance = 2;
     controls.maxDistance = 40000;
     controls.maxPolarAngle = Math.PI / 2 - 0.01
+    controls.enablePan = false
     controls.target.set(...CAM_TARGET_POS)
     controls.update();
 
@@ -84,7 +85,7 @@ export const createStudio = (cubeMap) => {
     const v3Look = new THREE.Vector3()
 
     const FOG_FAR = 65
-    const FOG_NEAR = 20
+    const FOG_NEAR = 35
     scene.fog.near = spherical.radius + FOG_NEAR
     scene.fog.far = spherical.radius + FOG_FAR
 

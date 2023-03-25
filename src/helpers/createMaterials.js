@@ -73,6 +73,7 @@ export const createMaterials = (assets) => {
             specular: 0x333333,
             aoMap: assets.aoMap.model,
             aoMapIntensity: 1,
+            emissive: 0x1a1c1c,
             ///vertexColors: true,
         }),
         lineG1: new THREE.LineBasicMaterial({
@@ -94,6 +95,7 @@ export const createMaterials = (assets) => {
             color: 0xffffff,
             side: THREE.DoubleSide,
             specular: 0x333333,
+            emissive: 0x1a1c1c,
             ///vertexColors: true,
         }),
         whiteStandard: new THREE.MeshStandardMaterial({
