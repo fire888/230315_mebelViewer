@@ -2,7 +2,7 @@ import * as THREE from 'three'
 
 const S_TEXTURE = 1500
 
-export const createFloor = (data, mat) => {
+export const createFloor = (data, materials) => {
     //console.log(data)
 
     const { path } = data
@@ -10,6 +10,9 @@ export const createFloor = (data, mat) => {
     const v = []
     const c = []
     const u = []
+
+    const v02 = []
+    const u02 = []
 
     const center = [0, 0]
     for (let i = 0; i < path.length - 1; ++i) {
@@ -41,6 +44,16 @@ export const createFloor = (data, mat) => {
             t2[0] / S_TEXTURE, t2[1] / S_TEXTURE,
             center[0] / S_TEXTURE, center[1] / S_TEXTURE,
         )
+
+        v02.push(
+            t1[0], -200, t1[1],
+            t2[0], -200, t2[1],
+            t2[0], 0, t2[1],
+
+            t1[0], -200, t1[1],
+            t2[0], 0, t2[1],
+            t1[0], 0, t1[1],
+        )
     }
 
 
@@ -53,11 +66,20 @@ export const createFloor = (data, mat) => {
     const u32 = new Float32Array(u)
     geometry.setAttribute('uv', new THREE.BufferAttribute(u32, 2))
 
-    const m = new THREE.Mesh(geometry, mat)
+    const m = new THREE.Mesh(geometry, materials.floor)
 
 
     //uv && geometry.setAttribute('uv', new THREE.BufferAttribute( uv, 2 ))
     geometry.computeVertexNormals()
+
+
+
+    const geometry02 = new THREE.BufferGeometry()
+    const v02_32 = new Float32Array(v02)
+    geometry02.setAttribute('position', new THREE.BufferAttribute(v02_32, 3))
+    geometry02.computeVertexNormals()
+    const m02 = new THREE.Mesh(geometry02, materials.room)
+    m.add(m02)
 
     return m
 }

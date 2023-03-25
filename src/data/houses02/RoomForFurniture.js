@@ -63,7 +63,7 @@ export class RoomForFurniture {
     }
 
     generateMeshes () {
-        this._floorModel = createFloor({ path: this.floorPerimeter },  this._root.materials.floor)
+        this._floorModel = createFloor({ path: this.floorPerimeter },  this._root.materials)
         this.model.add(this._floorModel)
         this._ceilingModel = createCeiling({  path: this.floorPerimeter, h: 2900 }, this._root.materials)
         this.model.add(this._ceilingModel)

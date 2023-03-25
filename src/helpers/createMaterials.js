@@ -38,8 +38,8 @@ export const createMaterials = (assets) => {
             //normalScale: new THREE.Vector2(.7, .7),
             //specularMap: assets['floor00specularMap'].model,
         }),
-        room: new THREE.MeshPhongMaterial({
-            color: 0xdddddd,
+        room: new THREE.MeshBasicMaterial({
+            color: 0xffffff,
             side: THREE.DoubleSide,
             specular: 0x333333,
             //vertexColors: true,

@@ -57,6 +57,7 @@ export class Wall {
         this._isGenerated = true
 
         {
+            const Y0 = -200
             const v = [
                 // top
                 this.leftPoints[0][0], 2900, this.leftPoints[0][1],
@@ -68,24 +69,24 @@ export class Wall {
                 this.rightPoints[1][0], 2900, this.rightPoints[1][1],
 
                 // left
-                this.leftPoints[0][0], 0, this.leftPoints[0][1],
+                this.leftPoints[0][0], Y0, this.leftPoints[0][1],
                 this.leftPoints[0][0], 2900, this.leftPoints[0][1],
                 this.rightPoints[1][0], 2900, this.rightPoints[1][1],
 
-                this.leftPoints[0][0], 0, this.leftPoints[0][1],
+                this.leftPoints[0][0], Y0, this.leftPoints[0][1],
                 this.rightPoints[1][0], 2900, this.rightPoints[1][1],
-                this.rightPoints[1][0], 0, this.rightPoints[1][1],
+                this.rightPoints[1][0], Y0, this.rightPoints[1][1],
 
                 //right
-                this.leftPoints[1][0], 0, this.leftPoints[1][1],
-                this.rightPoints[0][0], 0, this.rightPoints[0][1],
+                this.leftPoints[1][0], Y0, this.leftPoints[1][1],
+                this.rightPoints[0][0], Y0, this.rightPoints[0][1],
                 this.rightPoints[0][0], 2900, this.rightPoints[0][1],
 
-                this.leftPoints[1][0], 0, this.leftPoints[1][1],
+                this.leftPoints[1][0], Y0, this.leftPoints[1][1],
                 this.rightPoints[0][0], 2900, this.rightPoints[0][1],
                 this.leftPoints[1][0], 2900, this.leftPoints[1][1],
             ]
-            this._cap = createBufferMesh(v, this._root.materials.plinth)
+            this._cap = createBufferMesh(v, this._root.materials.room)
             this.model.add(this._cap)
         }
 
