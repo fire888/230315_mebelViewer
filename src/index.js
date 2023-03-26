@@ -75,7 +75,7 @@ const threeApp = () => {
                                 sh.fragmentShader = sh.fragmentShader.replace(
                                     `#include <dithering_fragment>`,
                                     `#include <dithering_fragment>                              
-                                    gl_FragColor.rgb = (gl_FragColor.rgb + (1.- gl_FragColor.rgb) * 0.05) * 2.2;`
+                                    gl_FragColor.rgb = (gl_FragColor.rgb + (1.- gl_FragColor.rgb) * 0.1) * 1.8;`
                                 )
                             },
                         }).copy(oldMat)
@@ -85,7 +85,7 @@ const threeApp = () => {
                                 sh.fragmentShader = sh.fragmentShader.replace(
                                     `#include <dithering_fragment>`,
                                     `#include <dithering_fragment>                              
-                                    gl_FragColor.rgb *= 1.2;`
+                                    gl_FragColor.rgb *= 1.5;`
                                 )
                             },
                         }).copy(oldMat)
