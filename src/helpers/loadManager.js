@@ -3,6 +3,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 
 export const loadAssets = arr => {
+    const progress = document.querySelector('.progress')
+    console.log(progress)
+
     return new Promise(res => {
         const loaders = {
             'fbx': new FBXLoader(),
@@ -14,7 +17,12 @@ export const loadAssets = arr => {
         const assets = {}
 
         const iterate = i => {
+            console.log(i / arr.length  * window.innerWidth)
+            progress.style.minWidth = (i / arr.length) * 90 + 'vw'
+
+
             if (!arr[i]) {
+                progress.style.display = 'none'
                 res(assets)
                 return;
             }

@@ -69,7 +69,7 @@ const threeApp = () => {
             const resetMat = (item, key) => {
                 const mBy = oldMat => {
                     let mat = oldMat
-                    if (oldMat.name.includes('wood')) {
+                    if (oldMat.name.includes('wood') && key !== 'm16') {
                         mat = new THREE.MeshPhongMaterial({
                             onBeforeCompile: (sh) => {
                                 sh.fragmentShader = sh.fragmentShader.replace(
@@ -85,7 +85,7 @@ const threeApp = () => {
                                 sh.fragmentShader = sh.fragmentShader.replace(
                                     `#include <dithering_fragment>`,
                                     `#include <dithering_fragment>                              
-                                    gl_FragColor.rgb *= 1.5;`
+                                    gl_FragColor.rgb *= 1.2;`
                                 )
                             },
                         }).copy(oldMat)
@@ -96,6 +96,10 @@ const threeApp = () => {
                     }
                     mat.envMap = assets['env00'].model
                     mat.reflectivity = .01
+                    if (mat.name === 'glass') {
+                        mat.reflectivity = 1
+                        mat.opacity = .3
+                    }
                     mat.shininess = 5
                     mat.color = new THREE.Color(1, 1, 1)
                     //mat.emissive = new THREE.Color().set(0x3e3b32)

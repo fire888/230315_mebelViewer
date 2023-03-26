@@ -7,20 +7,37 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import {HemisphereLight} from "./third_party/three.module";
 // import {scene} from "./modules/renderer";
 
+const PADDING = 40
+
 const BACK_COLOR = 0xf8cfc1
 const LIGHT_COLOR = 0xf7e2d7
 
 const CAM_POS = [0, 73, 10]
 const CAM_TARGET_POS = [0, 15, 0]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const createStudio = (cubeMap) => {
-    const container = document.querySelector('#scene');
-    container.style.width = window.innerWidth + 'px'
-    container.style.height = window.innerHeight + 'px';
+    const container = document.querySelector('.scene-container');
+    // container.style.width = window.innerWidth + 'px'
+    // container.style.height = window.innerHeight + 'px';
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.Fog( BACK_COLOR, 50, 150 );
-    const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 100000);
+    const camera = new THREE.PerspectiveCamera( 45, (window.innerWidth - 30) / (window.innerHeight - 30), 1, 100000);
     camera.position.set(...CAM_POS);
     scene.add(camera)
 
@@ -36,23 +53,16 @@ export const createStudio = (cubeMap) => {
     const light = new THREE.PointLight(LIGHT_COLOR, .2)
     light.position.set(0, 15, 0)
     scene.add(light)
-    //camera.add(light)
 
-    const hemiLight = new THREE.HemisphereLight(0xe7e9ed, 0xc4b1a3, .75);
-    //const hemiLight = new THREE.HemisphereLight(0x58b440, 0xa840b4, .75);
-    hemiLight.position.set(0, 15, 0);
-    scene.add(hemiLight);
-    // const lightA = new THREE.AmbientLight( 0xffffff, .5 ) // soft white light
-    // scene.add(lightA)
+    const hemiLight = new THREE.HemisphereLight(0xe7e9ed, 0xc4b1a3, .75)
+    hemiLight.position.set(0, 15, 0)
+    scene.add(hemiLight)
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.minDistance = 2;
-    controls.maxDistance = 40000;
-    //controls.maxPolarAngle = Math.PI / 2 - 0.01
-    //controls.enablePan = false
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.minDistance = 2
+    controls.maxDistance = 40000
     controls.target.set(...CAM_TARGET_POS)
-    controls.update();
-
+    controls.update()
 
     const plane = new THREE.Mesh(
         new THREE.PlaneGeometry( 300000, 300000 ),
@@ -62,10 +72,9 @@ export const createStudio = (cubeMap) => {
             emissive: 0x3d3c3a,
         })
     );
-    plane.rotation.x = - Math.PI / 2;
-    plane.position.y = -3;
-    scene.add( plane );
-
+    plane.rotation.x = - Math.PI / 2
+    plane.position.y = -3
+    scene.add( plane )
 
 
     let composer = false
@@ -130,7 +139,7 @@ export const createStudio = (cubeMap) => {
             }
 
             if (composer) {
-                composer.render();
+                composer.render()
             }   else {
                 renderer.render(scene, camera)
             }
@@ -138,16 +147,16 @@ export const createStudio = (cubeMap) => {
 
         },
         setTargetCam: v => {
-            controls.target.set( v.x, v.y, v.z );
-            controls.update();
+            controls.target.set( v.x, v.y, v.z )
+            controls.update()
         },
         resize () {
             if (!camera) {
                 return;
             }
-            camera.aspect = window.innerWidth / window.innerHeight
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight)
+            camera.aspect = (window.innerWidth - PADDING) / (window.innerHeight - PADDING)
+            camera.updateProjectionMatrix()
+            renderer.setSize(window.innerWidth - PADDING, window.innerHeight - PADDING)
         },
         onCameraMove: func => {
             functionsOmCameraMove.push(func)
