@@ -117,7 +117,7 @@ export class Wall {
         let offset = 0
         if (this.isWindow) {
             l = 1700
-            offset = .45
+            offset = .455
             this._type = 'window'
         }
         if (this.isDoor) {

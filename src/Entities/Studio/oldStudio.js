@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-import {HemisphereLight} from "./third_party/three.module";
-import {scene} from "./modules/renderer";
+// import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+// import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
+// import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+// import {HemisphereLight} from "./third_party/three.module";
+// import {scene} from "./modules/renderer";
 
 const BACK_COLOR = 0xf8cfc1
 const LIGHT_COLOR = 0xf7e2d7
@@ -27,7 +27,8 @@ export const createStudio = (cubeMap) => {
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
-    //renderer.outputEncoding = THREE.sRGBEncoding;
+    //renderer.outputEncoding = THREE.BasicDepthPacking
+    //renderer.outputEncoding = THREE.RGBADepthPacking
     renderer.setClearColor(BACK_COLOR, 1)
 
     container.appendChild(renderer.domElement)
@@ -37,8 +38,9 @@ export const createStudio = (cubeMap) => {
     scene.add(light)
     //camera.add(light)
 
-    const hemiLight = new THREE.HemisphereLight(0xe7e9ed, 0xc4b1a3, 0.75);
-    hemiLight.position.set(0, 50, 0);
+    const hemiLight = new THREE.HemisphereLight(0xe7e9ed, 0xc4b1a3, .75);
+    //const hemiLight = new THREE.HemisphereLight(0x58b440, 0xa840b4, .75);
+    hemiLight.position.set(0, 15, 0);
     scene.add(hemiLight);
 
     const controls = new OrbitControls(camera, renderer.domElement);

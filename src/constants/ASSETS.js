@@ -75,6 +75,7 @@ import m06 from '../assets/1/6.fbx'
 import '../assets/1/6_d.jpg'
 import '../assets/1/6_n.jpg'
 import m07 from '../assets/1/7.fbx'
+//import '../assets/1/7_d.jpg'
 import m08 from '../assets/1/8.fbx'
 import m09 from '../assets/1/9.fbx'
 import m10 from '../assets/1/10.fbx'
@@ -112,7 +113,7 @@ export const ASSETS = [
     //{ key: 'ceiling00ao', src: ceiling00ao, typeLoader: 'img', repeat: true },
 
     { key: 'floor00map', src: floor00map, typeLoader: 'img', repeat: true },
-    { key: 'floor00aoMap', src: floor00aoMap, typeLoader: 'img', repeat: true },
+    //{ key: 'floor00aoMap', src: floor00aoMap, typeLoader: 'img', repeat: true },
     { key: 'floor00normalMap', src: floor00normalMap, typeLoader: 'img', repeat: true },
     { key: 'floor00specularMap', src: floor00specularMap, typeLoader: 'img', repeat: true },
 
@@ -137,11 +138,11 @@ export const ASSETS = [
     { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [X - 3, 18, Z + 20], rot: Math.PI / 2, hideWall: 'w' },
     { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [X - 3, 18, Z + 34], rot: Math.PI / 2, hideWall: 'w' },
 
-    { key: 'm12', src: m12, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null },
+    { key: 'm12', src: m12, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null }, // bed
     { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 2, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
     { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 2, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
-    { key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  },
-    { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  },
+    //{ key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  }, // pillow
+    { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
 
 
     { key: 'm1_ao', src: m1_ao, typeLoader: 'img' },

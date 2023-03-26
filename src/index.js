@@ -49,100 +49,92 @@ const threeApp = () => {
 
 
     loadAssets(ASSETS).then(assets => {
-        let indexModel = 0
-
         for (let key in assets) {
-            if (assets[key].typeLoader === 'fbx') {
+            if (assets[key].typeLoader !== 'fbx') {
+                continue;
+            }
 
-                assets[key].model.scale.set(0.1, 0.1, 0.1)
-                assets[key].model.position.set(...assets[key].pos)
-                //assets[key].model.position.set(indexModel * 10 - 60, 10, indexModel * 3 )
-                ++indexModel
-                assets[key].model.rotation.y = assets[key].rot
+            assets[key].model.scale.set(0.1, 0.1, 0.1)
+            assets[key].model.position.set(...assets[key].pos)
+            assets[key].model.rotation.y = assets[key].rot
 
-                if (assets[key].hideWall) {
-                    arrMeshesCheckHide.push({
-                        model: assets[key].model,
-                        idWall: assets[key].hideWall
-                    })
+            if (assets[key].hideWall) {
+                arrMeshesCheckHide.push({
+                    model: assets[key].model,
+                    idWall: assets[key].hideWall
+                })
+            }
+
+
+            const resetMat = (mat) => {
+                if (mat.map && mat.map.source.data === null) {
+                    mat.map = null
+                }
+                mat.envMap = assets['env00'].model
+                mat.reflectivity = .01
+                mat.shininess = 5
+                mat.color = new THREE.Color(1, 1, 1)
+                //mat.combine = THREE.MixOperation
+                mat.emissive = new THREE.Color().set(0x3e3b32)
+                mat.needsUpdate = true
+            }
+
+            const resetGeom = (g) => {
+                const uv2 = g.attributes.uv2
+                if (uv2) {
+                    g.deleteAttribute('uv2')
+                }
+            }
+
+
+
+            assets[key].model.traverse(item => {
+                if (item.type !== 'Mesh') {
+                    return;
                 }
 
-                assets[key].model.traverse(item => {
-                    if (item.type === 'Mesh') {
-                        const uv2 = item.geometry.attributes.uv2
-                        if (uv2) {
-                            item.geometry.deleteAttribute('uv2')
+                resetGeom(item.geometry)
+
+                console.log('mesh: ' + key, item.material)
+                if (item.material.length) {
+                    for (let i = 0; i < item.material.length; ++i) {
+                        resetMat(item.material[i])
+                    }
+                } else {
+                    resetMat(item.material)
+                }
+
+
+                if (MATERIALS_AO[key]) {
+                    for (let keyIndMat in MATERIALS_AO[key]) {
+                        if (!item.material.length) {
+                            item.material.aoMap = assets[MATERIALS_AO[key][0]].model
+                            item.material.aoMapIntensity = 0.1
                         }
-                        console.log(key, item)
-                        if (item.material) {
-                            console.log('mesh: ' + key, item.material)
-
-                            if (item.material.length) {
-                                for (let i = 0; i < item.material[i]; ++i) {
-                                    //item.material[i].color = new THREE.Color(1, 1, 1)
-                                    //item.material[i].emissive = new THREE.Color(.6, .6, .6)
-                                    //item.material[i].needsUpdate = true
-                                }
-                            } else {
-                                //item.material.color = new THREE.Color(1, 1, 1)
-                                //item.material.emissive = new THREE.Color(.6, .6, .6)
-                                //item.material.needsUpdate = true
-                            }
-
-
-                            if (MATERIALS_AO[key]) {
-                                for (let keyIndMat in MATERIALS_AO[key]) {
-                                    if (!item.material.length) {
-                                        item.material.aoMap = assets[MATERIALS_AO[key][0]].model
-                                    }
-                                    else {
-                                        for (let i = 0; i < item.material.length; ++i) {
-                                            if (assets[key]['mat' + i]) {
-                                                // for (let k in assets[key]['mat' + i]) {
-                                                //     item.material[i][k] = assets[key]['mat' + i][k]
-                                                // }
-                                                //item.material[i] = {...item.material[i], ...assets[key]['mat' + i]}
-                                            }
-                                            if (MATERIALS_AO[key][i]) {
-                                               item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
-                                            }
-                                        }
-                                    }
+                        else {
+                            for (let i = 0; i < item.material.length; ++i) {
+                                if (MATERIALS_AO[key][i]) {
+                                    item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
+                                    item.material[i].aoMapIntensity = .05
                                 }
                             }
                         }
                     }
-                })
+                }
+            })
 
-                studio.addToScene(assets[key].model)
-            }
+            studio.addToScene(assets[key].model)
         }
 
         console.log(assets)
-        // assets['m04'] && assets['m04'].model.traverse(item => {
-        //     if (item.type === 'Mesh') {
-        //         item.material.wireframe = true
-        //     }
-        //     if (item.type === 'AmbientLight') {
-        //         item.intensity = 0
-        //     }
-        // })
-        // assets['m02'] && assets['m02'].model.traverse(item => {
-        //     if (item.type === 'Mesh') {
-        //         item.material.wireframe = true
-        //     }
-        // })
-        // assets['m01'] && assets['m01'].model.traverse(item => {
-        //     if (item.type === 'Mesh') {
-        //         item.material.wireframe = true
-        //     }
-        // })
-
         root.assets = assets
 
-        const m = createContainerFlat(root)
-        //studio.addToScene(m.mesh)
+        createContainerFlat(root)
     })
+
+
+
+
 
 
     const onWindowResize = () => {
