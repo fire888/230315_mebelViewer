@@ -42,6 +42,8 @@ export const createStudio = (cubeMap) => {
     //const hemiLight = new THREE.HemisphereLight(0x58b440, 0xa840b4, .75);
     hemiLight.position.set(0, 15, 0);
     scene.add(hemiLight);
+    // const lightA = new THREE.AmbientLight( 0xffffff, .5 ) // soft white light
+    // scene.add(lightA)
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.minDistance = 2;

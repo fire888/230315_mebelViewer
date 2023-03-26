@@ -66,17 +66,75 @@ const threeApp = () => {
             }
 
 
-            const resetMat = (mat) => {
-                if (mat.map && mat.map.source.data === null) {
-                    mat.map = null
+            const resetMat = (item, key) => {
+                const mBy = oldMat => {
+                    let mat = oldMat
+                    if (oldMat.name.includes('wood')) {
+                        mat = new THREE.MeshPhongMaterial({
+                            onBeforeCompile: (sh) => {
+                                sh.fragmentShader = sh.fragmentShader.replace(
+                                    `#include <dithering_fragment>`,
+                                    `#include <dithering_fragment>                              
+                                    gl_FragColor.rgb = (gl_FragColor.rgb + (1.- gl_FragColor.rgb) * 0.05) * 2.2;`
+                                )
+                            },
+                        }).copy(oldMat)
+                    } else {
+                        mat = new THREE.MeshPhongMaterial({
+                            onBeforeCompile: (sh) => {
+                                sh.fragmentShader = sh.fragmentShader.replace(
+                                    `#include <dithering_fragment>`,
+                                    `#include <dithering_fragment>                              
+                                    gl_FragColor.rgb *= 1.2;`
+                                )
+                            },
+                        }).copy(oldMat)
+                    }
+
+                    if (mat.map && mat.map.source.data === null) {
+                        mat.map = null
+                    }
+                    mat.envMap = assets['env00'].model
+                    mat.reflectivity = .01
+                    mat.shininess = 5
+                    mat.color = new THREE.Color(1, 1, 1)
+                    //mat.emissive = new THREE.Color().set(0x3e3b32)
+                    mat.needsUpdate = true
+                    return mat
                 }
-                mat.envMap = assets['env00'].model
-                mat.reflectivity = .01
-                mat.shininess = 5
-                mat.color = new THREE.Color(1, 1, 1)
-                //mat.combine = THREE.MixOperation
-                mat.emissive = new THREE.Color().set(0x3e3b32)
-                mat.needsUpdate = true
+
+                if (!item.material.length) {
+                    const newM = mBy(item.material)
+                    item.material = newM
+                } else {
+                    const arr = []
+                    for (let i = 0; i < item.material.length; ++i) {
+                        const newM = mBy(item.material[i])
+                        arr.push(newM)
+                    }
+                    item.material = arr
+                }
+
+
+                if (MATERIALS_AO[key]) {
+                    for (let keyIndMat in MATERIALS_AO[key]) {
+                        if (!item.material.length) {
+                            item.material.aoMap = assets[MATERIALS_AO[key][0]].model
+                            item.material.aoMapIntensity = 0.1
+                        }
+                        else {
+                            for (let i = 0; i < item.material.length; ++i) {
+                                if (MATERIALS_AO[key][i]) {
+                                    item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
+                                    item.material[i].aoMapIntensity = .05
+                                    //item.material[i].aoMapIntensity = 1
+                                }
+                            }
+                        }
+                    }
+                }
+
+
             }
 
             const resetGeom = (g) => {
@@ -96,31 +154,14 @@ const threeApp = () => {
                 resetGeom(item.geometry)
 
                 console.log('mesh: ' + key, item.material)
-                if (item.material.length) {
-                    for (let i = 0; i < item.material.length; ++i) {
-                        resetMat(item.material[i])
-                    }
-                } else {
-                    resetMat(item.material)
-                }
-
-
-                if (MATERIALS_AO[key]) {
-                    for (let keyIndMat in MATERIALS_AO[key]) {
-                        if (!item.material.length) {
-                            item.material.aoMap = assets[MATERIALS_AO[key][0]].model
-                            item.material.aoMapIntensity = 0.1
-                        }
-                        else {
-                            for (let i = 0; i < item.material.length; ++i) {
-                                if (MATERIALS_AO[key][i]) {
-                                    item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
-                                    item.material[i].aoMapIntensity = .05
-                                }
-                            }
-                        }
-                    }
-                }
+                resetMat(item, key)
+                // if (item.material.length) {
+                //     for (let i = 0; i < item.material.length; ++i) {
+                //         resetMat(item.material[i])
+                //     }
+                // } else {
+                //     resetMat(item.material)
+                // }
             })
 
             studio.addToScene(assets[key].model)

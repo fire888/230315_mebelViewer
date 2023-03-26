@@ -12,7 +12,8 @@ import pz from '../assets/env00/pz.jpg'
 
 // floor
 import floor00map from '../assets/floor01/tavern-wood-planks1_albedo.jpg'
-import floor00aoMap from '../assets/floor01/tavern-wood-planks1_ao.jpg'
+//import floor00aoMap from '../assets/floor01/tavern-wood-planks1_ao.jpg'
+import floor00aoMap from '../assets/floor01/floorA0.jpg'
 import floor00normalMap from '../assets/floor01/tavern-wood-planks1_normal-ogl.jpg'
 import floor00specularMap from '../assets/floor01/tavern-wood-planks1_roughness.jpg'
 
@@ -113,7 +114,7 @@ export const ASSETS = [
     //{ key: 'ceiling00ao', src: ceiling00ao, typeLoader: 'img', repeat: true },
 
     { key: 'floor00map', src: floor00map, typeLoader: 'img', repeat: true },
-    //{ key: 'floor00aoMap', src: floor00aoMap, typeLoader: 'img', repeat: true },
+    { key: 'floor00aoMap', src: floor00aoMap, typeLoader: 'img', repeat: true },
     { key: 'floor00normalMap', src: floor00normalMap, typeLoader: 'img', repeat: true },
     { key: 'floor00specularMap', src: floor00specularMap, typeLoader: 'img', repeat: true },
 

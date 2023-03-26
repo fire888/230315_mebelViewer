@@ -13,16 +13,23 @@ export const createMaterials = (assets) => {
     const materials =  {
         floor: new THREE.MeshPhongMaterial({
             envMap: assets['env00'].model,
-            emissive: 0x191919,
+            //emissive: 0x191919,
             reflectivity: .3,
             color: 0xffffff,
-            specular: 0xffffff,
+            specular: 0x777777,
             map: assets['floor00map'].model,
             //aoMap: assets['floor00aoMap'].model,
             //aoMapIntensity: 1,
             normalMap: assets['floor00normalMap'].model,
             normalScale: new THREE.Vector2(1.5, 1.5),
             specularMap: assets['floor00specularMap'].model,
+            onBeforeCompile: (sh) => {
+                sh.fragmentShader = sh.fragmentShader.replace(
+                    `#include <dithering_fragment>`,
+                    `#include <dithering_fragment>                              
+                    gl_FragColor.rgb *= 1.5;`
+                )
+            },
         }),
         ceiling: new THREE.MeshPhongMaterial({
             //envMap: assets['env00'].model,
@@ -65,6 +72,13 @@ export const createMaterials = (assets) => {
             aoMapIntensity: -0.1,
             normalMap: assets['wall00normalMap'].model,
             normalScale: new THREE.Vector2(4.5, 4.5),
+            // onBeforeCompile: (sh) => {
+            //     sh.fragmentShader = sh.fragmentShader.replace(
+            //         `#include <dithering_fragment>`,
+            //         `#include <dithering_fragment>
+            //         gl_FragColor.rgb = gl_FragColor.rgb -.3;`
+            //     )
+            // },
             //specularMap: assets['wall00specularMap'].model,
         }),
         window: new THREE.MeshPhongMaterial({
