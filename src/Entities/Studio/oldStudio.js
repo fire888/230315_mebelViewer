@@ -10,7 +10,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 const PADDING = 40
 
 const BACK_COLOR = 0xf8cfc1
-const LIGHT_COLOR = 0xf7e2d7
+//const LIGHT_COLOR = 0xf7e2d7
+const LIGHT_COLOR = 0xffffff
 
 const CAM_POS = [0, 73, 10]
 const CAM_TARGET_POS = [0, 15, 0]
@@ -50,13 +51,22 @@ export const createStudio = (cubeMap) => {
 
     container.appendChild(renderer.domElement)
 
+
     const light = new THREE.PointLight(LIGHT_COLOR, .2)
     light.position.set(0, 15, 0)
     scene.add(light)
 
-    const hemiLight = new THREE.HemisphereLight(0xe7e9ed, 0xc4b1a3, .75)
-    hemiLight.position.set(0, 15, 0)
-    scene.add(hemiLight)
+    const ambLight = new THREE.AmbientLight(0xdeecf5, .7)
+    scene.add(ambLight)
+
+
+    // const light = new THREE.PointLight(LIGHT_COLOR, .2)
+    // light.position.set(0, 15, 0)
+    // scene.add(light)
+    // const hemiLight = new THREE.HemisphereLight(0xe7e9ed, 0xc4b1a3, .75)
+    // hemiLight.position.set(0, 15, 0)
+    // scene.add(hemiLight)
+
 
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.minDistance = 2

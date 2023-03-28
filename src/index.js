@@ -74,8 +74,10 @@ const threeApp = () => {
                             onBeforeCompile: (sh) => {
                                 sh.fragmentShader = sh.fragmentShader.replace(
                                     `#include <dithering_fragment>`,
-                                    `#include <dithering_fragment>                              
-                                    gl_FragColor.rgb = (gl_FragColor.rgb + (1.- gl_FragColor.rgb) * 0.1) * 1.8;`
+`#include <dithering_fragment>         
+vec3 c = (gl_FragColor.rgb * 1.1 + (1.- gl_FragColor.rgb) * 0.1) + (vec3(.5, .55, .55) * 0.2);                   
+c *= 1.6;
+gl_FragColor.rgb = c;`
                                 )
                             },
                         }).copy(oldMat)
