@@ -4,7 +4,6 @@ import * as THREE from 'three'
 
 export const loadAssets = arr => {
     const progress = document.querySelector('.progress')
-    console.log(progress)
 
     return new Promise(res => {
         const loaders = {
@@ -17,7 +16,6 @@ export const loadAssets = arr => {
         const assets = {}
 
         const iterate = i => {
-            console.log(i / arr.length  * window.innerWidth)
             progress.style.minWidth = (i / arr.length) * 90 + 'vw'
 
 

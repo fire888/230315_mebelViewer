@@ -26,8 +26,9 @@ export const createMaterials = (assets) => {
             onBeforeCompile: (sh) => {
                 sh.fragmentShader = sh.fragmentShader.replace(
                     `#include <dithering_fragment>`,
-                    `#include <dithering_fragment>                              
-                    gl_FragColor.rgb *= 1.5;`
+`#include <dithering_fragment>         
+vec3 c = gl_FragColor.rgb * 1.1 + (1.- gl_FragColor.rgb) * 0.1 + vec3(.2);                   
+gl_FragColor.rgb = c;`
                 )
             },
         }),
@@ -65,8 +66,8 @@ export const createMaterials = (assets) => {
             envMap: assets['env00'].model,
             reflectivity: .01,
             //roughness: 0,
-            specular: 0x333333,
-            emissive: 0x111111,
+            specular: 0x222222,
+            emissive: 0x090909,
             //map: assets['wall00aoMap'].model,
             aoMap: assets['wall00aoMap'].model,
             aoMapIntensity: -0.1,
@@ -95,16 +96,19 @@ export const createMaterials = (assets) => {
         lineG1: new THREE.LineBasicMaterial({
             color: 0x888866,
         }),
-        windowGlass: new THREE.MeshPhongMaterial({
-            envMap: assets['env00'].model,
-            reflectivity: 1,
+        //windowGlass: new THREE.MeshPhongMaterial({
+        //windowGlass: new THREE.MeshBasicMaterial({
+        windowGlass: new THREE.MeshMatcapMaterial({
+            //envMap: assets['env00'].model,
+            //reflectivity: 1,
             color: 0x00ffff,
             side: THREE.DoubleSide,
             specular: 0xffffff,
-            shininess: 100,
+            //shininess: 100,
             opacity: .2,
             transparent: true,
-            emissive: 0x28caff,
+            //emissive: 0x28caff,
+            depthTest: true,
             ///vertexColors: true,
         }),
         door: new THREE.MeshPhongMaterial({
@@ -117,14 +121,6 @@ export const createMaterials = (assets) => {
             aoMapIntensity: 1,
             emissive: 0x1a1c1c,
             ///vertexColors: true,
-
-
-
-
-
-
-
-
             // color: 0xffffff,
             // side: THREE.DoubleSide,
             // specular: 0x333333,

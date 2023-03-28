@@ -9,7 +9,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const PADDING = 40
 
-const BACK_COLOR = 0xf8cfc1
+//const BACK_COLOR = 0xf8cfc1
+const BACK_COLOR = 0xc8cfd4
 //const LIGHT_COLOR = 0xf7e2d7
 const LIGHT_COLOR = 0xffffff
 
@@ -70,7 +71,7 @@ export const createStudio = (cubeMap) => {
 
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.minDistance = 2
-    controls.maxDistance = 40000
+    controls.maxDistance = 200
     controls.target.set(...CAM_TARGET_POS)
     controls.update()
 

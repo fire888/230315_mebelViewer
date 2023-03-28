@@ -69,6 +69,11 @@ const threeApp = () => {
             const resetMat = (item, key) => {
                 const mBy = oldMat => {
                     let mat = oldMat
+                    if (key === 'm12') {
+
+                    }
+
+
                     if (oldMat.name.includes('wood') && key !== 'm16') {
                         mat = new THREE.MeshPhongMaterial({
                             onBeforeCompile: (sh) => {
@@ -77,6 +82,17 @@ const threeApp = () => {
 `#include <dithering_fragment>         
 vec3 c = (gl_FragColor.rgb * 1.1 + (1.- gl_FragColor.rgb) * 0.1) + (vec3(.5, .55, .55) * 0.2);                   
 c *= 1.6;
+gl_FragColor.rgb = c;`
+                                )
+                            },
+                        }).copy(oldMat)
+                    } else if (key === 'm12' && (oldMat.name.includes('coton') || oldMat.name.includes('pillow') ||  oldMat.name.includes('bed')) ) {
+                        mat = new THREE.MeshPhongMaterial({
+                            onBeforeCompile: (sh) => {
+                                sh.fragmentShader = sh.fragmentShader.replace(
+                                    `#include <dithering_fragment>`,
+`#include <dithering_fragment>                              
+vec3 c = gl_FragColor.rgb * 0.93 + .33;
 gl_FragColor.rgb = c;`
                                 )
                             },

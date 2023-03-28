@@ -134,14 +134,14 @@ export const ASSETS = [
     { key: 'm06', src: m06, typeLoader: 'fbx',  pos: [X + 44, 0, Z  + .5], rot: 0, hideWall: 'n'},
     { key: 'm07', src: m07, typeLoader: 'fbx',  pos: [X + 50.5, 0, Z + .5], rot: 0, hideWall: 'n'},
 
-    { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [X + 33, 18, Z - 1], rot: 0, hideWall: 'n' },
-    { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [X + 4.5, 18, Z - 1], rot: 0, hideWall: 'n' },
+    { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [X + 33, 18, Z - 2], rot: 0, hideWall: 'n' },
+    { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [X + 4.5, 18, Z - 2], rot: 0, hideWall: 'n' },
     { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [X - 3, 18, Z + 20], rot: Math.PI / 2, hideWall: 'w' },
     { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [X - 3, 18, Z + 34], rot: Math.PI / 2, hideWall: 'w' },
 
     { key: 'm12', src: m12, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null }, // bed
-    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 2, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
-    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 2, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
+    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
+    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
     //{ key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  }, // pillow
     { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
 
