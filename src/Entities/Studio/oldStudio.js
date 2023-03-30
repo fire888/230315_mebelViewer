@@ -16,7 +16,7 @@ const BACK_COLOR = 0xc8cfd4
 //const LIGHT_COLOR = 0xf7e2d7
 const LIGHT_COLOR = 0xffffff
 
-const CAM_POS = [0, 1, 1]
+const CAM_POS = [0, 7, 2]
 const CAM_TARGET_POS = [0, 0, 0]
 
 

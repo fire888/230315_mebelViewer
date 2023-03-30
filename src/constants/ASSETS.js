@@ -103,6 +103,8 @@ import m14_ao from '../assets/1/m14_ao.jpg'
 import m16_ao from '../assets/1/m16_ao.jpg'
 import '../assets/1/m16_n.jpg'
 
+import picture from '../assets/NEVA.jpg'
+
 const X = -25.6
 const Z = -20
 
@@ -110,6 +112,8 @@ export const ASSETS = [
     { key: 'env00', src: [px, nx, py, ny, pz, nz], typeLoader: 'imgCube' },
 
     { key: 'aoMap', src: aoMap, typeLoader: 'img' },
+
+    { key: 'picture', src: picture, typeLoader: 'img' },
 
     //{ key: 'ceiling00ao', src: ceiling00ao, typeLoader: 'img', repeat: true },
 

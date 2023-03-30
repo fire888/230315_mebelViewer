@@ -49,6 +49,21 @@ const threeApp = () => {
 
 
     loadAssets(ASSETS).then(assets => {
+
+        const pic = new THREE.Mesh(
+            new THREE.PlaneGeometry(15, 10),
+            new THREE.MeshPhongMaterial({
+                map: assets['picture'].model,
+                emissive: 0x666666,
+            })
+        )
+        //pic.rotation.x = -Math.PI / 2
+        pic.rotation.y = Math.PI
+        pic.position.z = 20
+        pic.position.y = 17
+        studio.addToScene(pic)
+
+
         for (let key in assets) {
             if (assets[key].typeLoader !== 'fbx') {
                 continue;
