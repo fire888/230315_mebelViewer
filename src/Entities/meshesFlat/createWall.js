@@ -41,6 +41,7 @@ export const createWall = (data, mat) => {
 
     geometry.computeVertexNormals()
     const m = new THREE.Mesh(geometry, mat)
+    m.receiveShadow = true
 
     return m
 }

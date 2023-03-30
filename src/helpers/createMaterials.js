@@ -13,7 +13,7 @@ export const createMaterials = (assets) => {
     const materials =  {
         floor: new THREE.MeshPhongMaterial({
             envMap: assets['env00'].model,
-            //emissive: 0x191919,
+            emissive: 0x191919,
             reflectivity: .3,
             color: 0xffffff,
             specular: 0x777777,
@@ -34,7 +34,7 @@ gl_FragColor.rgb = c;`
         }),
         ceiling: new THREE.MeshPhongMaterial({
             //envMap: assets['env00'].model,
-            emissive: 0x444444,
+            emissive: 0xaaaaaa,
             //reflectivity: .001,
             color: 0xffffff,
             specular: 0x000000,
@@ -56,7 +56,7 @@ gl_FragColor.rgb = c;`
         plinth: new THREE.MeshPhongMaterial({
             color: 0xffffff,
             specular: 0x333333,
-            emissive: 0x3222222,
+            emissive: 0x555555,
         }),
         wall: new THREE.MeshPhongMaterial({
             //side: THREE.DoubleSide,
@@ -67,7 +67,7 @@ gl_FragColor.rgb = c;`
             reflectivity: .01,
             //roughness: 0,
             specular: 0x222222,
-            emissive: 0x090909,
+            emissive: 0x444444,
             //map: assets['wall00aoMap'].model,
             aoMap: assets['wall00aoMap'].model,
             aoMapIntensity: -0.1,
@@ -119,7 +119,7 @@ gl_FragColor.rgb = c;`
             specular: 0x333333,
             //aoMap: assets['aoMap'].model,
             aoMapIntensity: 1,
-            emissive: 0x1a1c1c,
+            emissive: 0x555555,
             ///vertexColors: true,
             // color: 0xffffff,
             // side: THREE.DoubleSide,

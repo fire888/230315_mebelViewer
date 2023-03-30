@@ -104,8 +104,9 @@ export class Wall {
                 return;
             }
             const dot = this.normal.dot(cameraDir)
+            this._type === 'door' && console.log(dot)
             let saveVisible = this.model.visible
-            this.model.visible = dot < 25
+            this.model.visible = dot < .55
             if (this.model.visible !== saveVisible) {
                 this._root.onChangeWallVisible(this.type, this.model.visible)
             }

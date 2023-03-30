@@ -67,6 +67,7 @@ export const createFloor = (data, materials) => {
     geometry.setAttribute('uv', new THREE.BufferAttribute(u32, 2))
 
     const m = new THREE.Mesh(geometry, materials.floor)
+    m.receiveShadow = true
 
 
     //uv && geometry.setAttribute('uv', new THREE.BufferAttribute( uv, 2 ))

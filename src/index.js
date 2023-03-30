@@ -54,6 +54,8 @@ const threeApp = () => {
                 continue;
             }
 
+
+
             assets[key].model.scale.set(0.1, 0.1, 0.1)
             assets[key].model.position.set(...assets[key].pos)
             assets[key].model.rotation.y = assets[key].rot
@@ -177,6 +179,9 @@ gl_FragColor.rgb = c;`
 
                 console.log('mesh: ' + key, item.material)
                 resetMat(item, key)
+
+                item.castShadow = true
+                item.receiveShadow = true
                 // if (item.material.length) {
                 //     for (let i = 0; i < item.material.length; ++i) {
                 //         resetMat(item.material[i])

@@ -7,6 +7,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 // import {HemisphereLight} from "./third_party/three.module";
 // import {scene} from "./modules/renderer";
 
+import { createSky } from './SkyNunu'
+
 const PADDING = 40
 
 //const BACK_COLOR = 0xf8cfc1
@@ -14,21 +16,8 @@ const BACK_COLOR = 0xc8cfd4
 //const LIGHT_COLOR = 0xf7e2d7
 const LIGHT_COLOR = 0xffffff
 
-const CAM_POS = [0, 73, 10]
-const CAM_TARGET_POS = [0, 15, 0]
-
-
-
-
-
-
-
-
-
-
-
-
-
+const CAM_POS = [0, 1, 1]
+const CAM_TARGET_POS = [0, 0, 0]
 
 
 
@@ -37,11 +26,12 @@ export const createStudio = (cubeMap) => {
     // container.style.width = window.innerWidth + 'px'
     // container.style.height = window.innerHeight + 'px';
 
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog( BACK_COLOR, 50, 150 );
-    const camera = new THREE.PerspectiveCamera( 45, (window.innerWidth - 30) / (window.innerHeight - 30), 1, 100000);
-    camera.position.set(...CAM_POS);
+    const scene = new THREE.Scene()
+    //scene.fog = new THREE.Fog( BACK_COLOR, 50, 150 )
+    const camera = new THREE.PerspectiveCamera( 45, (window.innerWidth - 30) / (window.innerHeight - 30), 0.01, 100000)
+    camera.position.set(...CAM_POS)
     scene.add(camera)
+
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
@@ -49,16 +39,18 @@ export const createStudio = (cubeMap) => {
     //renderer.outputEncoding = THREE.BasicDepthPacking
     //renderer.outputEncoding = THREE.RGBADepthPacking
     renderer.setClearColor(BACK_COLOR, 1)
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 
     container.appendChild(renderer.domElement)
 
 
-    const light = new THREE.PointLight(LIGHT_COLOR, .2)
-    light.position.set(0, 15, 0)
-    scene.add(light)
+    //const light = new THREE.PointLight(LIGHT_COLOR, .2)
+    //light.position.set(0, 15, 0)
+    //scene.add(light)
 
-    const ambLight = new THREE.AmbientLight(0xdeecf5, .7)
-    scene.add(ambLight)
+    //const ambLight = new THREE.AmbientLight(0xdeecf5, .7)
+    //scene.add(ambLight)
 
 
     // const light = new THREE.PointLight(LIGHT_COLOR, .2)
@@ -68,55 +60,34 @@ export const createStudio = (cubeMap) => {
     // hemiLight.position.set(0, 15, 0)
     // scene.add(hemiLight)
 
+    const sky = createSky()
+    scene.add(sky.sky)
+
 
     const controls = new OrbitControls(camera, renderer.domElement)
-    controls.minDistance = 2
+    controls.minDistance = 0
     controls.maxDistance = 200
     controls.target.set(...CAM_TARGET_POS)
     controls.update()
 
-    const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry( 300000, 300000 ),
-        new THREE.MeshPhongMaterial( {
-            color: 0xe8ddd0,
-            specular: 0x101010,
-            emissive: 0x3d3c3a,
-        })
-    );
-    plane.rotation.x = - Math.PI / 2
-    plane.position.y = -3
-    scene.add( plane )
-
 
     let composer = false
-    //const renderScene = new RenderPass( scene, camera );
-    // const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
-    // bloomPass.threshold = params.bloomThreshold;
-    // bloomPass.strength = params.bloomStrength;
-    // bloomPass.radius = params.bloomRadius;
-    //
-    // const composer = new EffectComposer( renderer );
-    // composer.addPass( renderScene );
-    // composer.addPass( bloomPass );
-    // composer = new EffectComposer(renderer)
-    // const renderPass = new RenderPass(scene, camera)
-    // composer.addPass(renderPass)
-    // const shader = new ShaderPass(Saturate3)
-    // composer.addPass(shader)
+
 
     const functionsOmCameraMove = []
     const spherical = new THREE.Spherical(controls.getDistance(), controls.getPolarAngle(), controls.getAzimuthalAngle())
     const v3Look = new THREE.Vector3()
 
-    const FOG_FAR = 65
-    const FOG_NEAR = 35
-    scene.fog.near = spherical.radius + FOG_NEAR
-    scene.fog.far = spherical.radius + FOG_FAR
+
+    const meshContainer = new THREE.Object3D()
+    meshContainer.scale.set(.1, .1, .1)
+    scene.add(meshContainer)
+
 
     return {
         scene,
         addToScene(model) {
-            scene.add(model)
+            meshContainer.add(model)
         },
         removeFromScene(model) {
             scene.remove(model)
@@ -126,15 +97,15 @@ export const createStudio = (cubeMap) => {
                 return
             }
 
-            if (camera.position.y < 3) {
-                camera.position.y = 3
+            if (camera.position.y < 0.001) {
+                camera.position.y = 0.001
                 controls.update()
             }
 
             if (spherical.radius !== controls.getDistance()) {
                 spherical.radius = controls.getDistance()
-                scene.fog.near = spherical.radius + FOG_NEAR
-                scene.fog.far = spherical.radius + FOG_FAR
+                //scene.fog.near = spherical.radius + FOG_NEAR
+                //scene.fog.far = spherical.radius + FOG_FAR
             }
 
             if (
