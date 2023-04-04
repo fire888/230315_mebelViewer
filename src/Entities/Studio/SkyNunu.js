@@ -32,10 +32,15 @@ export const createSky = () => {
     const sky = new THREE.Group()
 
 
+    // const hemisphereLight = new THREE.HemisphereLight(
+    //     new THREE.Color(0.19607843137254902, 0.5176470588235295, 1),
+    //     new THREE.Color(1, 0.8, 0.4980392156862745),
+    //     .5
+    // )
     const hemisphereLight = new THREE.HemisphereLight(
-        new THREE.Color(0.19607843137254902, 0.5176470588235295, 1),
-        new THREE.Color(1, 0.8, 0.4980392156862745),
-        .5
+        new THREE.Color(0.6, 0.8, 1),
+        new THREE.Color(.7, 0.7, 0.7),
+        .45
     )
     hemisphereLight.position.y = 1
     sky.add(hemisphereLight)
@@ -46,7 +51,7 @@ export const createSky = () => {
     //     .3,
     // )
     const directionalLight = new THREE.PointLight(
-        new THREE.Color(1, 1, 0.6666666666666666),
+        new THREE.Color(.8, .8, 0.6666666666666666),
         .3,
     )
     directionalLight.castShadow = true

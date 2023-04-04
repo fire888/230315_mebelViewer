@@ -34,7 +34,7 @@ gl_FragColor.rgb = c;`
         }),
         ceiling: new THREE.MeshPhongMaterial({
             //envMap: assets['env00'].model,
-            emissive: 0xaaaaaa,
+            emissive: 0x999999,
             //reflectivity: .001,
             color: 0xffffff,
             specular: 0x000000,
@@ -83,6 +83,16 @@ gl_FragColor.rgb = c;`
             //specularMap: assets['wall00specularMap'].model,
         }),
         window: new THREE.MeshPhongMaterial({
+            // //envMap: assets['env00'].model,
+            // //reflectivity: .2,
+            // color: 0xffffff,
+            // side: THREE.DoubleSide,
+            // specular: 0x333333,
+            // //aoMap: assets['aoMap'].model,
+            // aoMapIntensity: 1,
+            // emissive: 0x1a1c1c,
+            // ///vertexColors: true,
+
             //envMap: assets['env00'].model,
             //reflectivity: .2,
             color: 0xffffff,
@@ -90,17 +100,16 @@ gl_FragColor.rgb = c;`
             specular: 0x333333,
             //aoMap: assets['aoMap'].model,
             aoMapIntensity: 1,
-            emissive: 0x1a1c1c,
-            ///vertexColors: true,
+            emissive: 0x555555,
         }),
         lineG1: new THREE.LineBasicMaterial({
             color: 0x888866,
         }),
-        //windowGlass: new THREE.MeshPhongMaterial({
+        windowGlass: new THREE.MeshPhongMaterial({
         //windowGlass: new THREE.MeshBasicMaterial({
-        windowGlass: new THREE.MeshMatcapMaterial({
-            //envMap: assets['env00'].model,
-            //reflectivity: 1,
+        //windowGlass: new THREE.MeshMatcapMaterial({
+            envMap: assets['env00'].model,
+            reflectivity: 1,
             color: 0x00ffff,
             side: THREE.DoubleSide,
             specular: 0xffffff,

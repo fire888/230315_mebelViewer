@@ -102,8 +102,11 @@ import m13_ao from '../assets/1/m13_ao.jpg'
 import m14_ao from '../assets/1/m14_ao.jpg'
 import m16_ao from '../assets/1/m16_ao.jpg'
 import '../assets/1/m16_n.jpg'
+import m17 from '../assets/1/17.fbx'
+import '../assets/1/m17.1_d.jpg'
+import '../assets/1/m17.2_d.jpg'
 
-import picture from '../assets/NEVA.jpg'
+//import picture from '../assets/NEVA.jpg'
 
 const X = -25.6
 const Z = -20
@@ -113,7 +116,7 @@ export const ASSETS = [
 
     { key: 'aoMap', src: aoMap, typeLoader: 'img' },
 
-    { key: 'picture', src: picture, typeLoader: 'img' },
+    //{ key: 'picture', src: picture, typeLoader: 'img' },
 
     //{ key: 'ceiling00ao', src: ceiling00ao, typeLoader: 'img', repeat: true },
 
@@ -130,37 +133,38 @@ export const ASSETS = [
     //{ key: 'chairModel', src: chair, typeLoader: 'gltf' },
 
    // { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [X, 0, Z], rot: 0, hideWall: 'n', mat0: { emissive: new THREE.Color(.33, .33, .3) }, },
-   //  { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [X, 0, Z], rot: 0, hideWall: 'n' },
-   //  { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [X + 8.3, 0, Z], rot: 0, hideWall: 'n'},
-   //  { key: 'm03', src: m03, typeLoader: 'fbx',  pos: [X + 20, 0, Z], rot: 0, hideWall: 'n'},
-   //  { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [X + 31, 0, Z], rot: 0, hideWall: 'n'},
-   //  { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [X + 37.5, 0, Z], rot: 0, hideWall: 'n'},
-   //  { key: 'm06', src: m06, typeLoader: 'fbx',  pos: [X + 44, 0, Z  + .5], rot: 0, hideWall: 'n'},
-   //  { key: 'm07', src: m07, typeLoader: 'fbx',  pos: [X + 50.5, 0, Z + .5], rot: 0, hideWall: 'n'},
+     { key: 'm01', src: m01, typeLoader: 'fbx',  pos: [X, 0, Z], rot: 0, hideWall: 'n' },
+     { key: 'm02', src: m02, typeLoader: 'fbx',  pos: [X + 8.3, 0, Z], rot: 0, hideWall: 'n'},
+     { key: 'm03', src: m03, typeLoader: 'fbx',  pos: [X + 20, 0, Z], rot: 0, hideWall: 'n'},
+     { key: 'm04', src: m04, typeLoader: 'fbx',  pos: [X + 31, 0, Z], rot: 0, hideWall: 'n'},
+     { key: 'm05', src: m05, typeLoader: 'fbx',  pos: [X + 37.5, 0, Z], rot: 0, hideWall: 'n'},
+     { key: 'm06', src: m06, typeLoader: 'fbx',  pos: [X + 44, 0, Z  + .5], rot: 0, hideWall: 'n'},
+     { key: 'm07', src: m07, typeLoader: 'fbx',  pos: [X + 50.5, 0, Z + .5], rot: 0, hideWall: 'n'},
    //
-   //  { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [X + 33, 18, Z - 2], rot: 0, hideWall: 'n' },
-   //  { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [X + 4.5, 18, Z - 2], rot: 0, hideWall: 'n' },
-   //  { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [X - 3, 18, Z + 20], rot: Math.PI / 2, hideWall: 'w' },
-   //  { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [X - 3, 18, Z + 34], rot: Math.PI / 2, hideWall: 'w' },
+     { key: 'm08', src: m08, typeLoader: 'fbx',  pos: [X + 33, 18, Z - 2], rot: 0, hideWall: 'n' },
+     { key: 'm09', src: m09, typeLoader: 'fbx',  pos: [X + 4.5, 18, Z - 2], rot: 0, hideWall: 'n' },
+     { key: 'm10', src: m10, typeLoader: 'fbx',  pos: [X - 3.8, 18, Z + 20], rot: Math.PI / 2, hideWall: 'w' },
+     { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [X - 3.8, 18, Z + 34], rot: Math.PI / 2, hideWall: 'w' },
 
     { key: 'm12', src: m12, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null }, // bed
-    // { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
-    // { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
-    // //{ key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  }, // pillow
-    // { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
+    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
+    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
+    //{ key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  }, // pillow
+    { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
+    { key: 'm17', src: m17, typeLoader: 'fbx',  pos: [X + 40, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
 
 
-    { key: 'm1_ao', src: m1_ao, typeLoader: 'img' },
-    { key: 'm3_ao', src: m3_ao, typeLoader: 'img' },
-    { key: 'm4_ao', src: m4_ao, typeLoader: 'img' },
-    { key: 'm6_ao', src: m6_ao, typeLoader: 'img' },
-    { key: 'm8_ao', src: m8_ao, typeLoader: 'img' },
-    { key: 'm12.1_ao', src: m12$1_ao, typeLoader: 'img' },
-    { key: 'm12.2_ao', src: m12$2_ao, typeLoader: 'img' },
-    { key: 'm12.3_ao', src: m12$3_ao, typeLoader: 'img' },
-    { key: 'm13_ao', src: m13_ao, typeLoader: 'img' },
-    { key: 'm14_ao', src: m14_ao, typeLoader: 'img' },
-    { key: 'm16_ao', src: m16_ao, typeLoader: 'img' },
+    // { key: 'm1_ao', src: m1_ao, typeLoader: 'img' },
+    // { key: 'm3_ao', src: m3_ao, typeLoader: 'img' },
+    // { key: 'm4_ao', src: m4_ao, typeLoader: 'img' },
+    // { key: 'm6_ao', src: m6_ao, typeLoader: 'img' },
+    // { key: 'm8_ao', src: m8_ao, typeLoader: 'img' },
+    // { key: 'm12.1_ao', src: m12$1_ao, typeLoader: 'img' },
+    // { key: 'm12.2_ao', src: m12$2_ao, typeLoader: 'img' },
+    // { key: 'm12.3_ao', src: m12$3_ao, typeLoader: 'img' },
+    // { key: 'm13_ao', src: m13_ao, typeLoader: 'img' },
+    // { key: 'm14_ao', src: m14_ao, typeLoader: 'img' },
+    // { key: 'm16_ao', src: m16_ao, typeLoader: 'img' },
 ]
 
 

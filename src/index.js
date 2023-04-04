@@ -17,6 +17,20 @@ import { loadAssets } from "./helpers/loadManager"
 import { ASSETS, MATERIALS_AO } from "./constants/ASSETS"
 
 
+const addPic = root => {
+    const pic = new THREE.Mesh(
+        new THREE.PlaneGeometry(15, 10),
+        new THREE.MeshPhongMaterial({
+            map: root.assets['picture'].model,
+            emissive: 0x666666,
+        })
+    )
+    //pic.rotation.x = -Math.PI / 2
+    pic.rotation.y = Math.PI
+    pic.position.z = 20
+    pic.position.y = 17
+    root.studio.addToScene(pic)
+}
 
 
 const prepareFurniture = root => {
@@ -87,7 +101,7 @@ gl_FragColor.rgb = c;`
                 }
                 mat.envMap = assets['env00'].model
                 mat.reflectivity = .01
-                if (mat.name === 'glass') {
+                if (mat.name === 'glass' || mat.name === 'm17.2') {
                     mat.reflectivity = 1
                     mat.opacity = .3
                 }
@@ -111,22 +125,22 @@ gl_FragColor.rgb = c;`
             }
 
 
-            if (MATERIALS_AO[key]) {
-                for (let keyIndMat in MATERIALS_AO[key]) {
-                    if (!item.material.length) {
-                        item.material.aoMap = assets[MATERIALS_AO[key][0]].model
-                        item.material.aoMapIntensity = 0.1
-                    } else {
-                        for (let i = 0; i < item.material.length; ++i) {
-                            if (MATERIALS_AO[key][i]) {
-                                item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
-                                item.material[i].aoMapIntensity = .05
-                                //item.material[i].aoMapIntensity = 1
-                            }
-                        }
-                    }
-                }
-            }
+            // if (MATERIALS_AO[key]) {
+            //     for (let keyIndMat in MATERIALS_AO[key]) {
+            //         if (!item.material.length) {
+            //             item.material.aoMap = assets[MATERIALS_AO[key][0]].model
+            //             item.material.aoMapIntensity = 0.1
+            //         } else {
+            //             for (let i = 0; i < item.material.length; ++i) {
+            //                 if (MATERIALS_AO[key][i]) {
+            //                     item.material[i].aoMap = assets[MATERIALS_AO[key][i]].model
+            //                     item.material[i].aoMapIntensity = .05
+            //                     //item.material[i].aoMapIntensity = 1
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
 
 
         }
@@ -224,26 +238,14 @@ const threeApp = () => {
 
 
 
-    //  loadAssets(ASSETS).then(assets => {
-    //     const pic = new THREE.Mesh(
-    //         new THREE.PlaneGeometry(15, 10),
-    //         new THREE.MeshPhongMaterial({
-    //             map: assets['picture'].model,
-    //             emissive: 0x666666,
-    //         })
-    //     )
-    //     //pic.rotation.x = -Math.PI / 2
-    //     pic.rotation.y = Math.PI
-    //     pic.position.z = 20
-    //     pic.position.y = 17
-    //     studio.addToScene(pic)
-    //     root.assets = assets
-    //      prepareFurniture(root)
-    //      createContainerFlat(root)
-    //      saveScene(root)
-    // })
+     loadAssets(ASSETS).then(assets => {
+        root.assets = assets
+        prepareFurniture(root)
+        createContainerFlat(root)
+        //saveScene(root)
+    })
 
-    addLoadFileListener(root)
+    //addLoadFileListener(root)
 
     const onWindowResize = () => {
         studio.resize()

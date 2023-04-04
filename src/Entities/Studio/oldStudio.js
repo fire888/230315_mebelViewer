@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import { createSky } from './SkyNunu'
 
-const PADDING = 40
+const PADDING = 0
 
 //const BACK_COLOR = 0xf8cfc1
 const BACK_COLOR = 0xc8cfd4

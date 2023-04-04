@@ -62,6 +62,7 @@ export const createPlinth = (data, materials) => {
     // geometry.setAttribute('uv', new THREE.BufferAttribute(u32, 2))
 
     const m = new THREE.Mesh(geometry, materials.plinth)
+    m.receiveShadow = true
 
 
     /** mesh main */
