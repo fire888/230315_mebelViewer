@@ -176,6 +176,14 @@ gl_FragColor.rgb = c;`
 
         root.studio.addToScene(assets[key].model)
     }
+
+    const box = new THREE.Mesh(
+        new THREE.BoxGeometry(20.5, 1, 16.5),
+        new THREE.MeshBasicMaterial()
+    )
+    box.castShadow = true
+    box.position.set(-18.5, 2, 7)
+    root.studio.addToScene(box)
 }
 
 

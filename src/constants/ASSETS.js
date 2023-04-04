@@ -147,11 +147,11 @@ export const ASSETS = [
      { key: 'm11', src: m11, typeLoader: 'fbx',  pos: [X - 3.8, 18, Z + 34], rot: Math.PI / 2, hideWall: 'w' },
 
     { key: 'm12', src: m12, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null }, // bed
-    { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
-    { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
-    //{ key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  }, // pillow
-    { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
-    { key: 'm17', src: m17, typeLoader: 'fbx',  pos: [X + 40, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
+     { key: 'm13', src: m13, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 38], rot: Math.PI / 2, hideWall: null  },
+     { key: 'm14', src: m14, typeLoader: 'fbx',  pos: [X - 1.5, 0, Z + 16], rot: Math.PI / 2, hideWall: null  },
+    // //{ key: 'm15', src: m15, typeLoader: 'fbx',  pos: [X + 7, 0, Z + 27], rot: Math.PI / 2, hideWall: null  }, // pillow
+     { key: 'm16', src: m16, typeLoader: 'fbx',  pos: [X + 48, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
+     { key: 'm17', src: m17, typeLoader: 'fbx',  pos: [X + 40, 0, Z + 27], rot: -Math.PI / 2, hideWall: null  }, // sofa
 
 
     // { key: 'm1_ao', src: m1_ao, typeLoader: 'img' },
